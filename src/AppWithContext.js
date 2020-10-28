@@ -24,9 +24,9 @@ const AppWithContext = (props) => {
     };
 
     return (
-        <PokemonContext.Provider value={value}>
-            <App></App>
-        </PokemonContext.Provider>
+        <Context.Provider value={value}>
+            <App/>
+        </Context.Provider>
     )
 }
 

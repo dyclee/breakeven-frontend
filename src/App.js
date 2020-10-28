@@ -17,6 +17,32 @@ const App = () => {
     useEffect(() => {
         (async() => {
             const localToken = window.localStorage.getItem('token');
-        })
-    })
+            if (localToken) {
+                setToken(localToken);
+            }
+        })();
+    }, [setToken]);
+
+    const needLogin = !token;
+
+    return (
+        <BrowserRouter>
+            <Switch>
+                <Route
+                    path="/login"
+                    render={(props) => (
+                        <LoginPanel {...props} />
+                    )}
+                />
+                <PrivateRoute
+                    path="/"
+                    exact={true}
+                    needLogin={needLogin}>
+                </PrivateRoute>
+
+            </Switch>
+        </BrowserRouter>
+    )
 }
+
+export default App;

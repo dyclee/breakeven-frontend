@@ -1,4 +1,3 @@
-import { response } from 'express';
 import { baseUrl } from '../config';
 
 const TOKEN_KEY = 'auth/token';

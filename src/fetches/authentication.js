@@ -1,4 +1,3 @@
-const { response } = require('express');
 const { baseUrl } = require('../config');
 
 const getToken = async(email, password) => {
