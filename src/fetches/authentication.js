@@ -1,14 +1,14 @@
 const { baseUrl } = require('../config');
 
-const getToken = async(email, password) => {
+export const getToken = async(email, password) => {
     const res = await fetch(`${baseUrl}/session`, {
-        method: "put",
+        method: "post",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, password}),
     });
 
     if (res.ok) {
-        const { token } = await response.json();
+        const { token } = await res.json();
         window.localStorage.setItem("token", token);
         return token;
     }

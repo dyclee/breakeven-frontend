@@ -21,4 +21,28 @@ const LoginPanel = () => {
     const updatePassword = (e) => {
         setPassword(e.target.value);
     }
+
+    if (token) {
+        return <Redirect to="/"></Redirect>
+    };
+
+    return (
+        <form onSubmit={handleSubmit}>
+            <input
+                type="text"
+                placeholder="Email"
+                value={email}
+                onChange={updateEmail}
+            />
+            <input
+                type="password"
+                placeholder="Password"
+                value={password}
+                onChange={updatePassword}
+            />
+            <button type="submit">Login</button>
+        </form>
+    )
 }
+
+export default LoginPanel;
