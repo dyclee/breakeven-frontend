@@ -1,5 +1,6 @@
 import React, { useState, useContext } from 'react';
 import Context from './Context';
+import {Route, Redirect} from 'react-router-dom';
 
 import {makeStyles} from '@material-ui/core/styles';
 import { AppBar, Toolbar, IconButton, Button, Typography } from '@material-ui/core';
@@ -30,7 +31,7 @@ const NavBar = () => {
             <Typography variant="h6" className={classes.title}>
             Home
             </Typography>
-            <Button color="inherit">Login</Button>
+            <Button onClick={<Redirect to='/login'/>} color="inherit">Login</Button>
         </Toolbar>
         </AppBar>
     )
