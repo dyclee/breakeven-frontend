@@ -8,9 +8,7 @@ const store = configureStore();
 
 ReactDOM.render(
     <React.StrictMode>
-        <Provider store={store}>
-            <AppWithContext />
-        </Provider>
+        <AppWithContext />
     </React.StrictMode>,
     document.getElementById('root')
 )

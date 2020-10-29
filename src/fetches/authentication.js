@@ -12,4 +12,6 @@ export const getToken = async(email, password) => {
         window.localStorage.setItem("token", token);
         return token;
     }
+    const response = await res.json();
+    console.log(response);
 }

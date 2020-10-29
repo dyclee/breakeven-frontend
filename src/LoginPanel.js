@@ -11,7 +11,11 @@ const LoginPanel = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         const token = await getToken(email, password);
-        setToken(token);
+        if (token) {
+            setToken(token);
+            return
+        }
+        console.log(token);
     };
 
     const updateEmail = (e) => {
