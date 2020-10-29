@@ -5,6 +5,7 @@ import {Route, Redirect} from 'react-router-dom';
 import {makeStyles} from '@material-ui/core/styles';
 import { AppBar, Toolbar, IconButton, Button, Typography } from '@material-ui/core';
 import MenuIcon from '@material-ui/icons/Menu'
+import MenuButton from './MenuButton';
 
 const useStyles = makeStyles((theme) => ({
     navbar: {
@@ -20,18 +21,15 @@ const useStyles = makeStyles((theme) => ({
 }))
 
 const NavBar = () => {
-    const { token } = useContext(Context);
+    // const { token } = useContext(Context);
     const classes = useStyles();
     return (
         <AppBar position="static">
         <Toolbar>
-            <IconButton edge="start" className={classes.menuButton} color="secondary" aria-label="menu">
-            <MenuIcon />
-            </IconButton>
             <Typography variant="h6" className={classes.title}>
             Home
             </Typography>
-            <Button onClick={<Redirect to='/login'/>} color="inherit">Login</Button>
+            <MenuButton></MenuButton>
         </Toolbar>
         </AppBar>
     )
