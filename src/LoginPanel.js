@@ -15,7 +15,6 @@ const LoginPanel = () => {
             setToken(token);
             return
         }
-        console.log(token);
     };
 
     const updateEmail = (e) => {
