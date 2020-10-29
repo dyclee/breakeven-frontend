@@ -23,6 +23,7 @@ const useStyles = makeStyles((theme) => ({
 const MenuButton = () => {
     const classes = useStyles();
 
+    // const [isLoggedIn, setIsLoggedIn] = React.useState(false);
     const [anchorEl, setAnchorEl] = React.useState(null);
 
   const handleClick = (event) => {

@@ -4,7 +4,6 @@ import {Route, Redirect} from 'react-router-dom';
 
 import {makeStyles} from '@material-ui/core/styles';
 import { AppBar, Toolbar, IconButton, Button, Typography } from '@material-ui/core';
-import MenuIcon from '@material-ui/icons/Menu'
 import MenuButton from './MenuButton';
 
 const useStyles = makeStyles((theme) => ({
@@ -21,15 +20,28 @@ const useStyles = makeStyles((theme) => ({
 }))
 
 const NavBar = () => {
-    // const { token } = useContext(Context);
+    const { token } = useContext(Context);
+
     const classes = useStyles();
+    if (token) {
+        return (
+            <AppBar position="static">
+            <Toolbar>
+                <Typography variant="h6" className={classes.title}>
+                Home
+                </Typography>
+                <MenuButton></MenuButton>
+            </Toolbar>
+            </AppBar>
+        )
+    }
     return (
         <AppBar position="static">
         <Toolbar>
             <Typography variant="h6" className={classes.title}>
-            Home
+            SplitWiser
             </Typography>
-            <MenuButton></MenuButton>
+
         </Toolbar>
         </AppBar>
     )
