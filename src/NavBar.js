@@ -5,6 +5,7 @@ import {Route, Redirect} from 'react-router-dom';
 import {makeStyles} from '@material-ui/core/styles';
 import { AppBar, Toolbar, IconButton, Button, Typography } from '@material-ui/core';
 import MenuButton from './MenuButton';
+import SignUpButton from './SignUpButton';
 
 const useStyles = makeStyles((theme) => ({
     navbar: {
@@ -38,10 +39,10 @@ const NavBar = () => {
     return (
         <AppBar position="static">
         <Toolbar>
-            <Typography variant="h6" className={classes.title}>
+            <Typography variant="h6" className={classes.title} color="secondary">
             SplitWiser
             </Typography>
-
+            <SignUpButton />
         </Toolbar>
         </AppBar>
     )
