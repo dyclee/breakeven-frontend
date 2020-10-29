@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import Context from './Context';
 
 import {makeStyles} from '@material-ui/core/styles';
 
@@ -23,7 +24,7 @@ const useStyles = makeStyles((theme) => ({
 const MenuButton = () => {
     const classes = useStyles();
 
-    // const [isLoggedIn, setIsLoggedIn] = React.useState(false);
+    const { token, setToken } = useContext(Context);
     const [anchorEl, setAnchorEl] = React.useState(null);
 
   const handleClick = (event) => {
@@ -33,6 +34,12 @@ const MenuButton = () => {
   const handleClose = () => {
     setAnchorEl(null);
   };
+
+  const handleLogout = () => {
+      window.localStorage.setItem("token", "");
+      setToken('');
+
+  }
 
   return (
     <div>
@@ -51,7 +58,7 @@ const MenuButton = () => {
       >
         <MenuItem onClick={handleClose}>Profile</MenuItem>
         <MenuItem onClick={handleClose}>My account</MenuItem>
-        <MenuItem onClick={handleClose}>Logout</MenuItem>
+        <MenuItem onClick={handleLogout}>Logout</MenuItem>
       </Menu>
     </div>
   );
