@@ -1,7 +1,11 @@
 import React, { useState, useEffect } from 'react';
 
+import { CssBaseline } from '@material-ui/core';
+import Theme from './Theme';
+
 import Context from './Context';
 import App from './App';
+import NavBar from './NavBar';
 
 const AppWithContext = (props) => {
     const [token, setToken] = useState('');
@@ -25,7 +29,11 @@ const AppWithContext = (props) => {
 
     return (
         <Context.Provider value={value}>
-            <App/>
+            <CssBaseline />
+            <Theme>
+                <NavBar/>
+                <App/>
+            </Theme>
         </Context.Provider>
     )
 }
