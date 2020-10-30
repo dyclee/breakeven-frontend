@@ -3,13 +3,12 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Button } from '@material-ui/core';
 
 import { createAccount } from './store/actions/auth';
-import { hideForm } from './store/actions/ui';
 import InputField from './TextField';
 
 import { Redirect, Route, useHistory } from 'react-router-dom';
 
 
-const SignupForm = ({hideForm}) => {
+const SignupForm = () => {
     const [fullName, setFullName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -78,9 +77,7 @@ const SignUpFormContainer = () => {
     const dispatch = useDispatch();
 
     return (
-        <SignupForm
-        hideForm={() => dispatch(hideForm())}
-        />
+        <SignupForm/>
     )
 }
 export default SignUpFormContainer;
