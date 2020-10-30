@@ -6,17 +6,10 @@ import { Redirect, Route } from 'react-router-dom';
 import {useSelector} from 'react-redux';
 
 const SignUpButton = ({needLogin}) => {
-    const handleClick = () => {
-        if (needLogin) {
-            return
-            (
-                <Redirect to='/signup' />
-            )
-        }
-}
+    const handleClick = () =><Redirect to='/signup' />
 
-  return (
-      <Button color="secondary" onClick={handleClick}>Create account</Button>
+    return (
+        <Button color="secondary" onClick={handleClick}>Create account</Button>
   );
 }
 

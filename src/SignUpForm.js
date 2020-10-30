@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { Button } from '@material-ui/core';
 
 import { createAccount } from './store/actions/auth';
+import { hideForm } from './store/actions/ui';
 import InputField from './TextField';
 
 const SignupForm = ({hideForm}) => {
