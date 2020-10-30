@@ -1,6 +1,5 @@
-import React, { useEffect, useContext } from 'react';
+import React, { useEffect } from 'react';
 import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom';
-import Context from './Context';
 import LoginPanel from './LoginPanel';
 
 const PrivateRoute = props => {
@@ -12,7 +11,6 @@ const PrivateRoute = props => {
 }
 
 const App = () => {
-    const { token, setToken } = useContext(Context);
 
     useEffect(() => {
         (async() => {

@@ -1,5 +1,5 @@
-import React, { useContext } from 'react';
-import Context from './Context';
+import React from 'react';
+
 
 import {makeStyles} from '@material-ui/core/styles';
 
@@ -24,7 +24,6 @@ const useStyles = makeStyles((theme) => ({
 const MenuButton = () => {
     const classes = useStyles();
 
-    const { token, setToken } = useContext(Context);
     const [anchorEl, setAnchorEl] = React.useState(null);
 
   const handleClick = (event) => {

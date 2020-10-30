@@ -1,12 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import AppWithContext from './AppWithContext';
+import App from './App';
+import NavBar from './NavBar'
+
 import './index.css';
+import { Provider } from 'react-redux';
+import configureStore from './store/configureStore';
 
 import { CssBaseline } from '@material-ui/core';
 import Theme from './Theme';
 
-// import configureStore from './store/configureStore';
 
 // const store = configureStore();
 
@@ -14,7 +17,8 @@ ReactDOM.render(
     <React.StrictMode>
         <CssBaseline/>
         <Theme>
-            <AppWithContext />
+            <NavBar />
+            <App />
         </Theme>
     </React.StrictMode>,
     document.getElementById('root')

@@ -1,5 +1,4 @@
-import React, { useState, useContext } from 'react';
-import Context from './Context';
+import React, { useState } from 'react';
 import {Route, Redirect} from 'react-router-dom';
 
 import {makeStyles} from '@material-ui/core/styles';
@@ -21,7 +20,6 @@ const useStyles = makeStyles((theme) => ({
 }))
 
 const NavBar = () => {
-    const { token } = useContext(Context);
 
     const classes = useStyles();
     if (token) {
