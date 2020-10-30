@@ -5,7 +5,10 @@
     color: lightcyan;
 }
 .centered {
-    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    /* max-width: 300px; */
 }
 .middled {
     align-items: center;

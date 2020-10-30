@@ -7,6 +7,7 @@ import {PrivateRoute, ProtectedRoute } from './util/route-util';
 import LoginPanel from './LoginPanel';
 import SignUpForm from './SignUpForm';
 import Dashboard from './Dashboard';
+import NavBar from './NavBar';
 
 const App = ({needLogin, loadToken}) => {
     const [loaded, setLoaded] = useState(false);
@@ -23,6 +24,7 @@ const App = ({needLogin, loadToken}) => {
 
     return (
         <BrowserRouter>
+            <NavBar />
             <Switch>
                 <ProtectedRoute
                     path="/login"

@@ -18,7 +18,6 @@ ReactDOM.render(
         <Provider store={store}>
             <CssBaseline/>
             <Theme>
-                <NavBar />
                 <App />
             </Theme>
         </Provider>
