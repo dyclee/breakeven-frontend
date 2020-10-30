@@ -16,8 +16,8 @@ export const getToken = async(email, password) => {
     console.log(response);
 }
 
-export const createAccount =
-    async( fullName, email, password, confirmPassword ) => {
+export const createAccount = async ( data ) => {
+        const { fullName, email, password, confirmPassword } = data;
         const res = await fetch(`${baseUrl}/session/signup`, {
             method: "post",
             headers: { "Content-Type": "application/json" },

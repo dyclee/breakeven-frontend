@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { loadToken } from './store/actions/auth';
 import {PrivateRoute, ProtectedRoute } from './util/route-util';
 import LoginPanel from './LoginPanel';
+import Dashboard from './Dashboard';
 
 const App = ({needLogin, loadToken}) => {
     const [loaded, setLoaded] = useState(false);
@@ -33,7 +34,7 @@ const App = ({needLogin, loadToken}) => {
                     path="/"
                     exact={true}
                     needLogin={needLogin}
-                    component={LoginPanel}
+                    component={Dashboard}
                 />
                 <Redirect to='/' />
             </Switch>

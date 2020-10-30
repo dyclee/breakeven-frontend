@@ -66,3 +66,21 @@ export const logout = () => async (dispatch, getState) => {
     const errorRes = await res.json();
     console.log(errorRes);
 }
+
+export const createAccount =
+    async( fullName, email, password, confirmPassword ) => {
+        const res = await fetch(`${baseUrl}/session/signup`, {
+            method: "post",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ fullName, email, password, confirmPassword}),
+
+        });
+
+        if (res.ok) {
+            const { user, tokenObj: { token }} = await res.json();
+            window.localStorage.setItem("token", token);
+            return token;
+        }
+        const errorRes = await res.json();
+        console.log(errorRes);
+}
