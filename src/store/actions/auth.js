@@ -18,7 +18,6 @@ export const loadToken = () => async dispatch => {
         const userObj = await res.json();
         const { user, tokenId} = userObj;
 
-        console.log("user", user);
         if (user) {
             dispatch(setToken(token));
             return;
@@ -67,8 +66,9 @@ export const logout = () => async (dispatch, getState) => {
     console.log(errorRes);
 }
 
-export const createAccount =
-    async( fullName, email, password, confirmPassword ) => {
+export const createAccount = ( fullName, email, password, confirmPassword ) =>
+    async dispatch =>
+    {
         const res = await fetch(`${baseUrl}/session/signup`, {
             method: "post",
             headers: { "Content-Type": "application/json" },

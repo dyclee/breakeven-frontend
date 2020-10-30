@@ -4,3 +4,9 @@
     position: relative;
     color: lightcyan;
 }
+.centered {
+    justify-content: center;
+}
+.middled {
+    align-items: center;
+}

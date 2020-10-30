@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { loadToken } from './store/actions/auth';
 import {PrivateRoute, ProtectedRoute } from './util/route-util';
 import LoginPanel from './LoginPanel';
+import SignUpForm from './SignUpForm';
 import Dashboard from './Dashboard';
 
 const App = ({needLogin, loadToken}) => {
@@ -16,7 +17,6 @@ const App = ({needLogin, loadToken}) => {
     }, []);
 
     const token = useSelector(state => state.authReducer.token);
-    console.log(token);
     if (token) {
         needLogin = false;
     }
@@ -29,6 +29,12 @@ const App = ({needLogin, loadToken}) => {
                     exact={true}
                     needLogin={needLogin}
                     component={LoginPanel}
+                />
+                <ProtectedRoute
+                    path="/signup"
+                    exact={true}
+                    needLogin={needLogin}
+                    component={SignUpForm}
                 />
                 <PrivateRoute
                     path="/"

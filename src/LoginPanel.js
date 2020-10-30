@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { Redirect,  } from 'react-router-dom';
 import { login } from './store/actions/auth';
+import Button from '@material-ui/core/Button';
+import InputField from './TextField';
 
-
-const LoginPanel = () => {
+const LoginPanel = ({ formVisible, showForm }) => {
     const [ email, setEmail ] = useState('demo@email.com');
     const [ password, setPassword] = useState('passwordbro');
 
@@ -26,24 +27,36 @@ const LoginPanel = () => {
     }
 
     return (
-        <main className="centered middled">
-            <form onSubmit={handleSubmit}>
-                <input
-                    type="text"
-                    placeholder="Email"
-                    value={email}
-                    onChange={updateEmail}
-                />
-                <input
-                    type="password"
-                    placeholder="Password"
-                    value={password}
-                    onChange={updatePassword}
-                />
-                <button type="submit">Login</button>
-            </form>
-        </main>
-    )
+            <main className="centered middled">
+                <form onSubmit={handleSubmit}>
+                    <InputField
+                        id="Email"
+                        type="text"
+                        placeholder="Email"
+                        value={email}
+                        onChange={updateEmail}
+                        />
+                    <InputField
+                        id="Password"
+                        type="password"
+                        placeholder="Password"
+                        value={password}
+                        onChange={updatePassword}
+                        />
+                    <Button type="submit" color="secondary" onClick={handleSubmit}>Login</Button>
+                </form>
+            </main>
+            )
 }
 
-export default LoginPanel;
+const LoginPanelContainer = () => {
+    const formVisible = useSelector ((state) => state.uiReducer.formVisible);
+    const dispatch = useDispatch();
+    return (
+        <LoginPanel
+            formVisible={formVisible}
+            showForm={() => dispatch(showForm())}
+        />
+    )
+}
+export default LoginPanelContainer;
