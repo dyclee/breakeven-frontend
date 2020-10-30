@@ -14,8 +14,10 @@ const App = ({needLogin, loadToken}) => {
         loadToken();
     }, []);
 
-    if (!loaded) {
-        return null;
+    const token = useSelector(state => state.authReducer.token);
+    console.log(token);
+    if (token) {
+        needLogin = false;
     }
 
     return (

@@ -10,8 +10,22 @@ export const setToken = token => ({ type: SET_TOKEN, token });
 export const loadToken = () => async dispatch => {
     const token = window.localStorage.getItem(TOKEN_KEY);
     if (token) {
-        dispatch(setToken(token));
+        const res = await fetch(`${baseUrl}/users`, {
+            method: 'put',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ token })
+        });
+        const userObj = await res.json();
+        const { user, tokenId} = userObj;
+
+        console.log("user", user);
+        if (user) {
+            dispatch(setToken(token));
+            return;
+        }
+        dispatch(removeToken());
     }
+    dispatch(removeToken());
 }
 
 export const login = (email, password) => async dispatch => {
