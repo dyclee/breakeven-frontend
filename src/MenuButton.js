@@ -6,7 +6,8 @@ import {Button, IconButton } from '@material-ui/core';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import MenuIcon from '@material-ui/icons/Menu'
-import { logout } from './store/actions/auth';
+import LogoutButton from './LogoutButton';
+
 
 const useStyles = makeStyles((theme) => ({
     navbar: {
@@ -23,22 +24,16 @@ const useStyles = makeStyles((theme) => ({
 
 const MenuButton = () => {
     const classes = useStyles();
-    const dispatch = useDispatch();
 
     const [anchorEl, setAnchorEl] = React.useState(null);
 
-  const handleClick = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
+    const handleClick = (event) => {
+        setAnchorEl(event.currentTarget);
+    };
 
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
-
-  const handleLogout = () => {
-      dispatch(logout());
-
-  }
+    const handleClose = () => {
+        setAnchorEl(null);
+    };
 
   return (
     <div>
@@ -57,7 +52,7 @@ const MenuButton = () => {
       >
         <MenuItem onClick={handleClose}>Profile</MenuItem>
         <MenuItem onClick={handleClose}>My account</MenuItem>
-        <MenuItem onClick={handleLogout}>Logout</MenuItem>
+        <LogoutButton />
       </Menu>
     </div>
   );
