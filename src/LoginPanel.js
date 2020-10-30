@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 
 import { Redirect,  } from 'react-router-dom';
-// import { getToken } from './fetches/authentication';
 import { login } from './store/actions/auth';
 
 
@@ -15,11 +14,7 @@ const LoginPanel = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         dispatch(login(email, password));
-        // const token = await getToken(email, password);
-        // if (token) {
-        //     setToken(token);
-        //     return
-        // }
+
     };
 
     const updateEmail = (e) => {
