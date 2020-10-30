@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import './index.css'
 
 import { Redirect,  } from 'react-router-dom';
 import { login } from './store/actions/auth';

@@ -6,6 +6,9 @@ import { createAccount } from './store/actions/auth';
 import { hideForm } from './store/actions/ui';
 import InputField from './TextField';
 
+import { Redirect, Route, useHistory } from 'react-router-dom';
+
+
 const SignupForm = ({hideForm}) => {
     const [fullName, setFullName] = useState("");
     const [email, setEmail] = useState("");
@@ -13,6 +16,11 @@ const SignupForm = ({hideForm}) => {
     const [confirmPassword, setConfirmPassword] = useState("");
 
     const dispatch = useDispatch();
+
+    const history = useHistory();
+
+    const handleClick = (e) => history.push('/login')
+
 
     const handleSubmit = e => {
         e.preventDefault();
@@ -60,7 +68,7 @@ const SignupForm = ({hideForm}) => {
                     onChange={updateProperty(setConfirmPassword)}
                 />
                 <Button type="submit" color="secondary" onClick={handleSubmit}>Create Account</Button>
-                <Button type="button" color="secondary" onClick={() => hideForm()}>Cancel</Button>
+                <Button type="button" color="secondary" onClick={handleClick}>Cancel</Button>
             </form>
         </main>
     )
