@@ -11,15 +11,17 @@ import { CssBaseline } from '@material-ui/core';
 import Theme from './Theme';
 
 
-// const store = configureStore();
+const store = configureStore();
 
 ReactDOM.render(
     <React.StrictMode>
-        <CssBaseline/>
-        <Theme>
-            <NavBar />
-            <App />
-        </Theme>
+        <Provider store={store}>
+            <CssBaseline/>
+            <Theme>
+                <NavBar />
+                <App />
+            </Theme>
+        </Provider>
     </React.StrictMode>,
     document.getElementById('root')
 )

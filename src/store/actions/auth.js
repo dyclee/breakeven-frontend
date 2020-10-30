@@ -22,7 +22,7 @@ export const login = (email, password) => async dispatch => {
     });
 
     if (res.ok) {
-        const { tokenObj: { token } } = await response.json();
+        const { tokenObj: { token } } = await res.json();
         window.localStorage.setItem(TOKEN_KEY, token);
         dispatch(setToken(token));
         return

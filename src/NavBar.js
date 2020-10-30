@@ -1,10 +1,13 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {Route, Redirect} from 'react-router-dom';
+import { useDispatch, useSelector } from "react-redux";
+
 
 import {makeStyles} from '@material-ui/core/styles';
 import { AppBar, Toolbar, IconButton, Button, Typography } from '@material-ui/core';
 import MenuButton from './MenuButton';
 import SignUpButton from './SignUpButton';
+import { loadToken } from './store/actions/auth';
 
 const useStyles = makeStyles((theme) => ({
     navbar: {
@@ -19,10 +22,15 @@ const useStyles = makeStyles((theme) => ({
     }
 }))
 
-const NavBar = () => {
-
+const NavBar = ({needLogin, loadToken}) => {
+    const [token, setToken] = useState(null)
     const classes = useStyles();
-    if (token) {
+
+    useEffect(() => {
+        setToken(true);
+        loadToken();
+    }, []);
+    if (!needLogin) {
         return (
             <AppBar position="static">
             <Toolbar>
@@ -46,5 +54,11 @@ const NavBar = () => {
     )
 }
 
+const NavBarContainer = () => {
+    const needLogin = useSelector((state) => !state.authReducer.token);
+    const dispatch = useDispatch();
+    return <NavBar needLogin={needLogin} loadToken={() => dispatch(loadToken())} />;
+}
 
-export default NavBar;
+
+export default NavBarContainer;
