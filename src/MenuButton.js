@@ -1,12 +1,12 @@
 import React from 'react';
-
-
+import { useDispatch } from 'react-redux';
 import {makeStyles} from '@material-ui/core/styles';
 
 import {Button, IconButton } from '@material-ui/core';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import MenuIcon from '@material-ui/icons/Menu'
+import { logout } from './store/actions/auth';
 
 const useStyles = makeStyles((theme) => ({
     navbar: {
@@ -23,6 +23,7 @@ const useStyles = makeStyles((theme) => ({
 
 const MenuButton = () => {
     const classes = useStyles();
+    const dispatch = useDispatch();
 
     const [anchorEl, setAnchorEl] = React.useState(null);
 
@@ -35,8 +36,7 @@ const MenuButton = () => {
   };
 
   const handleLogout = () => {
-      window.localStorage.setItem("token", "");
-      setToken('');
+      dispatch(logout());
 
   }
 

@@ -22,7 +22,7 @@ export const login = (email, password) => async dispatch => {
     });
 
     if (res.ok) {
-        const { tokenObj: { token } } = await res.json();
+        const { token } = await res.json();
         window.localStorage.setItem(TOKEN_KEY, token);
         dispatch(setToken(token));
         return
@@ -34,7 +34,7 @@ export const login = (email, password) => async dispatch => {
 
 export const logout = () => async (dispatch, getState) => {
     const {
-        authentication: { token },
+        authReducer: { token },
     } = getState();
 
     const res = await fetch(`${baseUrl}/session`, {
