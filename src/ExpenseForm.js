@@ -12,6 +12,7 @@ import { Button } from '@material-ui/core';
 
 import { createAccount } from './store/actions/auth';
 import InputField from './TextField';
+import FriendSelect from './FriendSelect';
 
 import { Redirect, Route, useHistory } from 'react-router-dom';
 

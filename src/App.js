@@ -8,9 +8,26 @@ import LoginPanel from './LoginPanel';
 import SignUpForm from './SignUpForm';
 import Dashboard from './Dashboard';
 import NavBar from './NavBar';
+import Drawer from './Drawer';
+import { CssBaseline } from '@material-ui/core';
+import { makeStyles } from '@material-ui/core/styles';
+import Toolbar from '@material-ui/core/Toolbar';
+
+
+const drawerWidth = 240;
+const useStyles = makeStyles((theme) => ({
+    root: {
+      display: 'flex',
+    },
+    content: {
+      flexGrow: 1,
+      padding: theme.spacing(3),
+    },
+  }));
 
 const App = ({needLogin, loadToken}) => {
     const [loaded, setLoaded] = useState(false);
+    const classes = useStyles();
 
     useEffect(() => {
         setLoaded(true);
@@ -23,30 +40,40 @@ const App = ({needLogin, loadToken}) => {
     }
 
     return (
-        <BrowserRouter>
-            <NavBar />
-            <Switch>
-                <ProtectedRoute
-                    path="/login"
-                    exact={true}
-                    needLogin={needLogin}
-                    component={LoginPanel}
-                />
-                <ProtectedRoute
-                    path="/signup"
-                    exact={true}
-                    needLogin={needLogin}
-                    component={SignUpForm}
-                />
-                <PrivateRoute
-                    path="/"
-                    exact={true}
-                    needLogin={needLogin}
-                    component={Dashboard}
-                />
-                <Redirect to='/' />
-            </Switch>
-        </BrowserRouter>
+
+        <div className={classes.root}>
+            <BrowserRouter>
+                <CssBaseline />
+                <NavBar />
+                <Drawer />
+                <main className={classes.content}>
+                <Toolbar />
+                <Switch>
+                    <ProtectedRoute
+                        path="/login"
+                        exact={true}
+                        needLogin={needLogin}
+                        component={LoginPanel}
+                    />
+                    <ProtectedRoute
+                        path="/signup"
+                        exact={true}
+                        needLogin={needLogin}
+                        component={SignUpForm}
+                    />
+                    <PrivateRoute
+                        path="/"
+                        exact={true}
+                        needLogin={needLogin}
+                        component={Dashboard}
+                    />
+                    <Redirect to='/' />
+                </Switch>
+
+                </main>
+
+            </BrowserRouter>
+        </div>
     )
 }
 

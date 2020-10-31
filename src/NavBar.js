@@ -19,8 +19,12 @@ const useStyles = makeStyles((theme) => ({
     },
     title: {
         flexGrow: 1,
-    }
+    },
+    appBar: {
+        zIndex: theme.zIndex.drawer + 1,
+      },
 }))
+
 
 const NavBar = ({needLogin, loadToken}) => {
     const [token, setToken] = useState(null)
@@ -32,9 +36,9 @@ const NavBar = ({needLogin, loadToken}) => {
     }, []);
     if (!needLogin) {
         return (
-            <AppBar position="static">
+            <AppBar position="fixed" className={classes.appBar}>
             <Toolbar>
-                <Typography variant="h6" className={classes.title}>
+                <Typography variant="h6" noWrap className={classes.title}>
                 Home
                 </Typography>
                 <MenuButton></MenuButton>
@@ -43,9 +47,9 @@ const NavBar = ({needLogin, loadToken}) => {
         )
     }
     return (
-        <AppBar position="static">
+        <AppBar position="fixed" className={classes.appBar}>
         <Toolbar>
-            <Typography variant="h6" className={classes.title} color="secondary">
+            <Typography variant="h6" className={classes.title} noWrap color="secondary">
             SplitWiser
             </Typography>
             <SignUpButton />
@@ -53,6 +57,7 @@ const NavBar = ({needLogin, loadToken}) => {
         </AppBar>
     )
 }
+
 
 const NavBarContainer = () => {
     const needLogin = useSelector((state) => !state.authReducer.token);

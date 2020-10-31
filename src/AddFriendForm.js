@@ -1,14 +1,15 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { Redirect,  } from 'react-router-dom';
+import { Redirect, useHistory } from 'react-router-dom';
 import { inviteFriend } from './store/actions/friends';
+import {hideForm, showForm } from './store/actions/ui';
 import { getUser } from './store/actions/auth';
 import Button from '@material-ui/core/Button';
 import TextareaAutosize from '@material-ui/core/TextareaAutosize';
 import InputField from './TextField';
 
-const AddFriendForm = () => {
+const AddFriendForm = ({hideForm, showForm}) => {
     const [email, setEmail] = useState("");
     const [message, setMessage] = useState("");
 
@@ -20,6 +21,8 @@ const AddFriendForm = () => {
         e.preventDefault();
         const user = await getUser(token);
         dispatch(inviteFriend({user, email}));
+        alert("Friend request sent");
+        hideForm();
     }
 
     const updateEmail = (e) => {
@@ -35,16 +38,26 @@ const AddFriendForm = () => {
             <form onSubmit={handleSubmit}>
                 <InputField
                     id="email"
-                    type="text"
+                    type="email"
                     placeholder="Email"
                     value={email}
                     onChange={updateEmail}
                 />
-                <TextareaAutosize areia-labal="textarea" rowsMin={5} placeholder="Message (optional)" />
+                <TextareaAutosize aria-label="textarea" rowsMin={5} placeholder="Message (optional)" />
                 <Button type="submit" color="secondary" onClick={handleSubmit}>Send</Button>
+                <Button type="button" color="secondary" onClick={hideForm}>Cancel</Button>
             </form>
         </main>
     )
 }
 
-export default AddFriendForm;
+const AddFriendFormContainer = () => {
+    const dispatch = useDispatch();
+    return (
+        <AddFriendForm
+            hideForm={() => dispatch(hideForm())}
+            showForm={() => dispatch(showForm())}
+        />
+    )
+}
+export default AddFriendFormContainer;
