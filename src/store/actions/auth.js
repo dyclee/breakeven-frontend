@@ -41,7 +41,7 @@ export const login = (email, password) => async dispatch => {
         return
     }
     const errorRes = await res.json();
-    console.log(errorRes);
+    return errorRes;
 
 };
 
@@ -84,4 +84,15 @@ export const createAccount = ( {fullName, email, password, confirmPassword }) =>
         }
         const errorRes = await res.json();
         console.log(errorRes);
+}
+
+export const getUser =  async (token) => {
+    const res = await fetch(`${baseUrl}/users`, {
+        method: 'put',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ token })
+    });
+    const userObj = await res.json();
+    const { user, tokenId} = userObj;
+    res.status(201).json({ user })
 }

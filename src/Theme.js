@@ -10,7 +10,7 @@ const theme = createMuiTheme({
         secondary: {
             main: "#ff8a65"
         },
-        type: 'dark',
+        // type: 'dark',
     },
     // typography: {
     //     fontFamily: "",
