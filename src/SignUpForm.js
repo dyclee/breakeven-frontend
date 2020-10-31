@@ -39,28 +39,28 @@ const SignupForm = () => {
         <main className="centered middled">
             <form onSubmit={handleSubmit}>
                 <InputField
-                    id="fullName"
+                    id="Name"
                     type="text"
                     placeholder="Name"
                     value={fullName}
                     onChange={updateProperty(setFullName)}
                 />
                 <InputField
-                    id="email"
+                    id="Email"
                     type="email"
                     placeholder="Email"
                     value={email}
                     onChange={updateProperty(setEmail)}
                 />
                 <InputField
-                    id="password"
+                    id="Password"
                     type="password"
                     placeholder="Password"
                     value={password}
                     onChange={updateProperty(setPassword)}
                 />
                 <InputField
-                    id="confirmPassword"
+                    id="Confirm password"
                     type="password"
                     placeholder="Confirm Password"
                     value={confirmPassword}

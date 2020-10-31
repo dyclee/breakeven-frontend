@@ -1,20 +1,25 @@
 import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
-import AppBar from '@material-ui/core/AppBar';
-import CssBaseline from '@material-ui/core/CssBaseline';
+
 import Toolbar from '@material-ui/core/Toolbar';
 import List from '@material-ui/core/List';
-import Typography from '@material-ui/core/Typography';
+
 import Divider from '@material-ui/core/Divider';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
-import Navbar from './NavBar';
-import App from './App';
-import Theme from './Theme';
+
+import AttachMoneyIcon from '@material-ui/icons/AttachMoney';
+import PersonIcon from '@material-ui/icons/Person';
+import PeopleIcon from '@material-ui/icons/People';
+
+import { getUser } from './store/actions/auth';
+import { getFriends } from './store/actions/friends';
+
 
 const drawerWidth = 240;
 
@@ -41,9 +46,17 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function ClippedDrawer() {
+const SideDrawer =  () => {
     const classes = useStyles();
 
+    const dispatch = useDispatch();
+
+    const token = useSelector(state => state.authReducer.token);
+
+    const handleFriendClick = async () => {
+        const user = await getUser(token);
+        dispatch(getFriends(user));
+    }
     return (
 
         <Drawer
@@ -56,12 +69,18 @@ export default function ClippedDrawer() {
           <Toolbar />
           <div className={classes.drawerContainer}>
             <List>
-              {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-                <ListItem button key={text}>
-                  <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-                  <ListItemText primary={text} />
+                <ListItem button key="Expenses">
+                  <ListItemIcon><AttachMoneyIcon /></ListItemIcon>
+                  <ListItemText primary="Expenses" />
                 </ListItem>
-              ))}
+                <ListItem button key="Friends" onClick={handleFriendClick}>
+                  <ListItemIcon><PersonIcon /></ListItemIcon>
+                  <ListItemText primary="Friends" />
+                </ListItem>
+                <ListItem button key="Groups">
+                  <ListItemIcon><PeopleIcon /></ListItemIcon>
+                  <ListItemText primary="Groups" />
+                </ListItem>
             </List>
             <Divider />
             <List>
@@ -76,3 +95,5 @@ export default function ClippedDrawer() {
         </Drawer>
     );
   }
+
+  export default SideDrawer;

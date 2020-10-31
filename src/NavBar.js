@@ -38,8 +38,8 @@ const NavBar = ({needLogin, loadToken}) => {
         return (
             <AppBar position="fixed" className={classes.appBar}>
             <Toolbar>
-                <Typography variant="h6" noWrap className={classes.title}>
-                Home
+                <Typography variant="h6" noWrap color="secondary" className={classes.title}>
+                EvenSplit
                 </Typography>
                 <MenuButton></MenuButton>
             </Toolbar>
@@ -50,7 +50,7 @@ const NavBar = ({needLogin, loadToken}) => {
         <AppBar position="fixed" className={classes.appBar}>
         <Toolbar>
             <Typography variant="h6" className={classes.title} noWrap color="secondary">
-            SplitWiser
+            EvenSplit
             </Typography>
             <SignUpButton />
         </Toolbar>
