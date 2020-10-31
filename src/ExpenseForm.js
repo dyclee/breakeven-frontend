@@ -45,6 +45,20 @@ const ExpenseForm = () => {
                     value={header}
                     onChange={updateProperty(setHeader)}
                 />
+                <InputField
+                    id="header"
+                    type="text"
+                    placeholder="Enter a description"
+                    value={header}
+                    onChange={updateProperty(setHeader)}
+                />
+                <InputField
+                    id="header"
+                    type="text"
+                    placeholder="Enter a description"
+                    value={header}
+                    onChange={updateProperty(setHeader)}
+                />
             </form>
         </main>
     )

@@ -94,5 +94,5 @@ export const getUser =  async (token) => {
     });
     const userObj = await res.json();
     const { user, tokenId} = userObj;
-    res.status(201).json({ user })
+    return user;
 }

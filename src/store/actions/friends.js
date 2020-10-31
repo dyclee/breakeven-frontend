@@ -5,7 +5,7 @@ export const SEND_REQUEST = 'friends/SEND_REQUEST';
 export const sendRequest = (email) => ({ type: SEND_REQUEST, email })
 
 export const inviteFriend = ({user, email}) => async dispatch => {
-    const res = await fetch(`${baseUrl}/friends`, {
+    const res = await fetch(`${baseUrl}/users/friends`, {
         method: 'post',
         headers: {
             'Content-Type': 'application/json'
@@ -23,5 +23,5 @@ export const inviteFriend = ({user, email}) => async dispatch => {
 
 export const getFriends = (user) =>  async dispatch => {
     const res = await fetch
-
+    //
 }
