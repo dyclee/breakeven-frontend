@@ -50,6 +50,10 @@ const useStyles = makeStyles((theme) => ({
 const SideDrawer =  () => {
     const classes = useStyles();
     const history = useHistory();
+
+    const handleExpenseClick = () => {
+        history.push('/expenses')
+    }
     const handleFriendClick = () => {
         history.push('/friends')
     }
@@ -65,7 +69,7 @@ const SideDrawer =  () => {
           <Toolbar />
           <div className={classes.drawerContainer}>
             <List>
-                <ListItem button key="Expenses">
+                <ListItem button key="Expenses" onClick={handleExpenseClick}>
                   <ListItemIcon><AttachMoneyIcon /></ListItemIcon>
                   <ListItemText primary="Expenses" />
                 </ListItem>

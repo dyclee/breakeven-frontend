@@ -14,6 +14,9 @@ import { CssBaseline } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import Toolbar from '@material-ui/core/Toolbar';
 
+//change to expenseBrowser later
+import ExpenseForm from './ExpenseForm';
+
 
 const drawerWidth = 240;
 const useStyles = makeStyles((theme) => ({
@@ -73,6 +76,12 @@ const App = ({needLogin, loadToken}) => {
                         exact={true}
                         needLogin={needLogin}
                         component={FriendBrowser}
+                    />
+                    <PrivateRoute
+                        path="/expenses"
+                        exact={true}
+                        needLogin={needLogin}
+                        component={ExpenseForm}
                     />
                     <Redirect to='/' />
                 </Switch>

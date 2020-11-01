@@ -2,10 +2,9 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 
-const InputField = ({id, type, placeholder, value, onChange}) => {
+const InputField = ({id, type, placeholder, value, onChange, required}) => {
     return (
         <TextField
-            required
             id={id}
             label={id}
             variant="filled"
@@ -14,6 +13,7 @@ const InputField = ({id, type, placeholder, value, onChange}) => {
             placeholder={placeholder}
             value={value}
             onChange={onChange}
+            required={required}
       />
     )
 }

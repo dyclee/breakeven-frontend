@@ -1,6 +1,5 @@
-
-
 import React from 'react';
+import { useSelector } from 'react-redux';
 
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import Input from '@material-ui/core/Input';
@@ -11,6 +10,8 @@ import ListItemText from '@material-ui/core/ListItemText';
 import Select from '@material-ui/core/Select';
 import Checkbox from '@material-ui/core/Checkbox';
 import Chip from '@material-ui/core/Chip';
+import FormHelperText from '@material-ui/core/FormHelperText';
+
 
 const useStyles = makeStyles((theme) => ({
   formControl: {
@@ -62,7 +63,7 @@ function getStyles(name, personName, theme) {
         : theme.typography.fontWeightMedium,
   };
 }
-const FriendSelect = () => {
+const FriendSelect = ({friends}) => {
   const classes = useStyles();
   const theme = useTheme();
   const [personName, setPersonName] = React.useState([]);
@@ -95,15 +96,22 @@ const FriendSelect = () => {
           input={<Input />}
           MenuProps={MenuProps}
         >
-          {names.map((name) => (
-            <MenuItem key={name} value={name} style={getStyles(name, personName, theme)}>
-              {name}
+          {friends.map((name) => (
+            <MenuItem key={name.id} value={name.id} style={getStyles(name, personName, theme)}>
+              {name.fullName}
             </MenuItem>
           ))}
         </Select>
+        <FormHelperText>Choose one or more friends</FormHelperText>
       </FormControl>
     </div>
   )
 }
 
-export default FriendSelect;
+const FriendSelectContainer = () => {
+  const friends = useSelector(state => state.friendReducer.friends);
+  return (
+    <FriendSelect friends={friends} />
+  )
+}
+export default FriendSelectContainer;
