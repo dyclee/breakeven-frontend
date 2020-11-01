@@ -23,13 +23,13 @@ export const inviteFriend = ({user, email}) => async dispatch => {
     return errorRes;
 }
 
-export const getFriends = (user) =>  async dispatch => {
+export const getFriends = (userId) =>  async dispatch => {
     const res = await fetch(`${baseUrl}/users/friends`, {
         method: 'put',
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ user })
+        body: JSON.stringify({ userId })
     });
 
     if (res.ok) {

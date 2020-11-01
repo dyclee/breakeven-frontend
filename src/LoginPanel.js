@@ -7,8 +7,8 @@ import Button from '@material-ui/core/Button';
 import InputField from './TextField';
 
 const LoginPanel = ({ formVisible, showForm }) => {
-    const [ email, setEmail ] = useState('demo@email.com');
-    const [ password, setPassword] = useState('passwordbro');
+    const [ email, setEmail ] = useState('email@email.com');
+    const [ password, setPassword] = useState('passwordword');
 
     const dispatch = useDispatch();
 
