@@ -2,9 +2,11 @@ import { baseUrl } from '../../config';
 
 export const SEND_REQUEST = 'friends/SEND_REQUEST';
 export const GET_FRIENDS = 'friends/GET_FRIENDS';
+export const REMOVE_FRIENDS = 'friends/REMOVE_FRIENDS';
 
 export const sendRequest = (email) => ({ type: SEND_REQUEST, email })
 export const loadFriends = (friends) => ({ type: GET_FRIENDS, friends})
+export const removeFriends = () => ({type: REMOVE_FRIENDS})
 
 export const inviteFriend = ({user, email}) => async dispatch => {
     const res = await fetch(`${baseUrl}/users/friends`, {

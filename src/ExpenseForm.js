@@ -21,6 +21,8 @@ const ExpenseForm = () => {
     const [header, setHeader] = useState("");
     const [totalAmount, setTotalAmound] = useState("");
     const [members, setMembers] = useState([]);
+    const [requirements, setRequirements] = useState({});
+    const [category, setCategory] = useState("");
 
     const dispatch = useDispatch();
 

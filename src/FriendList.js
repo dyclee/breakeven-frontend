@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import { useSelector } from 'react-redux';
 
 import { makeStyles } from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
@@ -28,7 +29,7 @@ const FriendList = ({friends}) => {
           {friends.map((user) => {
                   return (
                     <>
-                    <ListItem alignItems="flex-start">
+                    <ListItem key={user.id} alignItems="flex-start">
                         <ListItemAvatar>
                           <Avatar alt={user.fullName} src={user.imageUrl} />
                         </ListItemAvatar>
@@ -57,4 +58,11 @@ const FriendList = ({friends}) => {
     )
 }
 
-export default FriendList;
+const FriendListContainer = () => {
+  const friends = useSelector(state => state.friendReducer.friends);
+
+  return (
+    <FriendList friends={friends} />
+  )
+}
+export default FriendListContainer;

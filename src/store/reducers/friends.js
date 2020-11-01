@@ -1,5 +1,5 @@
 import { MergeType } from '@material-ui/icons';
-import { SEND_REQUEST, GET_FRIENDS } from '../actions/friends';
+import { SEND_REQUEST, GET_FRIENDS, REMOVE_FRIENDS } from '../actions/friends';
 
 export default function friendReducer(state = { requests: []}, action) {
     switch (action.type) {
@@ -13,6 +13,11 @@ export default function friendReducer(state = { requests: []}, action) {
                 ...state,
                 friends: action.friends
             }
+        }
+        case REMOVE_FRIENDS: {
+            const newState = {...state}
+            delete newState.friends;
+            return newState;
         }
         default: return state;
     }

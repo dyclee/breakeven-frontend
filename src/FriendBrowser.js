@@ -13,9 +13,9 @@ import FriendList from './FriendList';
 //refactor dashboard
 
 
-const FriendBrowser = ({ user, formVisible, friends, showForm, hideForm, getFriends }) => {
+const FriendBrowser = ({ user, formVisible, friends, showForm, hideForm }) => {
     useEffect(() => {
-        getFriends(user.id);
+        // getFriends(user.id);
     }, []);
 
 
@@ -29,7 +29,7 @@ const FriendBrowser = ({ user, formVisible, friends, showForm, hideForm, getFrie
                 <AddFriendForm />
                 ) : (
                     <>
-                    <FriendList friends={friends}/>
+                    <FriendList />
                     <Button type="button" color="primary" hidden={formVisible} onClick={showForm}>Add friend</Button>
                     </>
             )}
@@ -51,7 +51,7 @@ const FriendBrowserContainer = () => {
         formVisible={formVisible}
         showForm={() => dispatch(showForm())}
         hideForm={() => dispatch(hideForm())}
-        getFriends={() => dispatch(getFriends())}
+        // getFriends={() => dispatch(getFriends())}
         />
     )
 }

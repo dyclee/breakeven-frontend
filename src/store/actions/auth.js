@@ -1,5 +1,5 @@
 import { baseUrl } from '../../config';
-import { getFriends } from './friends';
+import { getFriends, removeFriends } from './friends';
 
 export const TOKEN_KEY = 'auth/token';
 export const SET_TOKEN = 'authentication/SET_TOKEN';
@@ -49,6 +49,7 @@ export const login = (email, password) => async dispatch => {
         window.localStorage.setItem(TOKEN_KEY, token);
         dispatch(setToken(token));
         dispatch(setUser(user));
+        dispatch(getFriends(user.id));
 
         return
     }
@@ -73,6 +74,7 @@ export const logout = () => async (dispatch, getState) => {
         window.localStorage.removeItem(TOKEN_KEY);
         dispatch(removeToken());
         dispatch(removeUser());
+        dispatch(removeFriends());
         return
     }
     const errorRes = await res.json();
