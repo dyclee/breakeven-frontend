@@ -28,12 +28,11 @@ const FriendBrowser = ({ user, formVisible, friends, showForm, hideForm, getFrie
             {formVisible ? (
                 <AddFriendForm />
                 ) : (
-                <FriendList friends={friends}/>
-
+                    <>
+                    <FriendList friends={friends}/>
+                    <Button type="button" color="primary" hidden={formVisible} onClick={showForm}>Add friend</Button>
+                    </>
             )}
-            <div>
-                <Button type="button" color="primary" hidden={formVisible} onClick={showForm}>Add friend</Button>
-            </div>
         </main>
     )
 
