@@ -12,8 +12,6 @@ import Checkbox from '@material-ui/core/Checkbox';
 import Chip from '@material-ui/core/Chip';
 import FormHelperText from '@material-ui/core/FormHelperText';
 
-import ExpenseRequirementSelect from './ExpenseRequirementSelect';
-
 
 const useStyles = makeStyles((theme) => ({
   formControl: {
@@ -57,21 +55,22 @@ const names = [
   'Kelly Snyder',
 ];
 
-function getStyles(name, members, theme) {
+function getStyles(name, requirements, theme) {
   return {
     fontWeight:
-      members.indexOf(name) === -1
+      requirements.indexOf(name) === -1
         ? theme.typography.fontWeightRegular
         : theme.typography.fontWeightMedium,
   };
 }
-const FriendSelect = ({friends,  members, setMembers }) => {
+const ExpenseRequirementSelect = ({ members, requirements, setRequirements }) => {
   const classes = useStyles();
   const theme = useTheme();
   // const [personName, setPersonName] = React.useState([]);
 
   const handleChange = (event) => {
-    setMembers(event.target.value);
+    setRequirements(event.target.value);
+    console.log(requirements)
   };
 
   const handleChangeMultiple = (event) => {
@@ -82,7 +81,7 @@ const FriendSelect = ({friends,  members, setMembers }) => {
         value.push(options[i].value);
       }
     }
-    setMembers(value);
+    setRequirements(value);
   };
 
   return (
@@ -94,40 +93,35 @@ const FriendSelect = ({friends,  members, setMembers }) => {
           labelId="demo-mutiple-chip-label"
           id="demo-mutiple-chip"
           multiple
-          value={members}
+          value={requirements}
           onChange={handleChange}
           input={<Input id="select-multiple-chip" />}
           renderValue={(selected) => (
             <div className={classes.chips}>
               {selected.map((value) => (
-                <Chip key={value.id} label={value.fullName} className={classes.chip} />
+                <Chip key={value} label={value} className={classes.chip} />
                 ))}
             </div>
           )}
           MenuProps={MenuProps}
           >
-          {friends.map((friend) => (
-            <MenuItem key={friend.id} value={friend} style={getStyles(name, members, theme)}>
-              {friend.fullName}
+          {members.map((member) => (
+            <MenuItem key={member.id} value={member.id} style={getStyles(name, requirements, theme)}>
+              {member.fullName}
             </MenuItem>
           ))}
         </Select>
       </FormControl>
 
-      {/* <ExpenseRequirementSelect value={[members, requirements, setRequirements ]}/> */}
     </div>
   )
 }
 
-const FriendSelectContainer = ({ value }) => {
-  const friends = useSelector(state => state.friendReducer.friends);
-  const [ members, setMembers ] = value;
+const ExpenseRequirementSelectContainer = ({ value }) => {
+//   const friends = useSelector(state => state.friendReducer.friends);
+  const [ members, requirements, setRequirements ] = value;
   return (
-    <FriendSelect
-      friends={friends}
-      members={members}
-      setMembers={setMembers}s
-    />
+    <ExpenseRequirementSelect members={members} requirements={requirements} setRequirements={setRequirements}/>
   )
 }
-export default FriendSelectContainer;
+export default ExpenseRequirementSelectContainer;

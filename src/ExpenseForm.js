@@ -5,6 +5,7 @@ import { Button } from '@material-ui/core';
 import { createExpense } from './store/actions/expenses';
 import InputField from './TextField';
 import FriendSelect from './FriendSelect';
+import ExpenseRequirementSelect from './ExpenseRequirementSelect';
 
 import { Redirect, Route, useHistory } from 'react-router-dom';
 
@@ -13,10 +14,15 @@ const ExpenseForm = () => {
     const [header, setHeader] = useState("");
     const [totalAmount, setTotalAmount] = useState("");
     const [members, setMembers] = useState([]);
-    const [requirements, setRequirements] = useState("");
+    const [requirements, setRequirements] = useState();
     const [category, setCategory] = useState("");
 
     const dispatch = useDispatch();
+
+    useEffect(() => {
+        // setMembers();
+        // setRequirements();
+    })
     const user = useSelector(state => state.authReducer.user);
 
     const handleSubmit = e => {
@@ -24,11 +30,12 @@ const ExpenseForm = () => {
         const data = {
             header,
             totalAmount,
-            members,
+            members: members.map(member => member.id),
             userId: user.id,
             requirements: JSON.stringify(requirements),
             categoryId: category.id
         };
+        console.log(data);
         dispatch(createExpense(data));
     };
 
@@ -38,7 +45,7 @@ const ExpenseForm = () => {
 
     return (
         <main>
-            <form onSubmit={handleSubmit}>
+            <form id="expense-form" onSubmit={handleSubmit}>
                 <InputField
                     id="Header"
                     type="text"
@@ -57,9 +64,14 @@ const ExpenseForm = () => {
                     required
                 />
                 <FriendSelect
-                    value={members}
+                    value={[members, setMembers, requirements, setRequirements]}
+                    // onChange={updateProperty(setMembers)}
                     required
                 />
+                {/* <ExpenseRequirementSelect
+                    value={[members, requirements, setRequirements]}
+                    required
+                /> */}
                 <InputField
                     id="Requirements"
                     type="text"
