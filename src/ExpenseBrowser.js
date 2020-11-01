@@ -9,7 +9,7 @@ import { getFriends } from './store/actions/friends';
 
 import { Button } from '@material-ui/core';
 
-import ExpenseList from './ExpenseList';
+// import ExpenseList from './ExpenseList';
 //refactor dashboard
 
 const ExpenseBrowser = ({ user, expenseFormVisible, friends, showForm, hideForm }) => {
@@ -41,7 +41,7 @@ const ExpenseBrowserContainer = () => {
     const dispatch = useDispatch();
     const user = useSelector(state => state.authReducer.user);
     const expenseFormVisible = useSelector(state => state.uiReducer.formVisible);
-    const expenses = useSelector(state.expenseReducer.expenses);
+    const expenses = useSelector(state => state.expenseReducer.expenses);
 
     return (
         <ExpenseBrowser

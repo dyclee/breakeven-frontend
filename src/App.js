@@ -8,6 +8,7 @@ import LoginPanel from './LoginPanel';
 import SignUpForm from './SignUpForm';
 import Dashboard from './Dashboard';
 import FriendBrowser from './FriendBrowser';
+import ExpenseBrowser from './ExpenseBrowser';
 import NavBar from './NavBar';
 import Drawer from './Drawer';
 import { CssBaseline } from '@material-ui/core';
@@ -81,7 +82,7 @@ const App = ({needLogin, loadToken}) => {
                         path="/expenses"
                         exact={true}
                         needLogin={needLogin}
-                        component={ExpenseForm}
+                        component={ExpenseBrowser}
                     />
                     <Redirect to='/' />
                 </Switch>

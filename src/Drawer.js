@@ -20,6 +20,7 @@ import PersonIcon from '@material-ui/icons/Person';
 import PeopleIcon from '@material-ui/icons/People';
 
 import FriendBrowser from './FriendBrowser';
+import ExpenseBrowser from './ExpenseBrowser';
 
 
 const drawerWidth = 240;
