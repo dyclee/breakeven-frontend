@@ -34,7 +34,19 @@ export const getFriends = (userId) =>  async dispatch => {
 
     if (res.ok) {
         const {friends} = await res.json();
-        dispatch(loadFriends(friends));
+        let sortedFriends = friends.sort((a, b) => {
+            let fa = a.fullName.toLowerCase();
+            let fb = b.fullName.toLowerCase();
+
+            if (fa < fb) {
+                return -1;
+            }
+            if (fa > fb) {
+                return 1;
+            }
+            return 0;
+        });
+        dispatch(loadFriends(sortedFriends));
         return;
     }
     const errorRes = await res.json();
