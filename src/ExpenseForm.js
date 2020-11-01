@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Button } from '@material-ui/core';
 
-import { createAccount } from './store/actions/auth';
+import { createExpense } from './store/actions/expenses';
 import InputField from './TextField';
 import FriendSelect from './FriendSelect';
 
