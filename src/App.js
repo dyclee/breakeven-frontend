@@ -7,6 +7,7 @@ import {PrivateRoute, ProtectedRoute } from './util/route-util';
 import LoginPanel from './LoginPanel';
 import SignUpForm from './SignUpForm';
 import Dashboard from './Dashboard';
+import FriendBrowser from './FriendBrowser';
 import NavBar from './NavBar';
 import Drawer from './Drawer';
 import { CssBaseline } from '@material-ui/core';
@@ -66,6 +67,12 @@ const App = ({needLogin, loadToken}) => {
                         exact={true}
                         needLogin={needLogin}
                         component={Dashboard}
+                    />
+                    <PrivateRoute
+                        path="/friends"
+                        exact={true}
+                        needLogin={needLogin}
+                        component={FriendBrowser}
                     />
                     <Redirect to='/' />
                 </Switch>

@@ -9,10 +9,9 @@ export default function friendReducer(state = { requests: []}, action) {
             return newState;
         }
         case GET_FRIENDS: {
-            const friends = action.friends.map((friend) => ({ [friend.id]: friend }))
             return {
                 ...state,
-                ...friends
+                friends: action.friends
             }
         }
         default: return state;

@@ -4,7 +4,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Redirect, useHistory } from 'react-router-dom';
 import { inviteFriend } from './store/actions/friends';
 import {hideForm, showForm } from './store/actions/ui';
-import { getUser } from './store/actions/auth';
 import Button from '@material-ui/core/Button';
 import TextareaAutosize from '@material-ui/core/TextareaAutosize';
 import InputField from './TextField';
@@ -13,13 +12,13 @@ const AddFriendForm = ({hideForm, showForm}) => {
     const [email, setEmail] = useState("");
     const [message, setMessage] = useState("");
 
-    const token = useSelector(state => state.authReducer.token);
+    // const token = useSelector(state => state.authReducer.token);
+    const user = useSelector(state => state.authReducer.user);
 
     const dispatch = useDispatch();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const user = await getUser(token);
         dispatch(inviteFriend({user, email}));
         alert("Friend request sent");
         hideForm();

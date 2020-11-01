@@ -1,11 +1,19 @@
 import { baseUrl } from '../../config';
+import { getFriends } from './friends';
 
 export const TOKEN_KEY = 'auth/token';
 export const SET_TOKEN = 'authentication/SET_TOKEN';
 export const REMOVE_TOKEN = 'authentication/REMOVE_TOKEN';
 
+export const SET_USER = 'authentication/SET_USER';
+export const REMOVE_USER = 'authentication/REMOVE_USER';
+
 export const removeToken = () => ({ type: REMOVE_TOKEN });
 export const setToken = token => ({ type: SET_TOKEN, token });
+
+export const setUser = user => ({ type: SET_USER, user});
+export const removeUser = () => ({ type: REMOVE_USER});
+
 
 export const loadToken = () => async dispatch => {
     const token = window.localStorage.getItem(TOKEN_KEY);
@@ -20,6 +28,8 @@ export const loadToken = () => async dispatch => {
 
         if (user) {
             dispatch(setToken(token));
+            dispatch(setUser(user));
+            dispatch(getFriends(user.id));
             return;
         }
         dispatch(removeToken());
@@ -35,9 +45,10 @@ export const login = (email, password) => async dispatch => {
     });
 
     if (res.ok) {
-        const { token } = await res.json();
+        const { token, user } = await res.json();
         window.localStorage.setItem(TOKEN_KEY, token);
         dispatch(setToken(token));
+
         return
     }
     const errorRes = await res.json();
@@ -60,6 +71,7 @@ export const logout = () => async (dispatch, getState) => {
     if (res.ok) {
         window.localStorage.removeItem(TOKEN_KEY);
         dispatch(removeToken());
+        dispatch(removeUser());
         return
     }
     const errorRes = await res.json();
@@ -80,19 +92,20 @@ export const createAccount = ( {fullName, email, password, confirmPassword }) =>
             const { user, tokenObj: { token }} = await res.json();
             window.localStorage.setItem("auth/token", token);
             dispatch(setToken(token));
+            dispatch(setUser(user))
             return;
         }
         const errorRes = await res.json();
         console.log(errorRes);
 }
 
-export const getUser =  async (token) => {
-    const res = await fetch(`${baseUrl}/users`, {
-        method: 'put',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ token })
-    });
-    const userObj = await res.json();
-    const { user, tokenId} = userObj;
-    return user;
-}
+// export const getUser =  async (token) => {
+//     const res = await fetch(`${baseUrl}/users`, {
+//         method: 'put',
+//         headers: { 'Content-Type': 'application/json' },
+//         body: JSON.stringify({ token })
+//     });
+//     const userObj = await res.json();
+//     const { user, tokenId} = userObj;
+//     return user;
+// }

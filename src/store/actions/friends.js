@@ -33,7 +33,7 @@ export const getFriends = (userId) =>  async dispatch => {
     });
 
     if (res.ok) {
-        const friends = await res.json();
+        const {friends} = await res.json();
         dispatch(loadFriends(friends));
         return;
     }

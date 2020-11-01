@@ -1,5 +1,7 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { Redirect, Route, useHistory } from 'react-router-dom';
+
 import { makeStyles } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
 
@@ -17,8 +19,7 @@ import AttachMoneyIcon from '@material-ui/icons/AttachMoney';
 import PersonIcon from '@material-ui/icons/Person';
 import PeopleIcon from '@material-ui/icons/People';
 
-import { getUser } from './store/actions/auth';
-import { getFriends } from './store/actions/friends';
+import FriendBrowser from './FriendBrowser';
 
 
 const drawerWidth = 240;
@@ -48,14 +49,9 @@ const useStyles = makeStyles((theme) => ({
 
 const SideDrawer =  () => {
     const classes = useStyles();
-
-    const dispatch = useDispatch();
-
-    const token = useSelector(state => state.authReducer.token);
-
-    const handleFriendClick = async () => {
-        const user = await getUser(token);
-        dispatch(getFriends(user));
+    const history = useHistory();
+    const handleFriendClick = () => {
+        history.push('/friends')
     }
     return (
 
