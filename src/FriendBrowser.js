@@ -5,27 +5,12 @@ import { NavLink, Redirect, Route, Switch, useParams } from "react-router-dom";
 import AddFriendForm from './AddFriendForm';
 import { showForm, hideForm } from './store/actions/ui';
 import { getFriends } from './store/actions/friends';
+
+import List from '@material-ui/core/List';
+import Divider from '@material-ui/core/Divider';
+import FriendList from './FriendList';
 //refactor dashboard
 
-import { makeStyles } from '@material-ui/core/styles';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import Divider from '@material-ui/core/Divider';
-import ListItemText from '@material-ui/core/ListItemText';
-import ListItemAvatar from '@material-ui/core/ListItemAvatar';
-import Avatar from '@material-ui/core/Avatar';
-import Typography from '@material-ui/core/Typography';
-
-const useStyles = makeStyles((theme) => ({
-    root: {
-      width: '100%',
-      maxWidth: '36ch',
-      backgroundColor: theme.palette.background.paper,
-    },
-    inline: {
-      display: 'inline',
-    },
-  }));
 
 const FriendBrowser = ({ user, formVisible, friends, showForm, hideForm, getFriends }) => {
     useEffect(() => {
@@ -42,17 +27,8 @@ const FriendBrowser = ({ user, formVisible, friends, showForm, hideForm, getFrie
             {formVisible ? (
                 <AddFriendForm />
                 ) : (
-                    <nav>
-                    {friends.map((friend) => {
-                        return (
-                            <NavLink key={friend.fullName} to={`/friends/${friend.id}`}>
-                                <div className="friendName">{friend.fullName}</div>
-                                <div className="friendEmail">{friend.email}</div>
-                                <div className="friendPicture">friend.pictureUrl</div>
-                            </NavLink>
-                        )
-                    })}
-                </nav>
+                <FriendList friends={friends}/>
+
             )}
         </main>
     )
