@@ -6,8 +6,9 @@ import AddFriendForm from './AddFriendForm';
 import { showForm, hideForm } from './store/actions/ui';
 import { getFriends } from './store/actions/friends';
 
-import List from '@material-ui/core/List';
-import Divider from '@material-ui/core/Divider';
+
+import { Button } from '@material-ui/core';
+
 import FriendList from './FriendList';
 //refactor dashboard
 
@@ -30,6 +31,9 @@ const FriendBrowser = ({ user, formVisible, friends, showForm, hideForm, getFrie
                 <FriendList friends={friends}/>
 
             )}
+            <div>
+                <Button type="button" color="primary" hidden={formVisible} onClick={showForm}>Add friend</Button>
+            </div>
         </main>
     )
 

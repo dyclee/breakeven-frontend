@@ -10,27 +10,15 @@ const Dashboard = ({hideForm, showForm, formVisible}) => {
 
     return (
         <main>
-            <div>
-                <Button type="button" color="primary" hidden={formVisible} onClick={showForm}>Add friend</Button>
-            </div>
-            {formVisible ? (
-                <AddFriendForm />
-            ) : (
-                <h1>Dashboard</h1>
-            )}
+            <h1>Dashboard</h1>
         </main>
     )
 }
 
 const DashboardContainer = () => {
-    const formVisible = useSelector((state) => state.uiReducer.formVisible);
     const dispatch = useDispatch();
     return (
-        <Dashboard
-            formVisible={formVisible}
-            hideForm={() => dispatch(hideForm())}
-            showForm={() => dispatch(showForm())}
-        />
+        <Dashboard/>
     )
 }
 
