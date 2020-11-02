@@ -87,6 +87,7 @@ const ExpenseForm = ({ showExpenseForm, hideExpenseForm }) => {
                     color="primary"
                     onClick={handleSubmit}
                 >Create expense</Button>
+                <Button type="button" color="primary" onClick={hideExpenseForm}>Cancel</Button>
             </form>
         </main>
     )

@@ -10,7 +10,7 @@ const Dashboard = ({hideForm, showForm, formVisible}) => {
 
     return (
         <main>
-            <h1>Dashboard</h1>
+            <h1>Recent Activity</h1>
         </main>
     )
 }

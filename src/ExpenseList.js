@@ -9,6 +9,7 @@ import ListItemText from '@material-ui/core/ListItemText';
 import ListItemAvatar from '@material-ui/core/ListItemAvatar';
 import Avatar from '@material-ui/core/Avatar';
 import Typography from '@material-ui/core/Typography';
+import Button from '@material-ui/core/Button';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -21,48 +22,104 @@ const useStyles = makeStyles((theme) => ({
     },
   }));
 
-const ExpenseList = ({expenses}) => {
+const ExpenseList = ({listExpenses, user, friends}) => {
     const classes = useStyles();
 
+    const handlePay = (e) => {
+        e.preventDefault();
+        console.log(e.target.innerHTML);
+        // console.log("value:  ", e.target.name)
+
+    }
+    const handleClick = (e) => {
+        e.preventDefault();
+        console.log(e.target);
+    }
     return (
         <List className={classes.root}>
-          {expenses.owedExpenses.map((expense) => {
-                  return (
+          {listExpenses.map((expense) =>
+          <>
+              {expense.type === "toPay" ?
+                  <>
+                  <ListItem key={expense.expenseId} alignItems="flex-start">
+                      <ListItemAvatar>
+                        <Avatar alt={`${expense.createdBy}`} src={`${expense.createdBy.imageUrl}`} />
+                      </ListItemAvatar>
+                      <ListItemText
+                          primary={expense.header}
+                          secondary={
+                              <React.Fragment>
+                              <Typography
+                                  component="span"
+                                  variant="body2"
+                                  className={classes.inline}
+                                  color="textPrimary"
+                              >
+                              {`$${expense.amount}`}
+                              </Typography>
+                              {""}
+                              </React.Fragment>
+                          }
+                      />
+                    {expense.paidStatus ?
+                      <ListItemText primary="Paid"></ListItemText>
+                    :
+                    <Button variant="contained" color="primary" onClick={handlePay}>Pay {`${expense.createdBy.fullName}`}</Button>
+                    }
+                  </ListItem>
+                  <Divider variant="inset" component="li" />
+                  </>
+
+                :
+
                     <>
-                    <ListItem key={expense.expenseId} alignItems="flex-start">
-                        <ListItemAvatar>
-                          <Avatar alt={`${expense.Expense.createdBy}`} src={`${expense.paidStatus}`} />
-                        </ListItemAvatar>
-                        <ListItemText
-                            primary={expense.Expense.header}
-                            secondary={
-                                <React.Fragment>
-                                <Typography
-                                    component="span"
-                                    variant="body2"
-                                    className={classes.inline}
-                                    color="textPrimary"
-                                >
-                                {`$${expense.amount}`}
-                                </Typography>
-                                {""}
-                                </React.Fragment>
-                            }
-                        />
-                    </ListItem>
-                    <Divider variant="inset" component="li" />
-                    </>
-                  )
-              })}
+                  <ListItem key={expense.expenseId} alignItems="flex-start">
+                      <ListItemAvatar>
+                        <Avatar alt={`${expense.createdBy}`} src={`${user.imageUrl}`} />
+                      </ListItemAvatar>
+                      <ListItemText
+                          primary={expense.header}
+                          secondary={
+                              <React.Fragment>
+                              <Typography
+                                  component="span"
+                                  variant="body2"
+                                  className={classes.inline}
+                                  color="textPrimary"
+                                  >
+                              {`$${expense.amount}`}
+                              </Typography>
+                              {""}
+                              </React.Fragment>
+                          }
+                          />
+                          {expense.paidStatus ?
+                            <ListItemText primary="Paid"></ListItemText>
+                          :
+                            <Button variant="contained" color="secondary" onClick={handleClick}>Remind Users</Button>
+                          }
+                  </ListItem>
+                  <Divider variant="inset" component="li" />
+                  </>
+
+
+                }
+              </>
+              )}
       </List>
     )
 }
 
 const ExpenseListContainer = () => {
-    const expenses = useSelector(state => state.expenseReducer.expenses);
-
+    const listExpenses = useSelector(state => state.expenseReducer.listExpenses);
+    const user = useSelector(state => state.authReducer.user);
+    const friends = useSelector(state => state.friendReducer.friends)
     return (
-        <ExpenseList expenses={expenses} />
+        <ExpenseList
+            listExpenses={listExpenses}
+            user={user}
+            friends={friends}
+        />
     )
 }
 

@@ -49,6 +49,7 @@ export const getExpenses = (userId) => async dispatch => {
         owedExpenses.forEach((owedExpense) => {
             let obj = {};
             obj.type = "toPay";
+            obj.createdBy = owedExpense.Expense.User;
             obj.expenseId = owedExpense.expenseId;
             obj.amount = owedExpense.amount;
             obj.paidStatus = owedExpense.paidStatus;
@@ -63,6 +64,7 @@ export const getExpenses = (userId) => async dispatch => {
         createdExpenses.forEach((createdExpense) => {
             let obj = {};
             obj.type = "toReceive";
+            obj.createdBy = userId;
             obj.expenseId = createdExpense.id;
             obj.amount = createdExpense.totalAmount;
             obj.paidStatus = createdExpense.paidStatus;
@@ -78,7 +80,6 @@ export const getExpenses = (userId) => async dispatch => {
             // to get a value that is either negative, positive, or zero.
             return new Date(b.createdAt) - new Date(a.createdAt);
           });
-        console.log(sortedExpenses);
         dispatch(listExpenses(sortedExpenses))
         return;
     }

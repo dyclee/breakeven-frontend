@@ -39,7 +39,7 @@ const NavBar = ({needLogin, loadToken}) => {
             <AppBar position="fixed" className={classes.appBar}>
             <Toolbar>
                 <Typography variant="h6" noWrap color="secondary" className={classes.title}>
-                EvenSplit
+                BreakEven
                 </Typography>
                 <MenuButton></MenuButton>
             </Toolbar>

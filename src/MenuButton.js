@@ -1,6 +1,9 @@
 import React from 'react';
 import {makeStyles} from '@material-ui/core/styles';
 
+import { useHistory, BrowserRouter, Redirect, Route, Switch } from 'react-router-dom';
+
+
 import {Button, IconButton } from '@material-ui/core';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
@@ -24,11 +27,15 @@ const useStyles = makeStyles((theme) => ({
 const MenuButton = () => {
     const classes = useStyles();
 
+    const history = useHistory();
+
     const [anchorEl, setAnchorEl] = React.useState(null);
 
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget);
     };
+
+    const handleRedirect = () => history.push('/');
 
     const handleClose = () => {
         setAnchorEl(null);
@@ -50,7 +57,7 @@ const MenuButton = () => {
         onClose={handleClose}
       >
         <MenuItem onClick={handleClose}>Profile</MenuItem>
-        <MenuItem onClick={handleClose}>My account</MenuItem>
+        <MenuItem onClick={handleRedirect}>My account</MenuItem>
         <LogoutButton />
       </Menu>
     </div>
