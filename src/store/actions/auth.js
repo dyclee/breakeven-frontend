@@ -1,5 +1,6 @@
 import { baseUrl } from '../../config';
 import { getFriends, removeFriends } from './friends';
+import { getExpenses, removeExpenses } from './expenses';
 
 export const TOKEN_KEY = 'auth/token';
 export const SET_TOKEN = 'authentication/SET_TOKEN';
@@ -30,6 +31,7 @@ export const loadToken = () => async dispatch => {
             dispatch(setToken(token));
             dispatch(setUser(user));
             dispatch(getFriends(user.id));
+            dispatch(getExpenses(user.id));
             return;
         }
         dispatch(removeToken());
@@ -50,6 +52,7 @@ export const login = (email, password) => async dispatch => {
         dispatch(setToken(token));
         dispatch(setUser(user));
         dispatch(getFriends(user.id));
+        dispatch(getExpenses(user.id));
 
         return
     }
@@ -75,6 +78,7 @@ export const logout = () => async (dispatch, getState) => {
         dispatch(removeToken());
         dispatch(removeUser());
         dispatch(removeFriends());
+        dispatch(removeExpenses());
         return
     }
     const errorRes = await res.json();
