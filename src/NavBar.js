@@ -50,7 +50,7 @@ const NavBar = ({needLogin, loadToken}) => {
         <AppBar position="fixed" className={classes.appBar}>
         <Toolbar>
             <Typography variant="h6" className={classes.title} noWrap color="secondary">
-            EvenSplit
+            BreakEven
             </Typography>
             <SignUpButton />
         </Toolbar>
