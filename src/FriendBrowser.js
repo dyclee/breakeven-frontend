@@ -5,7 +5,7 @@ import { NavLink, Redirect, Route, Switch, useParams } from "react-router-dom";
 import AddFriendForm from './AddFriendForm';
 import { showForm, hideForm } from './store/actions/ui';
 import { getFriends } from './store/actions/friends';
-
+import Fab from '@material-ui/core/Fab';
 
 import { Button } from '@material-ui/core';
 
@@ -29,8 +29,9 @@ const FriendBrowser = ({ user, formVisible, friends, showForm, hideForm }) => {
                 <AddFriendForm />
                 ) : (
                     <>
+                    <Fab type="button" color="primary" hidden={formVisible} onClick={showForm}>➕</Fab>
                     <FriendList />
-                    <Button type="button" color="primary" hidden={formVisible} onClick={showForm}>Add friend</Button>
+                    {/* <Button type="button" color="primary" hidden={formVisible} onClick={showForm}>Add friend</Button> */}
                     </>
             )}
         </main>

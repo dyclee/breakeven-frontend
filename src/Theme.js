@@ -5,10 +5,10 @@ const theme = createMuiTheme({
     fontFamily: "Roboto",
     palette: {
         primary: {
-            main: "#4a148c"
+            main: "#37474f"
         },
         secondary: {
-            main: "#ff8a65"
+            main: "#a1887f"
         },
         // type: 'dark',
     },

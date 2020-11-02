@@ -33,14 +33,15 @@ const AddFriendForm = ({hideForm, showForm}) => {
     }
 
     return (
-        <main>
+        <main className="centered middled">
             <form onSubmit={handleSubmit}>
                 <InputField
-                    id="email"
+                    id="Email"
                     type="email"
                     placeholder="Email"
                     value={email}
                     onChange={updateEmail}
+                    required
                 />
                 <TextareaAutosize aria-label="textarea" rowsMin={5} placeholder="Message (optional)" />
                 <Button type="submit" color="secondary" onClick={handleSubmit}>Send</Button>

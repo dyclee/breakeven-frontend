@@ -3,23 +3,20 @@ import { useSelector, useDispatch } from "react-redux";
 import { NavLink, Redirect, Route, Switch, useParams } from "react-router-dom";
 import { Button } from '@material-ui/core';
 
+import NewRequestList from './NewRequestList';
 import AddFriendForm from './AddFriendForm';
 import { hideForm, showForm } from './store/actions/ui';
 
-const Dashboard = ({hideForm, showForm, formVisible}) => {
+const Dashboard = ({friendRequests}) => {
 
     return (
         <main>
             <h1>Recent Activity</h1>
+            <NewRequestList />
         </main>
     )
 }
 
-const DashboardContainer = () => {
-    const dispatch = useDispatch();
-    return (
-        <Dashboard/>
-    )
-}
 
-export default DashboardContainer;
+
+export default Dashboard;

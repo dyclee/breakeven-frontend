@@ -25,6 +25,8 @@ const FriendList = ({friends}) => {
     const classes = useStyles();
 
     return (
+      <>
+        {friends ?
         <List className={classes.root}>
           {friends.map((user) => {
                   return (
@@ -55,6 +57,10 @@ const FriendList = ({friends}) => {
                   )
               })}
       </List>
+        :
+        <h1>No current friends (yet)</h1>
+        }
+    </>
     )
 }
 

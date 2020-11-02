@@ -1,12 +1,17 @@
-import { MergeType } from '@material-ui/icons';
-import { SEND_REQUEST, GET_FRIENDS, REMOVE_FRIENDS } from '../actions/friends';
+import { SEND_REQUEST, RECEIVE_REQUESTS, GET_FRIENDS, REMOVE_FRIENDS } from '../actions/friends';
 
-export default function friendReducer(state = { requests: []}, action) {
+export default function friendReducer(state = { requests: [] }, action) {
     switch (action.type) {
         case SEND_REQUEST: {
             const newState = {...state }
             newState.requests.push(action.email);
             return newState;
+        }
+        case RECEIVE_REQUESTS: {
+            return {
+                ...state,
+                newRequests: action.friendRequests
+            }
         }
         case GET_FRIENDS: {
             return {

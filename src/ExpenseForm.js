@@ -47,7 +47,7 @@ const ExpenseForm = ({ showExpenseForm, hideExpenseForm }) => {
     }
 
     return (
-        <main>
+        <main className="centered middled">
             <form id="expense-form" onSubmit={handleSubmit}>
                 <InputField
                     id="Header"
@@ -83,8 +83,9 @@ const ExpenseForm = ({ showExpenseForm, hideExpenseForm }) => {
                     onChange={updateProperty(setRequirements)}
                 />
                 <Button
+                    variant="contained"
                     type="submit"
-                    color="primary"
+                    color="secondary"
                     onClick={handleSubmit}
                 >Create expense</Button>
                 <Button type="button" color="primary" onClick={hideExpenseForm}>Cancel</Button>

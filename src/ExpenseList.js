@@ -36,6 +36,8 @@ const ExpenseList = ({listExpenses, user, friends}) => {
         console.log(e.target);
     }
     return (
+        <>
+        {listExpenses ?
         <List className={classes.root}>
           {listExpenses.map((expense) =>
           <>
@@ -107,6 +109,10 @@ const ExpenseList = ({listExpenses, user, friends}) => {
               </>
               )}
       </List>
+        :
+        <h1>No Expenses</h1>
+        }
+      </>
     )
 }
 
