@@ -12,7 +12,7 @@ import { Button } from '@material-ui/core';
 import ExpenseList from './ExpenseList';
 //refactor dashboard
 
-const ExpenseBrowser = ({ user, expenseFormVisible, friends, showForm, hideForm }) => {
+const ExpenseBrowser = ({ user, expenseFormVisible, friends, showExpenseForm, hideExpenseForm }) => {
     useEffect(() => {
         // getFriends(user.id);
     }, []);
@@ -40,7 +40,7 @@ const ExpenseBrowser = ({ user, expenseFormVisible, friends, showForm, hideForm 
 const ExpenseBrowserContainer = () => {
     const dispatch = useDispatch();
     const user = useSelector(state => state.authReducer.user);
-    const expenseFormVisible = useSelector(state => state.uiReducer.formVisible);
+    const expenseFormVisible = useSelector(state => state.uiReducer.expenseFormVisible);
     const expenses = useSelector(state => state.expenseReducer.expenses);
 
     return (

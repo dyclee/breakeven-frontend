@@ -37,6 +37,9 @@ const ExpenseForm = () => {
         };
         console.log(data);
         dispatch(createExpense(data));
+
+        alert("Expense created");
+
     };
 
     const updateProperty = (callback) => (e) => {

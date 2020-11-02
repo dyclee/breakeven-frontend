@@ -24,7 +24,38 @@ const useStyles = makeStyles((theme) => ({
 const ExpenseList = ({expenses}) => {
     const classes = useStyles();
 
-
+    return (
+        <List className={classes.root}>
+          {expenses.owedExpenses.map((expense) => {
+                  return (
+                    <>
+                    <ListItem key={expense.expenseId} alignItems="flex-start">
+                        <ListItemAvatar>
+                          <Avatar alt={`${expense.Expense.createdBy}`} src={`${expense.paidStatus}`} />
+                        </ListItemAvatar>
+                        <ListItemText
+                            primary={expense.Expense.header}
+                            secondary={
+                                <React.Fragment>
+                                <Typography
+                                    component="span"
+                                    variant="body2"
+                                    className={classes.inline}
+                                    color="textPrimary"
+                                >
+                                {`$${expense.amount}`}
+                                </Typography>
+                                {""}
+                                </React.Fragment>
+                            }
+                        />
+                    </ListItem>
+                    <Divider variant="inset" component="li" />
+                    </>
+                  )
+              })}
+      </List>
+    )
 }
 
 const ExpenseListContainer = () => {

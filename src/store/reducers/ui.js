@@ -3,7 +3,7 @@ import { HIDE_FORM,
       HIDE_EXPENSE_FORM,
       SHOW_EXPENSE_FORM } from "../actions/ui";
 
-export default function uiReducer(state = { formVisible: false }, action) {
+export default function uiReducer(state = { formVisible: false, expenseFormVisible: false }, action) {
   switch (action.type) {
     case HIDE_FORM: {
       return {
