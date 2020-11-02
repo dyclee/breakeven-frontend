@@ -18,9 +18,11 @@ import MailIcon from '@material-ui/icons/Mail';
 import AttachMoneyIcon from '@material-ui/icons/AttachMoney';
 import PersonIcon from '@material-ui/icons/Person';
 import PeopleIcon from '@material-ui/icons/People';
+import MeetingRoomIcon from '@material-ui/icons/MeetingRoom';
 
 import FriendBrowser from './FriendBrowser';
 import ExpenseBrowser from './ExpenseBrowser';
+import { logout } from './store/actions/auth';
 
 
 const drawerWidth = 240;
@@ -51,6 +53,12 @@ const useStyles = makeStyles((theme) => ({
 const SideDrawer =  () => {
     const classes = useStyles();
     const history = useHistory();
+
+    const dispatch = useDispatch();
+
+    const handleLogout = () => {
+          dispatch(logout());
+    }
 
     const handleExpenseClick = () => {
         history.push('/expenses')
@@ -85,12 +93,16 @@ const SideDrawer =  () => {
             </List>
             <Divider />
             <List>
-              {['All mail', 'Trash', 'Spam'].map((text, index) => (
+              {['Notifications', 'Settings'].map((text, index) => (
                 <ListItem button key={text}>
                   <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
                   <ListItemText primary={text} />
                 </ListItem>
               ))}
+                <ListItem button key="Logout" onClick={handleLogout}>
+                  <ListItemIcon><MeetingRoomIcon /></ListItemIcon>
+                  <ListItemText primary="Logout" />
+                </ListItem>
             </List>
           </div>
         </Drawer>

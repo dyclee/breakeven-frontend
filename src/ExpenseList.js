@@ -64,7 +64,8 @@ const ExpenseList = ({listExpenses, user, friends}) => {
                           }
                       />
                     {expense.paidStatus ?
-                      <ListItemText primary="Paid"></ListItemText>
+                      <Button variant="outlined" color="primary" >PAID</Button>
+                    //   <ListItemText primary="Paid"></ListItemText>
                     :
                     <Button variant="contained" color="primary" onClick={handlePay}>Pay {`${expense.createdBy.fullName}`}</Button>
                     }
@@ -96,7 +97,8 @@ const ExpenseList = ({listExpenses, user, friends}) => {
                           }
                           />
                           {expense.paidStatus ?
-                            <ListItemText primary="Paid"></ListItemText>
+                            <Button variant="outlined" color="primary" >PAID</Button>
+                            // <ListItemText primary="PAID"></ListItemText>
                           :
                             <Button variant="contained" color="secondary" onClick={handleClick}>Remind Users</Button>
                           }
