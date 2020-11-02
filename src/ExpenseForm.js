@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Button } from '@material-ui/core';
 
-import { createExpense } from './store/actions/expenses';
+import { createExpense, getExpenses } from './store/actions/expenses';
+import { showExpenseForm, hideExpenseForm } from './store/actions/ui'
 import InputField from './TextField';
 import FriendSelect from './FriendSelect';
 import ExpenseRequirementSelect from './ExpenseRequirementSelect';
@@ -10,7 +11,7 @@ import ExpenseRequirementSelect from './ExpenseRequirementSelect';
 import { Redirect, Route, useHistory } from 'react-router-dom';
 
 
-const ExpenseForm = () => {
+const ExpenseForm = ({ showExpenseForm, hideExpenseForm }) => {
     const [header, setHeader] = useState("");
     const [totalAmount, setTotalAmount] = useState("");
     const [members, setMembers] = useState([]);
@@ -37,8 +38,7 @@ const ExpenseForm = () => {
         };
         console.log(data);
         dispatch(createExpense(data));
-
-        alert("Expense created");
+        hideExpenseForm();
 
     };
 
@@ -92,4 +92,14 @@ const ExpenseForm = () => {
     )
 }
 
-export default ExpenseForm;
+const ExpenseFormContainer = () => {
+    const dispatch = useDispatch();
+
+    return (
+        <ExpenseForm
+            showExpenseForm={() => dispatch(showExpenseForm())}
+            hideExpenseForm={() => dispatch(hideExpenseForm())}
+        />
+    )
+}
+export default ExpenseFormContainer;
