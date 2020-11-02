@@ -1,4 +1,4 @@
-import { LOAD_EXPENSES } from '../actions/expenses';
+import { LOAD_EXPENSES, REMOVE_EXPENSES } from '../actions/expenses';
 
 export default function expenseReducer(state = {}, action) {
     switch (action.type) {

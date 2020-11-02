@@ -35,8 +35,14 @@ export const loadToken = () => async dispatch => {
             return;
         }
         dispatch(removeToken());
+        dispatch(removeUser());
+        dispatch(removeFriends());
+        dispatch(removeExpenses());
     }
     dispatch(removeToken());
+    dispatch(removeUser());
+    dispatch(removeFriends());
+    dispatch(removeExpenses());
 }
 
 export const login = (email, password) => async dispatch => {

@@ -4,12 +4,12 @@ import { NavLink, Redirect, Route, Switch, useParams } from "react-router-dom";
 
 import ExpenseForm from './ExpenseForm';
 import { showExpenseForm, hideExpenseForm } from './store/actions/ui';
-import { getFriends } from './store/actions/friends';
+
 
 
 import { Button } from '@material-ui/core';
 
-// import ExpenseList from './ExpenseList';
+import ExpenseList from './ExpenseList';
 //refactor dashboard
 
 const ExpenseBrowser = ({ user, expenseFormVisible, friends, showForm, hideForm }) => {
@@ -24,7 +24,7 @@ const ExpenseBrowser = ({ user, expenseFormVisible, friends, showForm, hideForm 
 
     return (
         <main>
-            {formVisible ? (
+            {expenseFormVisible ? (
                 <ExpenseForm />
                 ) : (
                     <>
