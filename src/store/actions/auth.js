@@ -88,7 +88,7 @@ export const logout = () => async (dispatch, getState) => {
         return
     }
     const errorRes = await res.json();
-    console.log(errorRes);
+    return errorRes;
 }
 
 export const createAccount = ( {fullName, email, password, confirmPassword }) =>
@@ -109,5 +109,5 @@ export const createAccount = ( {fullName, email, password, confirmPassword }) =>
             return;
         }
         const errorRes = await res.json();
-        console.log(errorRes);
+        return errorRes;
 }

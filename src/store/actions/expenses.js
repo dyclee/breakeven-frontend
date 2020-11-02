@@ -73,7 +73,13 @@ export const getExpenses = (userId) => async dispatch => {
 
             listExpensesArr.push(obj);
         })
-        dispatch(listExpenses(listExpensesArr))
+        const sortedExpenses = listExpensesArr.sort(function(a,b){
+            // Turn your strings into dates, and then subtract them
+            // to get a value that is either negative, positive, or zero.
+            return new Date(b.createdAt) - new Date(a.createdAt);
+          });
+        console.log(sortedExpenses);
+        dispatch(listExpenses(sortedExpenses))
         return;
     }
     const errorRes = await res.json();
