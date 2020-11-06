@@ -13,6 +13,7 @@ const SignupForm = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
+    const [imageUrl, setImageUrl] = useState("");
 
     const dispatch = useDispatch();
 
@@ -28,6 +29,7 @@ const SignupForm = () => {
             email,
             password,
             confirmPassword,
+            imageUrl
         };
         dispatch(createAccount(data));
     }
@@ -39,32 +41,43 @@ const SignupForm = () => {
         <main className="centered middled">
             <form onSubmit={handleSubmit}>
                 <InputField
+                    required
                     id="Name"
                     type="text"
                     placeholder="Name"
                     value={fullName}
                     onChange={updateProperty(setFullName)}
-                />
+                    />
                 <InputField
+                    required
                     id="Email"
                     type="email"
                     placeholder="Email"
                     value={email}
                     onChange={updateProperty(setEmail)}
-                />
+                    />
                 <InputField
+                    required
                     id="Password"
                     type="password"
                     placeholder="Password"
                     value={password}
                     onChange={updateProperty(setPassword)}
-                />
+                    />
                 <InputField
-                    id="Confirm password"
+                    required
+                    id="Confirm Password"
                     type="password"
                     placeholder="Confirm Password"
                     value={confirmPassword}
                     onChange={updateProperty(setConfirmPassword)}
+                />
+                <InputField
+                    id="Profile Image URL"
+                    type="text"
+                    placeholder="Profile Image URL"
+                    value={imageUrl}
+                    onChange={updateProperty(setImageUrl)}
                 />
                 <Button type="submit" color="secondary" onClick={handleSubmit}>Create Account</Button>
                 <Button type="button" color="secondary" onClick={handleClick}>Cancel</Button>

@@ -1,5 +1,5 @@
 import { baseUrl } from '../../config';
-import { getFriends, removeFriends, receivedRequests } from './friends';
+import { getFriends, removeFriends, receivedRequests, removeRequests } from './friends';
 import { getExpenses, removeExpenses } from './expenses';
 
 export const TOKEN_KEY = 'auth/token';
@@ -39,11 +39,14 @@ export const loadToken = () => async dispatch => {
         dispatch(removeUser());
         dispatch(removeFriends());
         dispatch(removeExpenses());
+        dispatch(removeRequests());
+        return
     }
     dispatch(removeToken());
     dispatch(removeUser());
     dispatch(removeFriends());
     dispatch(removeExpenses());
+    dispatch(removeRequests());
 }
 
 export const login = (email, password) => async dispatch => {
@@ -88,19 +91,20 @@ export const logout = () => async (dispatch, getState) => {
         dispatch(removeUser());
         dispatch(removeFriends());
         dispatch(removeExpenses());
+        dispatch(removeRequests());
         return
     }
     const errorRes = await res.json();
     return errorRes;
 }
 
-export const createAccount = ( {fullName, email, password, confirmPassword }) =>
+export const createAccount = ( {fullName, email, password, confirmPassword, imageUrl }) =>
     async dispatch =>
     {
         const res = await fetch(`${baseUrl}/session/signup`, {
             method: "post",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ fullName, email, password, confirmPassword}),
+            body: JSON.stringify({ fullName, email, password, confirmPassword, imageUrl }),
 
         });
 

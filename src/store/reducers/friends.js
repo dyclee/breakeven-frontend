@@ -1,4 +1,4 @@
-import { SEND_REQUEST, RECEIVE_REQUESTS, GET_FRIENDS, REMOVE_FRIENDS } from '../actions/friends';
+import { SEND_REQUEST, RECEIVE_REQUESTS, GET_FRIENDS, REMOVE_FRIENDS, REMOVE_REQUESTS } from '../actions/friends';
 
 export default function friendReducer(state = { requests: [] }, action) {
     switch (action.type) {
@@ -12,6 +12,11 @@ export default function friendReducer(state = { requests: [] }, action) {
                 ...state,
                 friendRequests: action.friendRequests
             }
+        }
+        case REMOVE_REQUESTS: {
+            const newState = { ...state }
+            delete newState.friendRequests
+            return newState;
         }
         case GET_FRIENDS: {
             return {

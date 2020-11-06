@@ -44,16 +44,11 @@ const NewRequestList = ({friendRequests}) => {
     const classes = useStyles();
     const [dense, setDense] = React.useState(false);
     const [secondary, setSecondary] = React.useState(false);
-    // useEffect(() => {
-    //   const userId = useSelector((state) => state.authReducer.user.id)
-    //   console.log(userId);
-    //   receivedRequests(userId)
-    // })
-    // const friendRequests = useSelector((state) => state.friendReducer.friendRequests)
-    // console.log(friendRequests);
+
     if (!friendRequests) {
       return null
     }
+    console.log(friendRequests)
     return (
       <div className={classes.root}>
 
@@ -64,16 +59,18 @@ const NewRequestList = ({friendRequests}) => {
             </Typography>
             <div className={classes.demo}>
               <List dense={dense}>
-                {friendRequests.forEach((request) => (
+                {friendRequests.map((request) => {
+                  console.log("REQUEST: ", request)
+                  return (
                   <ListItem>
                     <ListItemAvatar>
-                      <Avatar>
+                      <Avatar alt={request.fullname} src={request.imageUrl}>
                         <FolderIcon />
                       </Avatar>
                     </ListItemAvatar>
                     <ListItemText
-                      primary={request.fullName}
-                      secondary={secondary ? 'Secondary text' : null}
+                      primary={`${request.fullName} would like to be friends`}
+                      secondary={`${request.createdAt}`}
                     />
                     <ListItemSecondaryAction>
                       <IconButton edge="end" aria-label="delete">
@@ -81,10 +78,9 @@ const NewRequestList = ({friendRequests}) => {
                       </IconButton>
                     </ListItemSecondaryAction>
                   </ListItem>
-
                   )
-                )
                 }
+                  )}
               </List>
             </div>
           </Grid>
@@ -96,7 +92,7 @@ const NewRequestList = ({friendRequests}) => {
 
   const NewRequestListContainer = () => {
     const friendRequests = useSelector(state => state.friendReducer.friendRequests);
-    console.log(friendRequests)
+
     return (
         <NewRequestList
             friendRequests={friendRequests}
