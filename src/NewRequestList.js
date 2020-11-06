@@ -51,7 +51,9 @@ const NewRequestList = ({friendRequests}) => {
     // })
     // const friendRequests = useSelector((state) => state.friendReducer.friendRequests)
     // console.log(friendRequests);
-
+    if (!friendRequests) {
+      return null
+    }
     return (
       <div className={classes.root}>
 

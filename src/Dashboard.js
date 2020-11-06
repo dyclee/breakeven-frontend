@@ -9,11 +9,11 @@ import { receivedRequests } from './store/actions/friends';
 
 const Dashboard = () => {
 
-    useEffect(() => {
-        const userId = useSelector((state) => state.authReducer.user.id)
-        console.log(userId);
-        receivedRequests(userId)
-      })
+    // useEffect(() => {
+    //     const userId = useSelector((state) => state.authReducer.user.id)
+    //     console.log(userId);
+    //     receivedRequests(userId)
+    //   })
 
     return (
         <main>
