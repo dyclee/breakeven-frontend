@@ -38,7 +38,7 @@ const App = ({needLogin, loadToken}) => {
         setLoaded(true);
         loadToken();
     }, []);
-
+    // const friendRequests = useSelector(state => state.friendReducer.friendRequests);
     const token = useSelector(state => state.authReducer.token);
     if (token) {
         needLogin = false;

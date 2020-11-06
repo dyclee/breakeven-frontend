@@ -10,7 +10,7 @@ export default function friendReducer(state = { requests: [] }, action) {
         case RECEIVE_REQUESTS: {
             return {
                 ...state,
-                newRequests: action.friendRequests
+                friendRequests: action.friendRequests
             }
         }
         case GET_FRIENDS: {

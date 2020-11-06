@@ -1,13 +1,19 @@
-import React, { useEffect } from "react";
+import React, { useEffect, } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { NavLink, Redirect, Route, Switch, useParams } from "react-router-dom";
 import { Button } from '@material-ui/core';
 
 import NewRequestList from './NewRequestList';
 import AddFriendForm from './AddFriendForm';
-import { hideForm, showForm } from './store/actions/ui';
+import { receivedRequests } from './store/actions/friends';
 
-const Dashboard = ({friendRequests}) => {
+const Dashboard = () => {
+
+    useEffect(() => {
+        const userId = useSelector((state) => state.authReducer.user.id)
+        console.log(userId);
+        receivedRequests(userId)
+      })
 
     return (
         <main>
@@ -17,6 +23,10 @@ const Dashboard = ({friendRequests}) => {
     )
 }
 
+const DashboardContainer = () => {
+    return (
+        <Dashboard />
+    )
+}
 
-
-export default Dashboard;
+export default DashboardContainer;

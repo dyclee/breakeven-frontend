@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from "react-redux";
+import { receivedRequests } from './store/actions/friends';
 
 import { makeStyles } from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
@@ -31,30 +32,25 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function generate(element) {
-  return [0, 1, 2].map((value) =>
-    React.cloneElement(element, {
-      key: value,
-    }),
-  );
-}
+// function generate(element) {
+//   return [0, 1, 2].map((value) =>
+//     React.cloneElement(element, {
+//       key: value,
+//     }),
+//   );
+// }
 
 const NewRequestList = ({friendRequests}) => {
     const classes = useStyles();
     const [dense, setDense] = React.useState(false);
     const [secondary, setSecondary] = React.useState(false);
-
+    // useEffect(() => {
+    //   const userId = useSelector((state) => state.authReducer.user.id)
+    //   console.log(userId);
+    //   receivedRequests(userId)
+    // })
+    // const friendRequests = useSelector((state) => state.friendReducer.friendRequests)
     // console.log(friendRequests);
-
-    if (friendRequests) {
-        function generate(element) {
-          return friendRequests.map((value) =>
-            React.cloneElement(element, {
-              key: value,
-            }),
-          );
-        }
-    }
 
     return (
       <div className={classes.root}>
@@ -66,7 +62,7 @@ const NewRequestList = ({friendRequests}) => {
             </Typography>
             <div className={classes.demo}>
               <List dense={dense}>
-                {generate(
+                {friendRequests.forEach((request) => (
                   <ListItem>
                     <ListItemAvatar>
                       <Avatar>
@@ -74,7 +70,7 @@ const NewRequestList = ({friendRequests}) => {
                       </Avatar>
                     </ListItemAvatar>
                     <ListItemText
-                      primary="Single-line item"
+                      primary={request.fullName}
                       secondary={secondary ? 'Secondary text' : null}
                     />
                     <ListItemSecondaryAction>
@@ -82,8 +78,11 @@ const NewRequestList = ({friendRequests}) => {
                         <DeleteIcon />
                       </IconButton>
                     </ListItemSecondaryAction>
-                  </ListItem>,
-                )}
+                  </ListItem>
+
+                  )
+                )
+                }
               </List>
             </div>
           </Grid>
@@ -94,8 +93,8 @@ const NewRequestList = ({friendRequests}) => {
 
 
   const NewRequestListContainer = () => {
-    const friendRequests = useSelector(state => state.friendReducer.newRequests);
-
+    const friendRequests = useSelector(state => state.friendReducer.friendRequests);
+    console.log(friendRequests)
     return (
         <NewRequestList
             friendRequests={friendRequests}
