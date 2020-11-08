@@ -45,10 +45,17 @@ const NewRequestList = ({friendRequests}) => {
     const [dense, setDense] = React.useState(false);
     const [secondary, setSecondary] = React.useState(false);
 
+    const handleRemoveRequest = (e) => {
+      e.preventDefault();
+      const ele = e.target;
+      console.log("ELE: ", ele)
+      console.log("ELE.VALUE: ", ele.value);
+      console.log("CHILDREN: ", ele.children)
+    }
     if (!friendRequests) {
       return null
     }
-    console.log(friendRequests)
+    // console.log(friendRequests)
     return (
       <div className={classes.root}>
 
@@ -59,22 +66,22 @@ const NewRequestList = ({friendRequests}) => {
             </Typography>
             <div className={classes.demo}>
               <List dense={dense}>
-                {friendRequests.map((request) => {
-                  console.log("REQUEST: ", request)
+                {friendRequests.map((obj) => {
+                  // console.log("REQUEST: ", request)
                   return (
                   <ListItem>
                     <ListItemAvatar>
-                      <Avatar alt={request.fullname} src={request.imageUrl}>
+                      <Avatar alt={obj.user.fullname} src={obj.user.imageUrl}>
                         <FolderIcon />
                       </Avatar>
                     </ListItemAvatar>
                     <ListItemText
-                      primary={`${request.fullName} would like to be friends`}
-                      secondary={`${request.createdAt}`}
+                      primary={`${obj.user.fullName} would like to be friends`}
+                      secondary={`${obj.request.createdAt}`}
                     />
                     <ListItemSecondaryAction>
-                      <IconButton edge="end" aria-label="delete">
-                        <DeleteIcon />
+                      <IconButton edge="end" aria-label="delete" onClick={handleRemoveRequest} value={`${obj.request.friender}`}>
+                        <DeleteIcon value={`${obj.request.friender}`} />
                       </IconButton>
                     </ListItemSecondaryAction>
                   </ListItem>
