@@ -92,7 +92,7 @@ export const deleteRequest = ({fromUserId, userId}) => async dispatch => {
     });
 
     if (res.ok) {
-        receivedRequests(userId);
+        dispatch(receivedRequests(userId));
         return
     }
     const errorRes = await res.json();
