@@ -40,25 +40,26 @@ const useStyles = makeStyles((theme) => ({
 //   );
 // }
 
-const NewRequestList = ({friendRequests}) => {
+const NewRequestList = ({friendRequests, userId}) => {
     const classes = useStyles();
     const [dense, setDense] = React.useState(false);
     const [secondary, setSecondary] = React.useState(false);
+    const dispatch = useDispatch();
 
     const handleRemoveRequest = (e) => {
       e.preventDefault();
       const ele = e.target;
       if (ele.value) {
-        deleteRequest(ele.value)
+        dispatch(deleteRequest({fromUserId: ele.value, userId}))
+        return;
       }
-      console.log("ELE: ", ele)
-      console.log("ELE.VALUE: ", ele.value);
-      console.log("CHILDREN: ", ele.children)
+      const iconButtonValue = ele.parentNode.attributes.frienderId.value
+      dispatch(deleteRequest({fromUserId: iconButtonValue, userId}));
     }
     if (!friendRequests) {
       return null
     }
-    // console.log(friendRequests)
+
     return (
       <div className={classes.root}>
 
@@ -84,7 +85,7 @@ const NewRequestList = ({friendRequests}) => {
                     />
                     <ListItemSecondaryAction>
                       <IconButton edge="end" aria-label="delete" onClick={handleRemoveRequest} value={`${obj.request.friender}`}>
-                        <DeleteIcon value={`${obj.request.friender}`} />
+                        <DeleteIcon frienderId={`${obj.request.friender}`} />
                       </IconButton>
                     </ListItemSecondaryAction>
                   </ListItem>
@@ -102,10 +103,12 @@ const NewRequestList = ({friendRequests}) => {
 
   const NewRequestListContainer = () => {
     const friendRequests = useSelector(state => state.friendReducer.friendRequests);
+    const userId = useSelector(state => state.authReducer.user.id)
 
     return (
         <NewRequestList
             friendRequests={friendRequests}
+            userId={userId}
         />
     )
 }

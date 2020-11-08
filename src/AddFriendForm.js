@@ -13,13 +13,13 @@ const AddFriendForm = ({hideForm, showForm}) => {
     const [message, setMessage] = useState("");
 
     // const token = useSelector(state => state.authReducer.token);
-    const user = useSelector(state => state.authReducer.user);
+    const userId = useSelector(state => state.authReducer.user.id);
 
     const dispatch = useDispatch();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        dispatch(inviteFriend({user, email}));
+        dispatch(inviteFriend({userId, email}));
         alert("Friend request sent");
         hideForm();
     }

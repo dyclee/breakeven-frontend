@@ -15,13 +15,13 @@ export const removeRequests = () => ({ type: REMOVE_REQUESTS });
 export const loadFriends = (friends) => ({ type: GET_FRIENDS, friends})
 export const removeFriends = () => ({type: REMOVE_FRIENDS})
 
-export const inviteFriend = ({user, email}) => async dispatch => {
+export const inviteFriend = ({userId, email}) => async dispatch => {
     const res = await fetch(`${baseUrl}/users/friends`, {
         method: 'post',
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ user, email })
+        body: JSON.stringify({ userId, email })
     });
 
     if (res.ok) {
@@ -81,13 +81,20 @@ export const receivedRequests = (userId) => async dispatch => {
     return errorRes;
 }
 
-export const deleteRequest = fromUserId => async dispatch => {
-    const userId = useSelector(state => state.authReducer.user.id)
+export const deleteRequest = ({fromUserId, userId}) => async dispatch => {
+
     const res = await fetch(`${baseUrl}/users/friends/requests`, {
         method: 'delete',
         headers: {
             'Content-Type': 'application/json'
         },
         body: JSON.stringify({ friender: fromUserId , friended: userId})
-    })
+    });
+
+    if (res.ok) {
+        receivedRequests(userId);
+        return
+    }
+    const errorRes = await res.json();
+    return errorRes
 }
