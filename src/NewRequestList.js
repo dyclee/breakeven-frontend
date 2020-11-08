@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from "react-redux";
-import { receivedRequests } from './store/actions/friends';
+import { receivedRequests, deleteRequest } from './store/actions/friends';
 
 import { makeStyles } from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
@@ -48,6 +48,9 @@ const NewRequestList = ({friendRequests}) => {
     const handleRemoveRequest = (e) => {
       e.preventDefault();
       const ele = e.target;
+      if (ele.value) {
+        deleteRequest(ele.value)
+      }
       console.log("ELE: ", ele)
       console.log("ELE.VALUE: ", ele.value);
       console.log("CHILDREN: ", ele.children)

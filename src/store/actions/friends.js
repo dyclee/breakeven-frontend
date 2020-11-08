@@ -3,6 +3,7 @@ import { baseUrl } from '../../config';
 export const SEND_REQUEST = 'friends/SEND_REQUEST';
 export const RECEIVE_REQUESTS = 'friends/RECEIVE_REQUESTS';
 export const REMOVE_REQUESTS = 'friends/REMOVE_REQUESTS';
+export const DELETE_REQUEST = 'friends/DELETE_REQUEST';
 
 export const GET_FRIENDS = 'friends/GET_FRIENDS';
 export const REMOVE_FRIENDS = 'friends/REMOVE_FRIENDS';
@@ -78,4 +79,15 @@ export const receivedRequests = (userId) => async dispatch => {
     }
     const errorRes = await res.json();
     return errorRes;
+}
+
+export const deleteRequest = fromUserId => async dispatch => {
+    const userId = useSelector(state => state.authReducer.user.id)
+    const res = await fetch(`${baseUrl}/users/friends/requests`, {
+        method: 'delete',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ friender: fromUserId , friended: userId})
+    })
 }
