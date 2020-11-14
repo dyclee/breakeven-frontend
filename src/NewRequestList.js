@@ -18,11 +18,12 @@ import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import FolderIcon from '@material-ui/icons/Folder';
 import DeleteIcon from '@material-ui/icons/Delete';
+import DoneIcon from '@material-ui/icons/Done';
 
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
-    maxWidth: 752,
+    maxWidth: 900, //752
   },
   demo: {
     backgroundColor: theme.palette.background.paper,
@@ -63,12 +64,12 @@ const NewRequestList = ({friendRequests, userId}) => {
     if (!friendRequests) {
       return null
     }
-
+    // spacing={2}, xs={12}, md={6}
     return (
       <div className={classes.root}>
 
-        <Grid container spacing={2}>
-          <Grid item xs={12} md={6}>
+        <Grid container spacing={4}>
+          <Grid item xs={16} md={8}>
             <Typography variant="h6" className={classes.title}>
               Friend Requests
             </Typography>
@@ -88,6 +89,9 @@ const NewRequestList = ({friendRequests, userId}) => {
                       secondary={`${obj.request.createdAt}`}
                     />
                     <ListItemSecondaryAction>
+                      <IconButton edge="end" aria-label="confirm" onClick={handleAddFriend} value={`${obj.request.friender}`}>
+                        <DoneIcon frienderid={`${obj.request.friender}`} />
+                      </IconButton>
                       <IconButton edge="end" aria-label="delete" onClick={handleRemoveRequest} value={`${obj.request.friender}`}>
                         <DeleteIcon frienderid={`${obj.request.friender}`} />
                       </IconButton>
