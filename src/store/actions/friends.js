@@ -88,7 +88,7 @@ export const deleteRequest = ({fromUserId, userId}) => async dispatch => {
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ friender: fromUserId , friended: userId})
+        body: JSON.stringify({ friender: fromUserId, friended: userId})
     });
 
     if (res.ok) {
@@ -97,4 +97,21 @@ export const deleteRequest = ({fromUserId, userId}) => async dispatch => {
     }
     const errorRes = await res.json();
     return errorRes
+}
+export const addFriend = ({fromUserId, userId}) => async dispatch => {
+
+    const res = await fetch(`${baseUrl}/users/friends/requests`, {
+        method: 'post',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ friender: fromUserId, friended: userId})
+    });
+
+    if (res.ok) {
+        dispatch(receivedRequests(userId));
+        return
+    }
+    const errorRes = await res.json();
+    return errorRes;
 }

@@ -48,6 +48,14 @@ const NewRequestList = ({friendRequests, userId}) => {
 
     const dispatch = useDispatch();
 
+    const handleAddFriend = (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      const ele = e.target;
+      console.log(ele);
+
+    }
+
     const handleRemoveRequest = (e) => {
       e.preventDefault();
       e.stopPropagation();
