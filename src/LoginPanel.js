@@ -8,7 +8,7 @@ import InputField from './TextField';
 
 const LoginPanel = ({ formVisible, showForm }) => {
     const [ email, setEmail ] = useState('email@email.com');
-    const [ password, setPassword] = useState('passwordword');
+    const [ password, setPassword] = useState('demopassword');
 
     const dispatch = useDispatch();
 

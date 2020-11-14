@@ -14,7 +14,7 @@ import Button from '@material-ui/core/Button';
 const useStyles = makeStyles((theme) => ({
     root: {
       width: '100%',
-      maxWidth: '60ch',
+      maxWidth: '75ch',
       backgroundColor: theme.palette.background.paper,
     },
     inline: {
@@ -59,7 +59,7 @@ const ExpenseList = ({listExpenses, user, friends}) => {
                               >
                               {`$${expense.amount}`}
                               </Typography>
-                              {""}
+                              {`${expense.formattedDate}`}
                               </React.Fragment>
                           }
                       />
@@ -92,7 +92,7 @@ const ExpenseList = ({listExpenses, user, friends}) => {
                                   >
                               {`$${expense.amount}`}
                               </Typography>
-                              {""}
+                              {`${expense.formattedDate}`}
                               </React.Fragment>
                           }
                           />

@@ -1,4 +1,5 @@
 import { baseUrl } from '../../config';
+import { formatDate } from '../../util/helperFunctions';
 
 export const LOAD_EXPENSES = 'expenses/LOAD_EXPENSES';
 export const LIST_EXPENSES = 'expenses/LIST_EXPENSES';
@@ -57,10 +58,10 @@ export const getExpenses = (userId) => async dispatch => {
             obj.header = owedExpense.Expense.header;
             obj.payUser = owedExpense.Expense.createdBy;
             obj.members = owedExpense.Expense.members
+            obj.formattedDate = formatDate(new Date(owedExpense.Expense.createdAt))
 
             listExpensesArr.push(obj);
         })
-
         createdExpenses.forEach((createdExpense) => {
             let obj = {};
             obj.type = "toReceive";
@@ -72,6 +73,7 @@ export const getExpenses = (userId) => async dispatch => {
             obj.header = createdExpense.header;
             obj.receiveUser = createdExpense.members;
             obj.members = createdExpense.members;
+            obj.formattedDate = formatDate(new Date(createdExpense.createdAt))
 
             listExpensesArr.push(obj);
         })
