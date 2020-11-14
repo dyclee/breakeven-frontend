@@ -28,6 +28,7 @@ const ExpenseBrowser = ({ user, expenseFormVisible, friends, showExpenseForm, hi
                 <ExpenseForm />
                 ) : (
                     <>
+                    <h1>Recent Expenses</h1>
                     <ExpenseList />
                     <Button type="button" color="primary" hidden={expenseFormVisible} onClick={showExpenseForm}>Add Expense</Button>
                     </>

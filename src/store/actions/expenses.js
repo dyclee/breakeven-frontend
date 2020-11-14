@@ -52,7 +52,7 @@ export const getExpenses = (userId) => async dispatch => {
             obj.type = "toPay";
             obj.createdBy = owedExpense.Expense.User;
             obj.expenseId = owedExpense.expenseId;
-            obj.amount = owedExpense.amount;
+            obj.amount = owedExpense.amount.toFixed(2);
             obj.paidStatus = owedExpense.paidStatus;
             obj.createdAt = owedExpense.Expense.createdAt;
             obj.header = owedExpense.Expense.header;
@@ -67,7 +67,7 @@ export const getExpenses = (userId) => async dispatch => {
             obj.type = "toReceive";
             obj.createdBy = userId;
             obj.expenseId = createdExpense.id;
-            obj.amount = createdExpense.totalAmount;
+            obj.amount = createdExpense.totalAmount.toFixed(2);
             obj.paidStatus = createdExpense.paidStatus;
             obj.createdAt = createdExpense.createdAt;
             obj.header = createdExpense.header;
@@ -93,7 +93,7 @@ export const payExpense = payArray => async dispatch => {
     const payUser = Number(payArray[0]);
     const expenseId = Number(payArray[1]);
     const userId = Number(payArray[2])
-    console.log("USER TO PAY: ", payUser, "  EXPENSE ID: ", expenseId, "   USERID: ", userId)
+
     const res = await fetch(`${baseUrl}/expenses/pay`, {
         method: 'post',
         headers: {

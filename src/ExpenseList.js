@@ -34,12 +34,10 @@ const ExpenseList = ({listExpenses, user, friends}) => {
         e.stopPropagation();
         if (e.target.value) {
           const payArray = e.target.value.split(",");
-          console.log(payArray);
           dispatch(payExpense(payArray))
           return
         }
         const parentPayArray = e.target.parentNode.value.split(",");
-        console.log("label parent:  ", parentPayArray);
         dispatch(payExpense(parentPayArray));
         return
 
