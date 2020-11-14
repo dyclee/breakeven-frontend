@@ -19,6 +19,7 @@ const useStyles = makeStyles((theme) => ({
     },
     title: {
         flexGrow: 1,
+        fontFamily: theme.fontFamily
     },
     appBar: {
         zIndex: theme.zIndex.drawer + 1,

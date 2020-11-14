@@ -55,20 +55,20 @@ const NewRequestList = ({friendRequests, userId}) => {
       // console.log(ele);
       try {
         if (ele.value) {
-          console.log("VALUE: ", ele.value);
+          // console.log("VALUE: ", ele.value);
           dispatch(addFriend({ fromUserId: ele.value, userId}))
           return
         }
         if (ele.attributes.frienderid.value) {
           const foundValue = ele.attributes.frienderid.value;
-          console.log("FOUND VALUE: ", foundValue)
+          // console.log("FOUND VALUE: ", foundValue)
           dispatch(addFriend({ fromUserId: foundValue, userId}))
           return
         }
 
       } catch (e) {
         const iconButtonValue = ele.parentNode.attributes.frienderid.value;
-        console.log("PARENT VALUE: ", iconButtonValue)
+        // console.log("PARENT VALUE: ", iconButtonValue)
         dispatch(addFriend({ fromUserId: iconButtonValue, userId}))
       }
     }
@@ -83,7 +83,7 @@ const NewRequestList = ({friendRequests, userId}) => {
         return;
       }
       const iconButtonValue = ele.parentNode.attributes.frienderid.value
-      console.log("ICON VALUE: ", iconButtonValue)
+      // console.log("ICON VALUE: ", iconButtonValue)
       dispatch(deleteRequest({fromUserId: iconButtonValue, userId}))
     }
     if (!friendRequests) {
@@ -94,7 +94,7 @@ const NewRequestList = ({friendRequests, userId}) => {
       <div className={classes.root}>
 
         <Grid container spacing={4}>
-          <Grid item xs={12} md={7}>
+          <Grid item xs={12} md={8}>
             <Typography variant="h6" className={classes.title}>
               Friend Requests
             </Typography>
@@ -110,7 +110,7 @@ const NewRequestList = ({friendRequests, userId}) => {
                     </ListItemAvatar>
                     <ListItemText
                       primary={`${obj.user.fullName} would like to be friends`}
-                      secondary={`${obj.request.createdAt}`}
+                      secondary={`${obj.request.formattedDate}`}
                     />
                     <ListItemSecondaryAction>
                       <IconButton edge="end" aria-label="confirm" onClick={handleAddFriend} value={`${obj.request.friender}`}>

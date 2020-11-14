@@ -1,4 +1,5 @@
 import { baseUrl } from '../../config';
+import { formatDate } from '../../util/helperFunctions';
 
 export const SEND_REQUEST = 'friends/SEND_REQUEST';
 export const RECEIVE_REQUESTS = 'friends/RECEIVE_REQUESTS';
@@ -73,7 +74,9 @@ export const receivedRequests = (userId) => async dispatch => {
 
     if (res.ok) {
         const {friendRequests} = await res.json();
-
+        friendRequests.forEach((one) => {
+            one.request.formattedDate = formatDate(new Date(one.request.createdAt))
+        })
         dispatch(loadRequests(friendRequests));
         return;
     }

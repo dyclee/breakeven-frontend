@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { payExpense } from './store/actions/expenses';
 
 import { makeStyles } from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
@@ -10,6 +11,7 @@ import ListItemAvatar from '@material-ui/core/ListItemAvatar';
 import Avatar from '@material-ui/core/Avatar';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
+import Box from '@material-ui/core/Box';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -25,10 +27,21 @@ const useStyles = makeStyles((theme) => ({
 const ExpenseList = ({listExpenses, user, friends}) => {
     const classes = useStyles();
 
+    const dispatch = useDispatch();
+
     const handlePay = (e) => {
         e.preventDefault();
-        console.log(e.target.innerHTML);
-        // console.log("value:  ", e.target.name)
+        e.stopPropagation();
+        if (e.target.value) {
+          const payArray = e.target.value.split(",");
+          console.log(payArray);
+          dispatch(payExpense(payArray))
+          return
+        }
+        const parentPayArray = e.target.parentNode.value.split(",");
+        console.log("label parent:  ", parentPayArray);
+        dispatch(payExpense(parentPayArray));
+        return
 
     }
     const handleClick = (e) => {
@@ -59,7 +72,7 @@ const ExpenseList = ({listExpenses, user, friends}) => {
                               >
                               {`$${expense.amount}`}
                               </Typography>
-                              {`${expense.formattedDate}`}
+                              {` - ${expense.formattedDate}`}
                               </React.Fragment>
                           }
                       />
@@ -67,7 +80,7 @@ const ExpenseList = ({listExpenses, user, friends}) => {
                       <Button variant="outlined" color="primary" >PAID</Button>
                     //   <ListItemText primary="Paid"></ListItemText>
                     :
-                    <Button variant="contained" color="primary" onClick={handlePay}>Pay {`${expense.createdBy.fullName}`}</Button>
+                    <Button variant="contained" color="primary" value={[expense.payUser, expense.expenseId, user.id]} onClick={handlePay}>Pay {`${expense.createdBy.fullName}`}</Button>
                     }
                   </ListItem>
                   <Divider variant="inset" component="li" />
@@ -92,7 +105,7 @@ const ExpenseList = ({listExpenses, user, friends}) => {
                                   >
                               {`$${expense.amount}`}
                               </Typography>
-                              {`${expense.formattedDate}`}
+                              {` - ${expense.formattedDate}`}
                               </React.Fragment>
                           }
                           />

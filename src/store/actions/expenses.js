@@ -88,3 +88,22 @@ export const getExpenses = (userId) => async dispatch => {
     const errorRes = await res.json();
     return errorRes;
 }
+
+export const payExpense = payArray => async dispatch => {
+    const payUser = Number(payArray[0]);
+    const expenseId = Number(payArray[1]);
+    const userId = Number(payArray[2])
+    console.log("USER TO PAY: ", payUser, "  EXPENSE ID: ", expenseId, "   USERID: ", userId)
+    const res = await fetch(`${baseUrl}/expenses/pay`, {
+        method: 'post',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ payUser, expenseId, userId })
+    });
+    if (res.ok) {
+        dispatch(getExpenses(userId))
+        return
+    }
+    await res.json();
+}

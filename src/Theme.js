@@ -2,7 +2,7 @@ import React from 'react';
 import { ThemeProvider, createMuiTheme } from '@material-ui/core';
 
 const theme = createMuiTheme({
-    fontFamily: "Verdana",
+    fontFamily: "Roboto",
     palette: {
         primary: {
             main: "#37474f"
