@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from "react-redux";
-import { receivedRequests, deleteRequest } from './store/actions/friends';
+import { receivedRequests, deleteRequest, addFriend } from './store/actions/friends';
 
 import { makeStyles } from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
@@ -52,15 +52,32 @@ const NewRequestList = ({friendRequests, userId}) => {
       e.preventDefault();
       e.stopPropagation();
       const ele = e.target;
-      console.log(ele);
+      // console.log(ele);
+      try {
+        if (ele.value) {
+          console.log("VALUE: ", ele.value);
+          dispatch(addFriend({ fromUserId: ele.value, userId}))
+          return
+        }
+        if (ele.attributes.frienderid.value) {
+          const foundValue = ele.attributes.frienderid.value;
+          console.log("FOUND VALUE: ", foundValue)
+          dispatch(addFriend({ fromUserId: foundValue, userId}))
+          return
+        }
 
+      } catch (e) {
+        const iconButtonValue = ele.parentNode.attributes.frienderid.value;
+        console.log("PARENT VALUE: ", iconButtonValue)
+        dispatch(addFriend({ fromUserId: iconButtonValue, userId}))
+      }
     }
 
     const handleRemoveRequest = (e) => {
       e.preventDefault();
       e.stopPropagation();
       const ele = e.target;
-      console.log(ele.attributes.value)
+
       if (ele.value) {
         dispatch(deleteRequest({fromUserId: ele.value, userId}))
         return;
@@ -77,14 +94,13 @@ const NewRequestList = ({friendRequests, userId}) => {
       <div className={classes.root}>
 
         <Grid container spacing={4}>
-          <Grid item xs={16} md={8}>
+          <Grid item xs={12} md={7}>
             <Typography variant="h6" className={classes.title}>
               Friend Requests
             </Typography>
             <div className={classes.demo}>
               <List dense={dense}>
                 {friendRequests.map((obj) => {
-                  // console.log("REQUEST: ", request)
                   return (
                   <ListItem>
                     <ListItemAvatar>

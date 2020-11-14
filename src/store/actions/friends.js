@@ -110,6 +110,7 @@ export const addFriend = ({fromUserId, userId}) => async dispatch => {
 
     if (res.ok) {
         dispatch(receivedRequests(userId));
+        dispatch(getFriends(userId));
         return
     }
     const errorRes = await res.json();
