@@ -22,6 +22,12 @@ const useStyles = makeStyles((theme) => ({
     inline: {
       display: 'inline',
     },
+    oweColor: {
+      color: "#ba000d"
+    },
+    getColor: {
+      color: "#43a047"
+    }
   }));
 
 const ExpenseList = ({listExpenses, user, friends}) => {
@@ -63,7 +69,10 @@ const ExpenseList = ({listExpenses, user, friends}) => {
                           <React.Fragment>
                           <Typography>
                               <Box fontWeight={550}>
-                              {`${expense.header} - $${expense.amount}`}
+                              {`${expense.header}`}
+                              </Box>
+                              <Box className={classes.oweColor} fontWeight={550}>
+                              {`-$${expense.amount}`}
                               </Box>
                             </Typography>
                             </React.Fragment>}
@@ -85,7 +94,7 @@ const ExpenseList = ({listExpenses, user, friends}) => {
                       <Button variant="outlined" color="primary" >PAID</Button>
                     //   <ListItemText primary="Paid"></ListItemText>
                     :
-                    <Button variant="contained" color="primary" value={[expense.payUser, expense.expenseId, user.id]} onClick={handlePay}>Pay {`${expense.createdBy.fullName}`}</Button>
+                    <Button variant="contained" color="primary" value={[expense.payUser, expense.expenseId, user.id]} onClick={handlePay}>Pay User</Button>
                     }
                   </ListItem>
                   <Divider variant="inset" component="li" />
@@ -102,9 +111,12 @@ const ExpenseList = ({listExpenses, user, friends}) => {
                           primary={
                             <React.Fragment>
                             <Typography>
-                                <Box fontWeight={550}>
-                                {`${expense.header} - $${expense.amount}`}
-                                </Box>
+                            <Box fontWeight={550}>
+                              {`${expense.header}`}
+                              </Box>
+                              <Box className={classes.getColor} fontWeight={550}>
+                              {`$${expense.amount}`}
+                              </Box>
                               </Typography>
                               </React.Fragment>}
                           secondary={
@@ -122,10 +134,10 @@ const ExpenseList = ({listExpenses, user, friends}) => {
                           }
                           />
                           {expense.paidStatus ?
-                            <Button variant="outlined" color="primary" >PAID</Button>
+                            <Button variant="outlined" color="secondary" >RECEIVED</Button>
                             // <ListItemText primary="PAID"></ListItemText>
                           :
-                            <Button variant="contained" color="secondary" onClick={handleClick}>Remind Users</Button>
+                            <Button variant="contained" color="secondary" onClick={handleClick}>Remind User</Button>
                           }
                   </ListItem>
                   <Divider variant="inset" component="li" />
