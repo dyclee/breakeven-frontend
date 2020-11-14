@@ -59,7 +59,14 @@ const ExpenseList = ({listExpenses, user, friends}) => {
                         <Avatar alt={`${expense.createdBy}`} src={`${expense.createdBy.imageUrl}`} />
                       </ListItemAvatar>
                       <ListItemText
-                          primary={expense.header}
+                          primary={
+                          <React.Fragment>
+                          <Typography>
+                              <Box fontWeight={550}>
+                              {`${expense.header} - $${expense.amount}`}
+                              </Box>
+                            </Typography>
+                            </React.Fragment>}
                           secondary={
                               <React.Fragment>
                               <Typography
@@ -68,9 +75,9 @@ const ExpenseList = ({listExpenses, user, friends}) => {
                                   className={classes.inline}
                                   color="textPrimary"
                               >
-                              {`$${expense.amount}`}
+                              {`${expense.formattedDate}`}
                               </Typography>
-                              {` - ${expense.formattedDate}`}
+                              {` - ${expense.createdBy.fullName}`}
                               </React.Fragment>
                           }
                       />
@@ -92,7 +99,14 @@ const ExpenseList = ({listExpenses, user, friends}) => {
                         <Avatar alt={`${expense.createdBy}`} src={`${user.imageUrl}`} />
                       </ListItemAvatar>
                       <ListItemText
-                          primary={expense.header}
+                          primary={
+                            <React.Fragment>
+                            <Typography>
+                                <Box fontWeight={550}>
+                                {`${expense.header} - $${expense.amount}`}
+                                </Box>
+                              </Typography>
+                              </React.Fragment>}
                           secondary={
                               <React.Fragment>
                               <Typography
@@ -101,9 +115,9 @@ const ExpenseList = ({listExpenses, user, friends}) => {
                                   className={classes.inline}
                                   color="textPrimary"
                                   >
-                              {`$${expense.amount}`}
+                              {`${expense.formattedDate}`}
                               </Typography>
-                              {` - ${expense.formattedDate}`}
+                              {/* {` - ${expense.createdBy.fullName}`} */}
                               </React.Fragment>
                           }
                           />
