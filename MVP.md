@@ -8,3 +8,7 @@ Expenses
 
 4. Users can create an expense
 5. Users can pay an expense
+
+
+github backend link
+https://github.com/dyclee/splitwise-backend
