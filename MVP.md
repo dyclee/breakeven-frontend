@@ -11,4 +11,4 @@ Expenses
 
 
 github backend link
-https://github.com/dyclee/splitwise-backend
+https://github.com/dyclee/breakeven-backend
