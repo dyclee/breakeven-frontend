@@ -1,5 +1,5 @@
-const imageUrl = process.env.DATABASE_HOST;
-// const imageUrl = process.env.DATABASE_HOST || "http://localhost:8000";
+// const imageUrl = process.env.REACT_APP_BASE_URL;
+const imageUrl = process.env.REACT_APP_BASE_URL || "http://localhost:5000";
 const baseUrl = `${imageUrl}/api`
 
 module.exports = {
