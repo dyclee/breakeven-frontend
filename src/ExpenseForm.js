@@ -23,7 +23,7 @@ const ExpenseForm = ({ showExpenseForm, hideExpenseForm }) => {
     useEffect(() => {
         // setMembers();
         // setRequirements();
-    })
+    },[])
     const user = useSelector(state => state.authReducer.user);
 
     const handleSubmit = e => {
@@ -75,13 +75,13 @@ const ExpenseForm = ({ showExpenseForm, hideExpenseForm }) => {
                     value={[members, requirements, setRequirements]}
                     required
                 /> */}
-                <InputField
+                {/* <InputField
                     id="Requirements"
                     type="text"
                     placeholder="Enter specific amounts"
                     value={requirements}
                     onChange={updateProperty(setRequirements)}
-                />
+                /> */}
                 <Button
                     variant="contained"
                     type="submit"

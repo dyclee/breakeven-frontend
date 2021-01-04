@@ -106,7 +106,8 @@ const ExpenseRequirementSelect = ({ members, requirements, setRequirements }) =>
           MenuProps={MenuProps}
           >
           {members.map((member) => (
-            <MenuItem key={member.id} value={member.id} style={getStyles(name, requirements, theme)}>
+            // <MenuItem key={member.id} value={member.id} style={{member.fullName, requirements, theme}}>
+            <MenuItem key={member.id} value={member.id} >
               {member.fullName}
             </MenuItem>
           ))}

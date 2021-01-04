@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import {Route, Redirect} from 'react-router-dom';
+import {Route, Redirect, NavLink} from 'react-router-dom';
 import { useDispatch, useSelector } from "react-redux";
 
 
@@ -10,6 +10,9 @@ import SignUpButton from './SignUpButton';
 import { loadToken } from './store/actions/auth';
 
 const useStyles = makeStyles((theme) => ({
+    grow: {
+        flexGrow: 1,
+      },
     navbar: {
         fontFamily: theme.fontFamily,
         background: theme.palette.primary,
@@ -39,10 +42,13 @@ const NavBar = ({needLogin, loadToken}) => {
         return (
             <AppBar position="fixed" className={classes.appBar}>
             <Toolbar>
-                <Typography variant="h6" noWrap color="secondary" className={classes.title}>
-                BreakEven
-                </Typography>
-                <MenuButton></MenuButton>
+                <NavLink to="/" exact={true} activeClassName="active">
+                    <Typography variant="h6" noWrap color="secondary" className={classes.title}>
+                    BreakEven
+                    </Typography>
+                </NavLink>
+                <div className={classes.grow} />
+                <MenuButton className={classes.menuButton}></MenuButton>
             </Toolbar>
             </AppBar>
         )
