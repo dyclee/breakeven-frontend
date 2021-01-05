@@ -1,29 +1,26 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Button } from '@material-ui/core';
 
 import { createExpense, getExpenses } from './store/actions/expenses';
 import { showExpenseForm, hideExpenseForm } from './store/actions/ui'
 import InputField from './TextField';
 import FriendSelect from './FriendSelect';
 import ExpenseRequirementSelect from './ExpenseRequirementSelect';
-
+import { Dialog, DialogTitle, DialogContent, Button, TextField, DialogActions, InputLabel, FormControl, Select, MenuItem } from '@material-ui/core';
 import { Redirect, Route, useHistory } from 'react-router-dom';
 
 
-const ExpenseForm = ({ showExpenseForm, hideExpenseForm }) => {
+const ExpenseForm = ({ handleExpenseClick, openExpenseForm, setOpenExpenseForm }) => {
     const [header, setHeader] = useState("");
     const [totalAmount, setTotalAmount] = useState("");
     const [members, setMembers] = useState([]);
     const [requirements, setRequirements] = useState();
     const [category, setCategory] = useState("");
 
+
+    const handleExpenseFormClose = () => setOpenExpenseForm(false);
     const dispatch = useDispatch();
 
-    useEffect(() => {
-        // setMembers();
-        // setRequirements();
-    },[])
     const user = useSelector(state => state.authReducer.user);
 
     const handleSubmit = e => {
@@ -36,9 +33,9 @@ const ExpenseForm = ({ showExpenseForm, hideExpenseForm }) => {
             requirements: JSON.stringify(requirements),
             categoryId: category.id
         };
-        console.log(data);
+        // console.log(data);
         dispatch(createExpense(data));
-        hideExpenseForm();
+        handleExpenseFormClose();
 
     };
 
@@ -46,23 +43,36 @@ const ExpenseForm = ({ showExpenseForm, hideExpenseForm }) => {
         callback(e.target.value);
     }
 
-    return (
-        <main className="centered middled">
-            <form id="expense-form" onSubmit={handleSubmit}>
-                <InputField
-                    id="Header"
+    return (<>
+        <Dialog
+            open={openExpenseForm}
+            onClose={handleExpenseFormClose}
+            PaperProps={{
+                style: { backgroundColor: "#000"}
+            }}
+        >
+            <DialogTitle id="expenseForm-dialog-title">Create an expense</DialogTitle>
+            <DialogContent>
+                <TextField
+                    autoFocus
+                    defaultValue={header}
+                    margin="dense"
+                    id="header"
+                    label="Header"
                     type="text"
-                    placeholder="Enter a description"
-                    value={header}
+                    fullWidth
                     onChange={updateProperty(setHeader)}
                     required
                 />
-                <InputField
-                    id="Amount"
+                <TextField
+                    autoFocus
+                    value={totalAmount}
+                    margin="dense"
+                    id="amount"
+                    label="Amount"
                     type="number"
                     step={.01}
-                    placeholder="Enter an amount"
-                    value={totalAmount}
+                    fullWidth
                     onChange={updateProperty(setTotalAmount)}
                     required
                 />
@@ -71,37 +81,17 @@ const ExpenseForm = ({ showExpenseForm, hideExpenseForm }) => {
                     // onChange={updateProperty(setMembers)}
                     required
                 />
-                {/* <ExpenseRequirementSelect
-                    value={[members, requirements, setRequirements]}
-                    required
-                /> */}
-                {/* <InputField
-                    id="Requirements"
-                    type="text"
-                    placeholder="Enter specific amounts"
-                    value={requirements}
-                    onChange={updateProperty(setRequirements)}
-                /> */}
-                <Button
-                    variant="contained"
-                    type="submit"
-                    color="secondary"
-                    onClick={handleSubmit}
-                >Create expense</Button>
-                <Button type="button" color="primary" onClick={hideExpenseForm}>Cancel</Button>
-            </form>
-        </main>
-    )
+                <DialogActions>
+                    <Button onClick={handleExpenseFormClose}>
+                        Cancel
+                    </Button>
+                    <Button onClick={handleSubmit}>
+                        Create
+                    </Button>
+                </DialogActions>
+            </DialogContent>
+        </Dialog>
+    </>)
 }
 
-const ExpenseFormContainer = () => {
-    const dispatch = useDispatch();
-
-    return (
-        <ExpenseForm
-            showExpenseForm={() => dispatch(showExpenseForm())}
-            hideExpenseForm={() => dispatch(hideExpenseForm())}
-        />
-    )
-}
-export default ExpenseFormContainer;
+export default ExpenseForm;

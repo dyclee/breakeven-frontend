@@ -13,7 +13,7 @@ const AddFriendForm = ({hideForm, showForm}) => {
     const [message, setMessage] = useState("");
 
     // const token = useSelector(state => state.authReducer.token);
-    const userId = useSelector(state => state.authReducer.user.id);
+    const userId = window.localStorage.getItem("userId");
 
     const dispatch = useDispatch();
 

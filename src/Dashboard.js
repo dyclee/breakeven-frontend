@@ -9,47 +9,43 @@ import NewRequestList from './NewRequestList';
 import AddFriendForm from './AddFriendForm';
 import { receivedRequests } from './store/actions/friends';
 
-const Dashboard = ({friendRequests}) => {
+const Dashboard = ({}) => {
 
     // useEffect(() => {
     //     const userId = useSelector((state) => state.authReducer.user.id)
     //     console.log(userId);
     //     receivedRequests(userId)
     //   })
-    if (friendRequests) {
-        return (
-        <main>
-            <h1>Recent Activity</h1>
-            <div>
-                <NewRequestList
-                friendRequests={friendRequests}
-                />
-                <div className="homepage-browsers">
-                    <ExpenseBrowser />
-                    <FriendBrowser />
-                </div>
-            </div>
-        </main>
-        )
-    }
 
     return (
-        <main>
-            <h1>Recent Activity</h1>
+    <main>
+        <h1>Recent Activity</h1>
+        <div>
+            <NewRequestList  />
             <div className="homepage-browsers">
                 <ExpenseBrowser />
                 <FriendBrowser />
             </div>
-        </main>
+        </div>
+    </main>
     )
+    // return (
+    //     <main>
+    //         <h1>Recent Activity</h1>
+    //         <div className="homepage-browsers">
+    //             <ExpenseBrowser />
+    //             <FriendBrowser />
+    //         </div>
+    //     </main>
+    // )
 }
 
 const DashboardContainer = () => {
-    const friendRequests = useSelector(state => state.friendReducer.friendRequests);
+    // const friendRequests = useSelector(state => state.friendReducer.friendRequests);
 
     return (
         <Dashboard
-        friendRequests={friendRequests}
+        // friendRequests={friendRequests}
         />
     )
 }

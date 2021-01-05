@@ -86,7 +86,7 @@ const NewRequestList = ({friendRequests, userId}) => {
       // console.log("ICON VALUE: ", iconButtonValue)
       dispatch(deleteRequest({fromUserId: iconButtonValue, userId}))
     }
-    if (!friendRequests) {
+    if (!friendRequests.length) {
       return null
     }
     // spacing={2}, xs={12}, md={6}
@@ -133,7 +133,8 @@ const NewRequestList = ({friendRequests, userId}) => {
   }
 
 
-  const NewRequestListContainer = ({friendRequests}) => {
+  const NewRequestListContainer = () => {
+    const friendRequests = useSelector(state => state.friendReducer.friendRequests);
     const userId = useSelector(state => state.authReducer.user.id)
 
     return (

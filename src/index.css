@@ -31,13 +31,14 @@
 }
 .homepage-browsers {
     display: flex;
-    /* justify-content: space-between; */
+    flex-wrap: wrap;
 }
 
 .expense-browser-container {
     border: 1px solid black;
     padding: 10px;
     margin: 10px;
+    /* width: 600px; */
 }
 
 .friend-browser-container {
@@ -45,6 +46,6 @@
     top: 60px;
     border: 1px solid black;
     padding: 10px;
-    margin: 10px auto;
+    margin: 20px auto;
     max-height: 500px;
 }

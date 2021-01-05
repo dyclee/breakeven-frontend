@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Redirect, Route, useHistory } from 'react-router-dom';
 
@@ -20,8 +20,10 @@ import PersonIcon from '@material-ui/icons/Person';
 import PeopleIcon from '@material-ui/icons/People';
 import MeetingRoomIcon from '@material-ui/icons/MeetingRoom';
 
-import FriendBrowser from './FriendBrowser';
-import ExpenseBrowser from './ExpenseBrowser';
+// import FriendBrowser from './FriendBrowser';
+// import ExpenseBrowser from './ExpenseBrowser';
+import ExpenseForm from './ExpenseForm';
+import AddFriendForm from './AddFriendForm';
 import { logout } from './store/actions/auth';
 
 
@@ -53,6 +55,8 @@ const useStyles = makeStyles((theme) => ({
 const SideDrawer = ({needLogin}) => {
     const classes = useStyles();
     const history = useHistory();
+    const [openExpenseForm, setOpenExpenseForm] = useState(false);
+    const [openFriendForm, setOpenFriendForm] = useState(false);
 
     const dispatch = useDispatch();
 
@@ -61,10 +65,10 @@ const SideDrawer = ({needLogin}) => {
     }
 
     const handleExpenseClick = () => {
-        history.push('/expenses')
+        setOpenExpenseForm(true);
     }
     const handleFriendClick = () => {
-        history.push('/friends')
+        setOpenFriendForm(true);
     }
     if (needLogin) return null;
     return (
@@ -77,35 +81,44 @@ const SideDrawer = ({needLogin}) => {
           }}
         >
           <Toolbar />
-          <div className={classes.drawerContainer}>
-            <List>
-                <ListItem button key="Expenses" onClick={handleExpenseClick}>
-                  <ListItemIcon><AttachMoneyIcon /></ListItemIcon>
-                  <ListItemText primary="Expenses" />
-                </ListItem>
-                <ListItem button key="Friends" onClick={handleFriendClick}>
-                  <ListItemIcon><PersonIcon /></ListItemIcon>
-                  <ListItemText primary="Friends" />
-                </ListItem>
-                <ListItem button key="Groups">
-                  <ListItemIcon><PeopleIcon /></ListItemIcon>
-                  <ListItemText primary="Groups" />
-                </ListItem>
-            </List>
-            <Divider />
-            <List>
-              {['Notifications', 'Settings'].map((text, index) => (
-                <ListItem button key={text}>
-                  <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-                  <ListItemText primary={text} />
-                </ListItem>
-              ))}
-                <ListItem button key="Logout" onClick={handleLogout}>
-                  <ListItemIcon><MeetingRoomIcon /></ListItemIcon>
-                  <ListItemText primary="Logout" />
-                </ListItem>
-            </List>
-          </div>
+            <ExpenseForm
+              handleExpenseClick={handleExpenseClick}
+              openExpenseForm={openExpenseForm}
+              setOpenExpenseForm={setOpenExpenseForm} />
+            <AddFriendForm
+              handleFriendClick={handleFriendClick}
+              openFriendForm={openFriendForm}
+              setOpenFriendForm={setOpenFriendForm}
+              />
+            <div className={classes.drawerContainer}>
+              <List>
+                  <ListItem button key="Expenses" onClick={handleExpenseClick}>
+                    <ListItemIcon><AttachMoneyIcon /></ListItemIcon>
+                    <ListItemText primary="Add Expense" />
+                  </ListItem>
+                  <ListItem button key="Friends" onClick={handleFriendClick}>
+                    <ListItemIcon><PersonIcon /></ListItemIcon>
+                    <ListItemText primary="Add Friend" />
+                  </ListItem>
+                  <ListItem button key="Groups">
+                    <ListItemIcon><PeopleIcon /></ListItemIcon>
+                    <ListItemText primary="Groups" />
+                  </ListItem>
+              </List>
+              <Divider />
+              <List>
+                {['Notifications', 'Settings'].map((text, index) => (
+                  <ListItem button key={text}>
+                    <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
+                    <ListItemText primary={text} />
+                  </ListItem>
+                ))}
+                  <ListItem button key="Logout" onClick={handleLogout}>
+                    <ListItemIcon><MeetingRoomIcon /></ListItemIcon>
+                    <ListItemText primary="Logout" />
+                  </ListItem>
+              </List>
+            </div>
         </Drawer>
     );
   }

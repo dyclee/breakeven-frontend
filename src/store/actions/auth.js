@@ -28,6 +28,7 @@ export const loadToken = () => async dispatch => {
         const { user, tokenId} = userObj;
 
         if (user) {
+            window.localStorage.setItem("userId", user.id)
             dispatch(setToken(token));
             dispatch(setUser(user));
             dispatch(getFriends(user.id));

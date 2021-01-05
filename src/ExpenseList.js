@@ -15,7 +15,7 @@ import Box from '@material-ui/core/Box';
 
 const useStyles = makeStyles((theme) => ({
     root: {
-      width: '100%',
+      width: '75ch',
       maxWidth: '75ch',
       backgroundColor: theme.palette.background.paper,
     },
