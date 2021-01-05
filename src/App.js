@@ -50,7 +50,7 @@ const App = ({needLogin, loadToken}) => {
             <BrowserRouter>
                 <CssBaseline />
                 <NavBar />
-                <Drawer />
+                <Drawer needLogin={needLogin}/>
                 <main className={classes.content}>
                 <Toolbar />
                 <Switch>

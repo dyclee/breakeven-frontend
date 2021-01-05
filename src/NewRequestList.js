@@ -91,7 +91,7 @@ const NewRequestList = ({friendRequests, userId}) => {
     }
     // spacing={2}, xs={12}, md={6}
     return (
-      <div className={classes.root}>
+      <div className={`${classes.root} new-request-container`}>
 
         <Grid container spacing={4}>
           <Grid item xs={12} md={8}>

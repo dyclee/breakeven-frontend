@@ -20,3 +20,29 @@
 /* body {
     color: "#fbe9e7"
 } */
+
+.new-request-container {
+    display: flex;
+    align-items: center;
+    border: 1px solid black;
+    /* width: 600px; */
+    padding: 10px;
+    margin: 10px;
+}
+.homepage-browsers {
+    display: flex;
+    /* justify-content: space-between; */
+}
+
+.expense-browser-container {
+    border: 1px solid black;
+    padding: 10px;
+    margin: 10px;
+}
+
+.friend-browser-container {
+    border: 1px solid black;
+    padding: 10px;
+    margin: 10px auto;
+    max-height: 500px;
+}

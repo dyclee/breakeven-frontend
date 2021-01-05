@@ -50,7 +50,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const SideDrawer =  () => {
+const SideDrawer = ({needLogin}) => {
     const classes = useStyles();
     const history = useHistory();
 
@@ -66,6 +66,7 @@ const SideDrawer =  () => {
     const handleFriendClick = () => {
         history.push('/friends')
     }
+    if (needLogin) return null;
     return (
 
         <Drawer

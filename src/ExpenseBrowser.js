@@ -4,33 +4,38 @@ import { NavLink, Redirect, Route, Switch, useParams } from "react-router-dom";
 
 import ExpenseForm from './ExpenseForm';
 import { showExpenseForm, hideExpenseForm } from './store/actions/ui';
-
-
-
-import { Button } from '@material-ui/core';
-
+import { makeStyles } from '@material-ui/core/styles';
+import { Button, Typography } from '@material-ui/core';
 import ExpenseList from './ExpenseList';
 //refactor dashboard
+
+const useStyles = makeStyles((theme) => ({
+    title: {
+      margin: theme.spacing(4, 0, 2),
+    },
+  }));
 
 const ExpenseBrowser = ({ user, expenseFormVisible, friends, showExpenseForm, hideExpenseForm }) => {
     useEffect(() => {
         // getFriends(user.id);
     }, []);
 
-
+    const classes = useStyles();
     const { id } = useParams();
     const friendId = Number.parseInt(id);
 
 
     return (
-        <main>
+        <main className='expense-browser-container'>
             {expenseFormVisible ? (
                 <ExpenseForm />
                 ) : (
                     <>
-                    <h1>Recent Expenses</h1>
-                    <ExpenseList />
-                    <Button type="button" color="primary" hidden={expenseFormVisible} onClick={showExpenseForm}>Add Expense</Button>
+                        <Typography variant="h6" className={classes.title}>
+                            Expenses
+                        </Typography>
+                        <ExpenseList />
+                        <Button type="button" color="primary" hidden={expenseFormVisible} onClick={showExpenseForm}>Add Expense</Button>
                     </>
             )}
         </main>

@@ -10,11 +10,15 @@ import ListItemAvatar from '@material-ui/core/ListItemAvatar';
 import Avatar from '@material-ui/core/Avatar';
 import Typography from '@material-ui/core/Typography';
 
+
 const useStyles = makeStyles((theme) => ({
     root: {
       width: '100%',
       maxWidth: '60ch',
       backgroundColor: theme.palette.background.paper,
+      position: 'relative',
+      overflow: 'auto',
+      maxHeight: 400,
     },
     inline: {
       display: 'inline',

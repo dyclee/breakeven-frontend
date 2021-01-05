@@ -3,6 +3,8 @@ import { useSelector, useDispatch } from "react-redux";
 import { NavLink, Redirect, Route, Switch, useParams } from "react-router-dom";
 import { Button } from '@material-ui/core';
 
+import ExpenseBrowser from './ExpenseBrowser';
+import FriendBrowser from './FriendBrowser';
 import NewRequestList from './NewRequestList';
 import AddFriendForm from './AddFriendForm';
 import { receivedRequests } from './store/actions/friends';
@@ -18,9 +20,15 @@ const Dashboard = ({friendRequests}) => {
         return (
         <main>
             <h1>Recent Activity</h1>
-            <NewRequestList
-            friendRequests={friendRequests}
-            />
+            <div>
+                <NewRequestList
+                friendRequests={friendRequests}
+                />
+                <div className="homepage-browsers">
+                    <ExpenseBrowser />
+                    <FriendBrowser />
+                </div>
+            </div>
         </main>
         )
     }
@@ -28,6 +36,10 @@ const Dashboard = ({friendRequests}) => {
     return (
         <main>
             <h1>Recent Activity</h1>
+            <div className="homepage-browsers">
+                <ExpenseBrowser />
+                <FriendBrowser />
+            </div>
         </main>
     )
 }

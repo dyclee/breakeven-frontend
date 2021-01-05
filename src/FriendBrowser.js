@@ -24,7 +24,7 @@ const FriendBrowser = ({ user, formVisible, friends, showForm, hideForm }) => {
 
 
     return (
-        <main>
+        <main className='friend-browser-container'>
             {formVisible ? (
                 <AddFriendForm />
                 ) : (
