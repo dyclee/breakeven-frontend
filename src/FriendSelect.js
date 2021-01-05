@@ -87,7 +87,7 @@ const FriendSelect = ({friends,  members, setMembers }) => {
 
   return (
     <div>
-      <FormControl className={classes.formControl}>
+      <FormControl className={classes.formControl} color="secondary" fullWidth>
         <InputLabel id="demo-mutiple-chip-label">Choose friends</InputLabel>
         <Select
           form="expense-form"

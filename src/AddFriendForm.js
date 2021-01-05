@@ -4,60 +4,65 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Redirect, useHistory } from 'react-router-dom';
 import { inviteFriend } from './store/actions/friends';
 import {hideForm, showForm } from './store/actions/ui';
-import Button from '@material-ui/core/Button';
 import TextareaAutosize from '@material-ui/core/TextareaAutosize';
 import InputField from './TextField';
+import { Dialog, DialogTitle, DialogContent, Button, TextField, DialogActions, InputLabel, FormControl, Select, MenuItem } from '@material-ui/core';
 
-const AddFriendForm = ({hideForm, showForm}) => {
+
+const AddFriendForm = ({handleFriendClick, openFriendForm, setOpenFriendForm}) => {
     const [email, setEmail] = useState("");
-    const [message, setMessage] = useState("");
-
     // const token = useSelector(state => state.authReducer.token);
     const userId = window.localStorage.getItem("userId");
 
     const dispatch = useDispatch();
 
+    const handleFriendFormClose = () => setOpenFriendForm(false);
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         dispatch(inviteFriend({userId, email}));
         alert("Friend request sent");
-        hideForm();
+        setEmail("");
+        handleFriendFormClose();
     }
 
     const updateEmail = (e) => {
         setEmail(e.target.value);
     }
 
-    const updateMessage = (e) => {
-        setMessage(e.target.value);
-    }
-
-    return (
-        <main className="centered middled">
-            <form onSubmit={handleSubmit}>
-                <InputField
-                    id="Email"
-                    type="email"
-                    placeholder="Email"
+    return (<>
+        <Dialog
+            open={openFriendForm}
+            onClose={handleFriendFormClose}
+            PaperProps={{
+                style: { backgroundColor: "#000", color: "#f5d45e"}
+            }}
+        >
+            <DialogTitle id="friendForm-dialog-title">Add a friend</DialogTitle>
+            <DialogContent>
+                <TextField
+                    color="secondary"
+                    autoFocus
                     value={email}
+                    margin="dense"
+                    id="email"
+                    label="Email"
+                    type="email"
+                    fullWidth
                     onChange={updateEmail}
                     required
                 />
-                <TextareaAutosize aria-label="textarea" rowsMin={5} placeholder="Message (optional)" />
-                <Button type="submit" color="secondary" onClick={handleSubmit}>Send</Button>
-                <Button type="button" color="secondary" onClick={hideForm}>Cancel</Button>
-            </form>
-        </main>
-    )
+                <DialogActions>
+                    <Button onClick={handleFriendFormClose}>
+                        Cancel
+                    </Button>
+                    <Button onClick={handleSubmit}>
+                        Send
+                    </Button>
+                </DialogActions>
+            </DialogContent>
+        </Dialog>
+    </>)
 }
 
-const AddFriendFormContainer = () => {
-    const dispatch = useDispatch();
-    return (
-        <AddFriendForm
-            hideForm={() => dispatch(hideForm())}
-            showForm={() => dispatch(showForm())}
-        />
-    )
-}
-export default AddFriendFormContainer;
+export default AddFriendForm;

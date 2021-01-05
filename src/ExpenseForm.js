@@ -21,7 +21,7 @@ const ExpenseForm = ({ handleExpenseClick, openExpenseForm, setOpenExpenseForm }
     const handleExpenseFormClose = () => setOpenExpenseForm(false);
     const dispatch = useDispatch();
 
-    const user = useSelector(state => state.authReducer.user);
+    const userId = window.localStorage.getItem("userId");
 
     const handleSubmit = e => {
         e.preventDefault();
@@ -29,12 +29,15 @@ const ExpenseForm = ({ handleExpenseClick, openExpenseForm, setOpenExpenseForm }
             header,
             totalAmount,
             members: members.map(member => member.id),
-            userId: user.id,
+            userId: userId,
             requirements: JSON.stringify(requirements),
             categoryId: category.id
         };
         // console.log(data);
         dispatch(createExpense(data));
+        setHeader("");
+        setTotalAmount("");
+        setMembers([]);
         handleExpenseFormClose();
 
     };
@@ -48,12 +51,13 @@ const ExpenseForm = ({ handleExpenseClick, openExpenseForm, setOpenExpenseForm }
             open={openExpenseForm}
             onClose={handleExpenseFormClose}
             PaperProps={{
-                style: { backgroundColor: "#000"}
+                style: { backgroundColor: "#000", color: "#f5d45e"}
             }}
         >
             <DialogTitle id="expenseForm-dialog-title">Create an expense</DialogTitle>
-            <DialogContent>
+            <DialogContent >
                 <TextField
+                    color="secondary"
                     autoFocus
                     defaultValue={header}
                     margin="dense"
@@ -65,6 +69,7 @@ const ExpenseForm = ({ handleExpenseClick, openExpenseForm, setOpenExpenseForm }
                     required
                 />
                 <TextField
+                    color="secondary"
                     autoFocus
                     value={totalAmount}
                     margin="dense"

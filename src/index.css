@@ -43,9 +43,9 @@
 
 .friend-browser-container {
     position: sticky;
-    top: 60px;
+    top: 80px;
     border: 1px solid black;
     padding: 10px;
-    margin: 20px auto;
+    margin: 10px auto;
     max-height: 500px;
 }
