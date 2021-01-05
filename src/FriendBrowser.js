@@ -7,33 +7,28 @@ import { showForm, hideForm } from './store/actions/ui';
 import { getFriends } from './store/actions/friends';
 import Fab from '@material-ui/core/Fab';
 
-import { Button } from '@material-ui/core';
-
+import { Button, Typography } from '@material-ui/core';
+import { makeStyles } from '@material-ui/core/styles';
 import FriendList from './FriendList';
 //refactor dashboard
 
+const useStyles = makeStyles((theme) => ({
+    title: {
+      margin: theme.spacing(4, 0, 2),
+    },
+  }));
 
 const FriendBrowser = ({ user, formVisible, friends, showForm, hideForm }) => {
-    useEffect(() => {
-        // getFriends(user.id);
-    }, []);
-
-
     const { id } = useParams();
     const friendId = Number.parseInt(id);
-
+    const classes = useStyles();
 
     return (
         <main className='friend-browser-container'>
-            {formVisible ? (
-                <AddFriendForm />
-                ) : (
-                    <>
-                    <Fab type="button" color="primary" hidden={formVisible} onClick={showForm}>➕</Fab>
-                    <FriendList />
-                    {/* <Button type="button" color="primary" hidden={formVisible} onClick={showForm}>Add friend</Button> */}
-                    </>
-            )}
+            <Typography variant="h6" className={classes.title}>
+                    Friends
+            </Typography>
+            <FriendList />
         </main>
     )
 

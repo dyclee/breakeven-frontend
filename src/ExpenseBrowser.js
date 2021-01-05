@@ -12,6 +12,8 @@ import ExpenseList from './ExpenseList';
 const useStyles = makeStyles((theme) => ({
     title: {
       margin: theme.spacing(4, 0, 2),
+      fontWeight: "bold",
+      textDecoration: "underline",
     },
   }));
 

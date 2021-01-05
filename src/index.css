@@ -41,6 +41,8 @@
 }
 
 .friend-browser-container {
+    position: sticky;
+    top: 60px;
     border: 1px solid black;
     padding: 10px;
     margin: 10px auto;
