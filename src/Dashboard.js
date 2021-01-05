@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { NavLink, Redirect, Route, Switch, useParams } from "react-router-dom";
 import { Button } from '@material-ui/core';
 
+import UserBrowser from './UserBrowser';
 import ExpenseBrowser from './ExpenseBrowser';
 import FriendBrowser from './FriendBrowser';
 import NewRequestList from './NewRequestList';
@@ -19,6 +20,7 @@ const Dashboard = ({}) => {
 
     return (
     <main>
+        <UserBrowser />
         <h1>Recent Activity</h1>
         <div>
             <NewRequestList  />

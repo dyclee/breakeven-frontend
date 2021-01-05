@@ -18,7 +18,12 @@ const ExpenseForm = ({ handleExpenseClick, openExpenseForm, setOpenExpenseForm }
     const [category, setCategory] = useState("");
 
 
-    const handleExpenseFormClose = () => setOpenExpenseForm(false);
+    const handleExpenseFormClose = () => {
+        setHeader("");
+        setTotalAmount("");
+        setMembers([]);
+        setOpenExpenseForm(false);
+    }
     const dispatch = useDispatch();
 
     const userId = window.localStorage.getItem("userId");
@@ -74,7 +79,7 @@ const ExpenseForm = ({ handleExpenseClick, openExpenseForm, setOpenExpenseForm }
                     value={totalAmount}
                     margin="dense"
                     id="amount"
-                    label="Amount"
+                    label="Amount ($)"
                     type="number"
                     step={.01}
                     fullWidth

@@ -27,7 +27,7 @@ export const inviteFriend = ({userId, email}) => async dispatch => {
 
     if (res.ok) {
         dispatch(sendRequest(email))
-        return;
+        return res;
     }
     const errorRes = await res.json();
     return errorRes;

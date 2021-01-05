@@ -49,3 +49,67 @@
     margin: 10px auto;
     max-height: 500px;
 }
+
+.user-browser-container {
+    /* border: 1px solid #f5d45e; */
+
+    border: 2px solid#708090;
+    border-radius: 15px;
+    padding: 10px;
+    margin: 10px auto;
+    max-width: 458px;
+}
+.user-browser-contents {
+    display: flex;
+    /* align-items: flex-start; */
+    justify-content: space-around;
+
+}
+
+.profile-column {
+    display: flex;
+}
+.profile-userinfo {
+    padding: 10px;
+}
+.profile-username {
+    font-size: 20px;
+    padding: 6px;
+}
+
+.profile-email {
+    font-size: 16px;
+    padding: 6px;
+}
+
+.profile-image {
+    height: 100px;
+    border-radius: 15px;
+}
+
+.profile-balance {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+    border: 1px solid #708090;
+    border-radius: 15px;
+    /* align-self: center; */
+    /* justify-self: end; */
+}
+.profile-balance-title {
+    padding: 6px;
+    font-size: 20px;
+    /* text-decoration: underline; */
+}
+
+.profile-balance-amount-positive {
+    padding: 6px;
+    font-size: 24px;
+    color: lightgreen;
+}
+.profile-balance-amount-negative {
+    padding: 6px;
+    font-size: 24px;
+    color: lightcoral;
+}

@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from "react-redux";
-import { receivedRequests, deleteRequest, addFriend } from './store/actions/friends';
+import { receivedRequests, deleteRequest, addFriend, getFriends } from './store/actions/friends';
 
 import { makeStyles } from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
@@ -134,8 +134,9 @@ const NewRequestList = ({friendRequests, userId}) => {
 
 
   const NewRequestListContainer = () => {
-    const friendRequests = useSelector(state => state.friendReducer.friendRequests);
-    const userId = useSelector(state => state.authReducer.user.id)
+    const dispatch = useDispatch();
+    const userId = window.localStorage.getItem("userId");
+    const friendRequests = dispatch(getFriends(userId));
 
     return (
         <NewRequestList

@@ -16,11 +16,15 @@ const AddFriendForm = ({handleFriendClick, openFriendForm, setOpenFriendForm}) =
 
     const dispatch = useDispatch();
 
-    const handleFriendFormClose = () => setOpenFriendForm(false);
+    const handleFriendFormClose = () => {
+        setEmail("");
+        setOpenFriendForm(false);
+    }
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        dispatch(inviteFriend({userId, email}));
+        const res = dispatch(inviteFriend({userId, email}));
+        console.log("RES", res);
         alert("Friend request sent");
         setEmail("");
         handleFriendFormClose();

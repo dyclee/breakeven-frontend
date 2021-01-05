@@ -93,6 +93,7 @@ export const payExpense = payArray => async dispatch => {
     const payUser = Number(payArray[0]);
     const expenseId = Number(payArray[1]);
     const userId = Number(payArray[2])
+    console.log("PAY ARRAY", payArray)
 
     const res = await fetch(`${baseUrl}/expenses/pay`, {
         method: 'post',
