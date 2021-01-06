@@ -34,9 +34,9 @@ export default function UserBrowser () {
                 <div className="profile-balance">
                     <div className="profile-balance-title">Balance</div>
                     {user.balance >= 0 ?
-                        <div className="profile-balance-amount-positive">$ {user.balance}</div>
+                        <div className="profile-balance-amount-positive">$ {user.balance.toFixed(2)}</div>
                         :
-                        <div className="profile-balance-amount-negative">$ {user.balance}</div>
+                        <div className="profile-balance-amount-negative">$ {user.balance.toFixed(2)}</div>
                     }
                 </div>
                 {/* <div>{user.</div> */}

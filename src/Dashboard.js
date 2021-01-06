@@ -11,12 +11,9 @@ import AddFriendForm from './AddFriendForm';
 import { receivedRequests } from './store/actions/friends';
 
 const Dashboard = ({}) => {
+    const user = useSelector(state => state.authReducer.user);
 
-    // useEffect(() => {
-    //     const userId = useSelector((state) => state.authReducer.user.id)
-    //     console.log(userId);
-    //     receivedRequests(userId)
-    //   })
+    if (!user) return null;
 
     return (
     <main>
@@ -31,15 +28,7 @@ const Dashboard = ({}) => {
         </div>
     </main>
     )
-    // return (
-    //     <main>
-    //         <h1>Recent Activity</h1>
-    //         <div className="homepage-browsers">
-    //             <ExpenseBrowser />
-    //             <FriendBrowser />
-    //         </div>
-    //     </main>
-    // )
+
 }
 
 const DashboardContainer = () => {

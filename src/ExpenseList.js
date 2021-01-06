@@ -32,7 +32,7 @@ const useStyles = makeStyles((theme) => ({
 
 const ExpenseList = ({listExpenses, user, friends}) => {
     const classes = useStyles();
-
+    const userId = window.localStorage.getItem("userId");
     const dispatch = useDispatch();
 
     const handlePay = (e) => {
@@ -94,7 +94,7 @@ const ExpenseList = ({listExpenses, user, friends}) => {
                       <Button variant="outlined" color="primary" >PAID</Button>
                     //   <ListItemText primary="Paid"></ListItemText>
                     :
-                    <Button variant="contained" color="primary" value={[expense.payUser, expense.expenseId, user.id]} onClick={handlePay}>Pay User</Button>
+                    <Button variant="contained" color="primary" value={[expense.payUser, expense.expenseId, userId]} onClick={handlePay}>Pay User</Button>
                     }
                   </ListItem>
                   <Divider variant="inset" component="li" />
