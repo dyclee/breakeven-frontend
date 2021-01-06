@@ -70,6 +70,7 @@ export const getExpenses = (userId) => async dispatch => {
             obj.createdBy = createdExpense.Expense.User;
             obj.expenseId = createdExpense.expenseId;
             obj.amount = createdExpense.amount.toFixed(2);
+            obj.reminder = createdExpense.reminder;
             obj.paidStatus = createdExpense.paidStatus;
             obj.createdAt = createdExpense.Expense.createdAt;
             obj.header = createdExpense.Expense.header;

@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { useSelector, useDispatch } from 'react-redux';
 import { payExpense, remindExpense } from './store/actions/expenses';
 
+import ReminderButton from './ReminderButton';
 import { makeStyles } from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
@@ -54,12 +55,12 @@ const ExpenseList = ({listExpenses, user, friends}) => {
         if (e.target.value) {
           const remindArray = e.target.value.split(",");
           dispatch(remindExpense(remindArray));
-          // console.log(remindArray);
+          console.log(remindArray);
           return
         }
         const parentRemindArray = e.target.parentNode.value.split(",");
         dispatch(remindExpense(parentRemindArray));
-        // console.log(parentRemindArray);
+        console.log(parentRemindArray);
         return
     }
     return (
@@ -101,7 +102,7 @@ const ExpenseList = ({listExpenses, user, friends}) => {
                           }
                       />
                     {expense.paidStatus ?
-                      <Button variant="outlined" color="primary" >PAID</Button>
+                      <Button variant="outlined" color="secondary" >PAID</Button>
                     //   <ListItemText primary="Paid"></ListItemText>
                     :
                     <Button variant="contained" color="primary" value={[expense.payUser, expense.expenseId, userId]} onClick={handlePay}>Pay User</Button>
@@ -147,7 +148,7 @@ const ExpenseList = ({listExpenses, user, friends}) => {
                             <Button variant="outlined" color="secondary" >RECEIVED</Button>
                             // <ListItemText primary="PAID"></ListItemText>
                           :
-                            <Button variant="contained" color="secondary" value={[expense.receiveUser.id, expense.expenseId]} onClick={handleReminder}>Remind</Button>
+                            <ReminderButton expense={expense} handleReminder={handleReminder} />
                           }
                   </ListItem>
                   <Divider variant="inset" component="li" />
