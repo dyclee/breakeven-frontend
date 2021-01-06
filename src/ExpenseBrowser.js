@@ -29,17 +29,10 @@ const ExpenseBrowser = ({ user, expenseFormVisible, friends, showExpenseForm, hi
 
     return (
         <main className='expense-browser-container'>
-            {expenseFormVisible ? (
-                <ExpenseForm />
-                ) : (
-                    <>
-                        <Typography variant="h6" className={classes.title}>
-                            Expenses
-                        </Typography>
-                        <ExpenseList />
-                        <Button type="button" color="primary" hidden={expenseFormVisible} onClick={showExpenseForm}>Add Expense</Button>
-                    </>
-            )}
+            <Typography variant="h6" className={classes.title}>
+                Expenses
+            </Typography>
+            <ExpenseList />
         </main>
     )
 

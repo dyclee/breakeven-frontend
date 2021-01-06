@@ -7,6 +7,7 @@ import UserBrowser from './UserBrowser';
 import ExpenseBrowser from './ExpenseBrowser';
 import FriendBrowser from './FriendBrowser';
 import NewRequestList from './NewRequestList';
+import NotificationList from './NotificationList';
 import AddFriendForm from './AddFriendForm';
 import { receivedRequests } from './store/actions/friends';
 
@@ -21,6 +22,7 @@ const Dashboard = ({}) => {
         <h1>Recent Activity</h1>
         <div>
             <NewRequestList  />
+            <NotificationList />
             <div className="homepage-browsers">
                 <ExpenseBrowser />
                 <FriendBrowser />

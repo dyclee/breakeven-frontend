@@ -2,10 +2,14 @@ import { baseUrl } from '../../config';
 import { formatDate } from '../../util/helperFunctions';
 import { setUser } from '../actions/auth';
 
+export const LOAD_NOTIFICATIONS= 'expenses/LOAD_NOTIFICATIONS';
+export const REMOVE_NOTIFICATION = 'expenses/REMOVE_NOTIFICATION';
 export const LOAD_EXPENSES = 'expenses/LOAD_EXPENSES';
 export const LIST_EXPENSES = 'expenses/LIST_EXPENSES';
 export const REMOVE_EXPENSES = 'expenses/REMOVE_EXPENSES';
 
+export const removeNotification = (payArray) => ({ type: REMOVE_NOTIFICATION, payArray});
+export const loadNotifications = (notifications) => ({ type: LOAD_NOTIFICATIONS, notifications})
 export const loadExpenses = expenses => ({ type: LOAD_EXPENSES, expenses });
 export const listExpenses = listExpenses => ({ type: LIST_EXPENSES, listExpenses });
 export const removeExpenses = () => ({ type: REMOVE_EXPENSES });
@@ -92,6 +96,26 @@ export const getExpenses = (userId) => async dispatch => {
     return errorRes;
 }
 
+export const receivedNotifications = (userId) => async dispatch => {
+    const res = await fetch(`${baseUrl}/expenses/notifications`, {
+        method: 'post',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ userId })
+    });
+    if (res.ok) {
+        const { notifications } = await res.json();
+        notifications.forEach((one) => {
+            one.formattedDate = formatDate(new Date(one.createdAt))
+        })
+        dispatch(loadNotifications(notifications));
+        return;
+    }
+    const errorRes = await res.json();
+    return errorRes;
+}
+
 export const payExpense = payArray => async dispatch => {
     const payUser = Number(payArray[0]);
     const expenseId = Number(payArray[1]);
@@ -128,5 +152,22 @@ export const remindExpense = remindArray => async dispatch => {
     const response = await res.json();
     if (res.ok) {
         dispatch(getExpenses(id));
+    }
+}
+
+export const removeReminder = payArray => async dispatch => {
+    const expenseId = Number(payArray[1]);
+    const userId = Number(payArray[2]);
+
+    const res = await fetch(`${baseUrl}/expenses/deleteRemind`, {
+        method: 'post',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({userId, expenseId})
+    })
+    const response = await res.json();
+    if (res.ok) {
+        dispatch(receivedNotifications(userId));
     }
 }

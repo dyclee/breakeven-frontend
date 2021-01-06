@@ -1,6 +1,6 @@
 import { baseUrl } from '../../config';
 import { getFriends, removeFriends, receivedRequests, removeRequests } from './friends';
-import { getExpenses, removeExpenses } from './expenses';
+import { getExpenses, removeExpenses, receivedNotifications } from './expenses';
 
 export const TOKEN_KEY = 'auth/token';
 export const SET_TOKEN = 'authentication/SET_TOKEN';
@@ -34,6 +34,7 @@ export const loadToken = () => async dispatch => {
             dispatch(getFriends(user.id));
             dispatch(getExpenses(user.id));
             dispatch(receivedRequests(user.id));
+            dispatch(receivedNotifications(user.id));
             return;
         }
         dispatch(removeToken());

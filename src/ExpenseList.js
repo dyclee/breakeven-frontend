@@ -23,11 +23,17 @@ const useStyles = makeStyles((theme) => ({
     inline: {
       display: 'inline',
     },
+    centerButton: {
+      // margin: 0,
+      display: 'flex',
+      flexDirection: 'column',
+      justifyContent: 'center',
+    },
     oweColor: {
-      color: "#ba000d"
+      color: "#f08080"
     },
     getColor: {
-      color: "#43a047"
+      color: "#90ee90"
     }
   }));
 
@@ -71,7 +77,7 @@ const ExpenseList = ({listExpenses, user, friends}) => {
           <>
               {expense.type === "toPay" ?
                   <>
-                  <ListItem key={expense.expenseId} alignItems="flex-start">
+                  <ListItem key={expense.expenseId} alignItems="center">
                       <ListItemAvatar>
                         <Avatar alt={`${expense.createdBy}`} src={`${expense.createdBy.imageUrl}`} />
                       </ListItemAvatar>
@@ -102,10 +108,13 @@ const ExpenseList = ({listExpenses, user, friends}) => {
                           }
                       />
                     {expense.paidStatus ?
-                      <Button variant="outlined" color="secondary" >PAID</Button>
+                      <div className="centerButton">
+                        <Button variant="outlined" color="secondary" >PAID</Button>
+
+                      </div>
                     //   <ListItemText primary="Paid"></ListItemText>
                     :
-                    <Button variant="contained" color="primary" value={[expense.payUser, expense.expenseId, userId]} onClick={handlePay}>Pay User</Button>
+                    <Button variant="contained" className={classes.centerButton} color="primary" value={[expense.payUser, expense.expenseId, userId]} onClick={handlePay}>Pay User</Button>
                     }
                   </ListItem>
                   <Divider variant="inset" component="li" />
@@ -114,7 +123,7 @@ const ExpenseList = ({listExpenses, user, friends}) => {
                 :
 
                     <>
-                  <ListItem key={expense.expenseId} alignItems="flex-start">
+                  <ListItem key={expense.expenseId} alignItems="center">
                       <ListItemAvatar>
                         <Avatar alt={`${expense.receiveUser.fullName}`} src={`${expense.receiveUser.imageUrl}`} />
                       </ListItemAvatar>
@@ -140,15 +149,15 @@ const ExpenseList = ({listExpenses, user, friends}) => {
                                   >
                               {`${expense.formattedDate}`}
                               </Typography>
-                              {/* {` - ${expense.createdBy.fullName}`} */}
+                              {` - ${expense.receiveUser.fullName}`}
                               </React.Fragment>
                           }
                           />
                           {expense.paidStatus ?
-                            <Button variant="outlined" color="secondary" >RECEIVED</Button>
+                            <Button variant="outlined" className={classes.centerButton} color="secondary" >RECEIVED</Button>
                             // <ListItemText primary="PAID"></ListItemText>
                           :
-                            <ReminderButton expense={expense} handleReminder={handleReminder} />
+                            <ReminderButton classes={classes.centerButton} expense={expense} handleReminder={handleReminder} />
                           }
                   </ListItem>
                   <Divider variant="inset" component="li" />

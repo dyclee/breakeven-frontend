@@ -106,10 +106,16 @@
 .profile-balance-amount-positive {
     padding: 6px;
     font-size: 24px;
-    color: lightgreen;
+    color: #90ee90;
 }
 .profile-balance-amount-negative {
     padding: 6px;
     font-size: 24px;
-    color: lightcoral;
+    color: #f08080;
+}
+
+.centerButton {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
