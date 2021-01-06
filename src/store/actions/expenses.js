@@ -44,10 +44,11 @@ export const getExpenses = (userId) => async dispatch => {
 
     if (res.ok) {
         const expenses = await res.json();
+        // console.log("RES EXPENSES", expenses)
         dispatch(loadExpenses(expenses))
 
         let listExpensesArr = [];
-        const { owedExpenses, createdExpenses } = expenses;
+        const { owedExpenses, createdExpenses, createdUserExpenses } = expenses;
         owedExpenses.forEach((owedExpense) => {
             let obj = {};
             obj.type = "toPay";
@@ -63,18 +64,18 @@ export const getExpenses = (userId) => async dispatch => {
 
             listExpensesArr.push(obj);
         })
-        createdExpenses.forEach((createdExpense) => {
+        createdUserExpenses.forEach((createdExpense) => {
             let obj = {};
             obj.type = "toReceive";
-            obj.createdBy = userId;
-            obj.expenseId = createdExpense.id;
-            obj.amount = createdExpense.totalAmount.toFixed(2);
+            obj.createdBy = createdExpense.Expense.User;
+            obj.expenseId = createdExpense.expenseId;
+            obj.amount = createdExpense.amount.toFixed(2);
             obj.paidStatus = createdExpense.paidStatus;
-            obj.createdAt = createdExpense.createdAt;
-            obj.header = createdExpense.header;
-            obj.receiveUser = createdExpense.members;
-            obj.members = createdExpense.members;
-            obj.formattedDate = formatDate(new Date(createdExpense.createdAt))
+            obj.createdAt = createdExpense.Expense.createdAt;
+            obj.header = createdExpense.Expense.header;
+            obj.receiveUser = createdExpense.User;
+            obj.members = createdExpense.Expense.members;
+            obj.formattedDate = formatDate(new Date(createdExpense.Expense.createdAt))
 
             listExpensesArr.push(obj);
         })
@@ -104,10 +105,27 @@ export const payExpense = payArray => async dispatch => {
         body: JSON.stringify({ payUser, expenseId, userId })
     });
     const response = await res.json();
-    console.log("RESPONSE", response)
+    // console.log("RESPONSE", response)
     if (res.ok) {
         dispatch(getExpenses(userId))
         dispatch(setUser(response.payer))
         return
+    }
+}
+export const remindExpense = remindArray => async dispatch => {
+    const id = window.localStorage.getItem("userId");
+    const userId = Number(remindArray[0]);
+    const expenseId = Number(remindArray[1]);
+
+    const res = await fetch(`${baseUrl}/expenses/remind`, {
+        method: 'post',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({userId, expenseId})
+    })
+    const response = await res.json();
+    if (res.ok) {
+        dispatch(getExpenses(id));
     }
 }

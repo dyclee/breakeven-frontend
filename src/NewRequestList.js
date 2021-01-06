@@ -41,11 +41,12 @@ const useStyles = makeStyles((theme) => ({
 //   );
 // }
 
-const NewRequestList = ({friendRequests, userId}) => {
+const NewRequestList = ({userId}) => {
     const classes = useStyles();
     const [dense, setDense] = React.useState(false);
     const [secondary, setSecondary] = React.useState(false);
 
+    const friendRequests = useSelector(state => state.friendReducer.friendRequests)
     const dispatch = useDispatch();
 
     const handleAddFriend = (e) => {
@@ -86,7 +87,8 @@ const NewRequestList = ({friendRequests, userId}) => {
       // console.log("ICON VALUE: ", iconButtonValue)
       dispatch(deleteRequest({fromUserId: iconButtonValue, userId}))
     }
-    if (!friendRequests.length) {
+    // console.log("FRIEND REQUESTS", friendRequests)
+    if (!friendRequests) {
       return null
     }
     // spacing={2}, xs={12}, md={6}
@@ -136,11 +138,10 @@ const NewRequestList = ({friendRequests, userId}) => {
   const NewRequestListContainer = () => {
     const dispatch = useDispatch();
     const userId = window.localStorage.getItem("userId");
-    const friendRequests = dispatch(getFriends(userId));
+    // dispatch(getFriends(userId));
 
     return (
         <NewRequestList
-            friendRequests={friendRequests}
             userId={userId}
         />
     )

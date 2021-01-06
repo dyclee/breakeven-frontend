@@ -56,6 +56,7 @@ export const getFriends = (userId) =>  async dispatch => {
             }
             return 0;
         });
+        // console.log("SORTED FRIENDS", sortedFriends);
         dispatch(loadFriends(sortedFriends));
         return;
     }

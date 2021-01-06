@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from 'react-redux';
-import { payExpense } from './store/actions/expenses';
+import { payExpense, remindExpense } from './store/actions/expenses';
 
 import { makeStyles } from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
@@ -48,9 +48,19 @@ const ExpenseList = ({listExpenses, user, friends}) => {
         return
 
     }
-    const handleClick = (e) => {
+    const handleReminder = (e) => {
         e.preventDefault();
-        console.log(e.target);
+        e.stopPropagation();
+        if (e.target.value) {
+          const remindArray = e.target.value.split(",");
+          dispatch(remindExpense(remindArray));
+          // console.log(remindArray);
+          return
+        }
+        const parentRemindArray = e.target.parentNode.value.split(",");
+        dispatch(remindExpense(parentRemindArray));
+        // console.log(parentRemindArray);
+        return
     }
     return (
         <>
@@ -105,7 +115,7 @@ const ExpenseList = ({listExpenses, user, friends}) => {
                     <>
                   <ListItem key={expense.expenseId} alignItems="flex-start">
                       <ListItemAvatar>
-                        <Avatar alt={`${expense.createdBy}`} src={`${user.imageUrl}`} />
+                        <Avatar alt={`${expense.receiveUser.fullName}`} src={`${expense.receiveUser.imageUrl}`} />
                       </ListItemAvatar>
                       <ListItemText
                           primary={
@@ -137,7 +147,7 @@ const ExpenseList = ({listExpenses, user, friends}) => {
                             <Button variant="outlined" color="secondary" >RECEIVED</Button>
                             // <ListItemText primary="PAID"></ListItemText>
                           :
-                            <Button variant="contained" color="secondary" onClick={handleClick}>Remind User</Button>
+                            <Button variant="contained" color="secondary" value={[expense.receiveUser.id, expense.expenseId]} onClick={handleReminder}>Remind</Button>
                           }
                   </ListItem>
                   <Divider variant="inset" component="li" />
