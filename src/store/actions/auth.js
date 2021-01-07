@@ -66,6 +66,7 @@ export const login = (email, password) => async dispatch => {
         dispatch(getFriends(user.id));
         dispatch(getExpenses(user.id));
         dispatch(receivedRequests(user.id));
+        dispatch(receivedNotifications(user.id));
 
 
         return

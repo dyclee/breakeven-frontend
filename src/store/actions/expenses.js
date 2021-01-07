@@ -132,9 +132,15 @@ export const payExpense = payArray => async dispatch => {
     const response = await res.json();
     // console.log("RESPONSE", response)
     if (res.ok) {
+        // console.log("IS RES OK?")
+        dispatch(removeNotification(payArray));
+        dispatch(receivedNotifications(userId));
         dispatch(getExpenses(userId))
         dispatch(setUser(response.payer))
         return
+    } else {
+        // console.log("HITTING THIS?")
+        alert("Balance does not contain enough funds to complete payment")
     }
 }
 export const remindExpense = remindArray => async dispatch => {

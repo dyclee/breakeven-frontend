@@ -78,18 +78,30 @@ const NewRequestList = ({userId}) => {
       e.preventDefault();
       e.stopPropagation();
       const ele = e.target;
-
-      if (ele.value) {
-        dispatch(deleteRequest({fromUserId: ele.value, userId}))
-        return;
+      try {
+        if (ele.value) {
+          dispatch(deleteRequest({fromUserId: ele.value, userId}))
+          return;
+        }
+        if (ele.attributes.frienderid.value) {
+          const foundValue = ele.attributes.frienderid.value;
+          dispatch(deleteRequest({ fromUserId: foundValue, userId}))
+          return
+        }
+      } catch (e) {
+        const iconButtonValue = ele.parentNode.attributes.frienderid.value
+        dispatch(deleteRequest({fromUserId: iconButtonValue, userId}))
       }
-      const iconButtonValue = ele.parentNode.attributes.frienderid.value
-      // console.log("ICON VALUE: ", iconButtonValue)
-      dispatch(deleteRequest({fromUserId: iconButtonValue, userId}))
     }
-    // console.log("FRIEND REQUESTS", friendRequests)
-    if (!friendRequests) {
-      return null
+
+    if (!friendRequests || !friendRequests.length) {
+      return (<>
+      <div className="new-request-container">
+        <Typography variant="h6" className={classes.title}>
+            No requests
+        </Typography>
+      </div>
+      </>);
     }
     // spacing={2}, xs={12}, md={6}
     return (

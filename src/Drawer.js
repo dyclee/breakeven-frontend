@@ -8,6 +8,7 @@ import Drawer from '@material-ui/core/Drawer';
 import Toolbar from '@material-ui/core/Toolbar';
 import List from '@material-ui/core/List';
 
+import Badge from '@material-ui/core/Badge';
 import Divider from '@material-ui/core/Divider';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
@@ -64,13 +65,20 @@ const SideDrawer = ({needLogin}) => {
           dispatch(logout());
     }
 
+    const handleNotifications = () => {
+      history.push('/notifications');
+    }
+
     const handleExpenseClick = () => {
         setOpenExpenseForm(true);
     }
     const handleFriendClick = () => {
         setOpenFriendForm(true);
     }
-    if (needLogin) return null;
+    const requests = useSelector(state => state.friendReducer.friendRequests);
+    const notifs = useSelector(state => state.expenseReducer.notifications);
+    if (needLogin || !requests || !notifs) return null;
+
     return (
 
         <Drawer
@@ -100,23 +108,21 @@ const SideDrawer = ({needLogin}) => {
                     <ListItemIcon><PersonIcon /></ListItemIcon>
                     <ListItemText primary="Add Friend" />
                   </ListItem>
-                  <ListItem button key="Groups">
-                    <ListItemIcon><PeopleIcon /></ListItemIcon>
-                    <ListItemText primary="Groups" />
-                  </ListItem>
               </List>
               <Divider />
               <List>
-                {['Notifications', 'Settings'].map((text, index) => (
-                  <ListItem button key={text}>
-                    <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-                    <ListItemText primary={text} />
-                  </ListItem>
-                ))}
-                  <ListItem button key="Logout" onClick={handleLogout}>
-                    <ListItemIcon><MeetingRoomIcon /></ListItemIcon>
-                    <ListItemText primary="Logout" />
-                  </ListItem>
+                <ListItem button key="Notifications" onClick={handleNotifications}>
+                  <ListItemIcon>
+                    <Badge badgeContent={notifs.length + requests.length} color="secondary">
+                      <InboxIcon />
+                    </Badge>
+                  </ListItemIcon>
+                  <ListItemText primary="Notifications" />
+                </ListItem>
+                <ListItem button key="Logout" onClick={handleLogout}>
+                  <ListItemIcon><MeetingRoomIcon /></ListItemIcon>
+                  <ListItemText primary="Logout" />
+                </ListItem>
               </List>
             </div>
         </Drawer>

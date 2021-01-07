@@ -24,18 +24,32 @@
 .new-request-container {
     display: flex;
     align-items: center;
-    border: 1px solid black;
+    /* border: 1px solid #708090; */
     /* width: 600px; */
     padding: 10px;
     margin: 10px;
 }
+.notification-container {
+    display: flex;
+    align-items: center;
+    /* border: 1px solid #708090; */
+    /* width: 600px; */
+    padding: 10px;
+    margin: 10px;
+}
+
+.notificationpage-browsers {
+    /* border: 1px solid #708090; */
+}
+
 .homepage-browsers {
     display: flex;
     flex-wrap: wrap;
 }
 
 .expense-browser-container {
-    border: 1px solid black;
+    border: 1px solid #708090;
+    border-radius: 15px;
     padding: 10px;
     margin: 10px;
     /* width: 600px; */
@@ -44,7 +58,8 @@
 .friend-browser-container {
     position: sticky;
     top: 80px;
-    border: 1px solid black;
+    border: 1px solid #708090;
+    border-radius: 15px;
     padding: 10px;
     margin: 10px auto;
     max-height: 500px;
@@ -53,7 +68,7 @@
 .user-browser-container {
     /* border: 1px solid #f5d45e; */
 
-    border: 2px solid#708090;
+    border: 2px solid#f5d45e;
     border-radius: 15px;
     padding: 10px;
     margin: 10px auto;

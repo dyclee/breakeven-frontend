@@ -7,16 +7,12 @@ import {PrivateRoute, ProtectedRoute } from './util/route-util';
 import LoginPanel from './LoginPanel';
 import SignUpForm from './SignUpForm';
 import Dashboard from './Dashboard';
-import FriendBrowser from './FriendBrowser';
-import ExpenseBrowser from './ExpenseBrowser';
+import NoteBrowser from './NoteBrowser';
 import NavBar from './NavBar';
 import Drawer from './Drawer';
 import { CssBaseline } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import Toolbar from '@material-ui/core/Toolbar';
-
-//change to expenseBrowser later
-import ExpenseForm from './ExpenseForm';
 
 
 const drawerWidth = 240;
@@ -67,22 +63,16 @@ const App = ({needLogin, loadToken}) => {
                         component={SignUpForm}
                     />
                     <PrivateRoute
+                        path="/notifications"
+                        exact={true}
+                        needLogin={needLogin}
+                        component={NoteBrowser}
+                    />
+                    <PrivateRoute
                         path="/"
                         exact={true}
                         needLogin={needLogin}
                         component={Dashboard}
-                    />
-                    <PrivateRoute
-                        path="/friends"
-                        exact={true}
-                        needLogin={needLogin}
-                        component={FriendBrowser}
-                    />
-                    <PrivateRoute
-                        path="/expenses"
-                        exact={true}
-                        needLogin={needLogin}
-                        component={ExpenseBrowser}
                     />
                     <Redirect to='/' />
                 </Switch>

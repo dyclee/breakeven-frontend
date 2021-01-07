@@ -19,10 +19,7 @@ const Dashboard = ({}) => {
     return (
     <main>
         <UserBrowser />
-        <h1>Recent Activity</h1>
         <div>
-            <NewRequestList  />
-            <NotificationList />
             <div className="homepage-browsers">
                 <ExpenseBrowser />
                 <FriendBrowser />

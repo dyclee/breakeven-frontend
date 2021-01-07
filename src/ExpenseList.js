@@ -178,7 +178,8 @@ const ExpenseList = ({listExpenses, user, friends}) => {
 const ExpenseListContainer = () => {
     const listExpenses = useSelector(state => state.expenseReducer.listExpenses);
     const user = useSelector(state => state.authReducer.user);
-    const friends = useSelector(state => state.friendReducer.friends)
+    const friends = useSelector(state => state.friendReducer.friends);
+
     return (
         <ExpenseList
             listExpenses={listExpenses}

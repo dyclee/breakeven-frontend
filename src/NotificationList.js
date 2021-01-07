@@ -50,19 +50,17 @@ export default function NotificationList ({ }) {
             if (ele.value) {
                 const payArray = e.target.value.split(",");
                 dispatch(payExpense(payArray))
-                dispatch(removeNotification(payArray))
                 return
             }
             if (ele.attributes.paymentVal.value) {
                 const payArray = e.target.attributes.paymentVal.value.split(",");
                 dispatch(payExpense(payArray))
-                dispatch(removeNotification(payArray))
                 return
             }
         } catch (e) {
             const iconButtonValue = ele.parentNode.attributes.paymentVal.value.split(",");
             dispatch(payExpense(iconButtonValue))
-            dispatch(removeNotification(iconButtonValue))
+
         }
     }
     const removePayment = (e) => {
@@ -90,7 +88,15 @@ export default function NotificationList ({ }) {
         }
     }
 
-    if (!notifications || !notifications.length) return null;
+    if (!notifications || !notifications.length) {
+        return (<>
+            <div className="notification-container">
+                <Typography variant="h6" className={classes.title}>
+                    No alerts
+                </Typography>
+            </div>
+        </>)
+    }
 
     return (<>
         <div className={`${classes.root} notification-container`}>
