@@ -15,7 +15,7 @@ import FriendList from './FriendList';
 const useStyles = makeStyles((theme) => ({
     title: {
       margin: theme.spacing(4, 0, 2),
-      textAlign: 'center',
+    //   textAlign: 'center',
     },
   }));
 

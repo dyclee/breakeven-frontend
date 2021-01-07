@@ -16,13 +16,13 @@ import ListItemText from '@material-ui/core/ListItemText';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
 
+import AccountBalanceIcon from '@material-ui/icons/AccountBalance';
 import AttachMoneyIcon from '@material-ui/icons/AttachMoney';
 import PersonIcon from '@material-ui/icons/Person';
 import PeopleIcon from '@material-ui/icons/People';
 import MeetingRoomIcon from '@material-ui/icons/MeetingRoom';
 
-// import FriendBrowser from './FriendBrowser';
-// import ExpenseBrowser from './ExpenseBrowser';
+import CashoutForm from './CashoutForm';
 import ExpenseForm from './ExpenseForm';
 import AddFriendForm from './AddFriendForm';
 import { logout } from './store/actions/auth';
@@ -58,7 +58,7 @@ const SideDrawer = ({needLogin}) => {
     const history = useHistory();
     const [openExpenseForm, setOpenExpenseForm] = useState(false);
     const [openFriendForm, setOpenFriendForm] = useState(false);
-
+    const [openCashoutForm, setOpenCashoutForm] = useState(false);
     const dispatch = useDispatch();
 
     const handleLogout = () => {
@@ -74,6 +74,9 @@ const SideDrawer = ({needLogin}) => {
     }
     const handleFriendClick = () => {
         setOpenFriendForm(true);
+    }
+    const handleCashoutClick = () => {
+        setOpenCashoutForm(true);
     }
     const requests = useSelector(state => state.friendReducer.friendRequests);
     const notifs = useSelector(state => state.expenseReducer.notifications);
@@ -98,6 +101,11 @@ const SideDrawer = ({needLogin}) => {
               openFriendForm={openFriendForm}
               setOpenFriendForm={setOpenFriendForm}
               />
+            <CashoutForm
+              handleCashoutClick={handleCashoutClick}
+              openCashoutForm={openCashoutForm}
+              setOpenCashoutForm={setOpenCashoutForm}
+              />
             <div className={classes.drawerContainer}>
               <List>
                   <ListItem button key="Expenses" onClick={handleExpenseClick}>
@@ -107,6 +115,10 @@ const SideDrawer = ({needLogin}) => {
                   <ListItem button key="Friends" onClick={handleFriendClick}>
                     <ListItemIcon><PersonIcon /></ListItemIcon>
                     <ListItemText primary="Add Friend" />
+                  </ListItem>
+                  <ListItem button key="Cashout" onClick={handleCashoutClick}>
+                    <ListItemIcon><AccountBalanceIcon /></ListItemIcon>
+                    <ListItemText primary="Cash Out" />
                   </ListItem>
               </List>
               <Divider />
@@ -124,6 +136,20 @@ const SideDrawer = ({needLogin}) => {
                   <ListItemText primary="Logout" />
                 </ListItem>
               </List>
+            </div>
+            <div className="developer-container">
+              <div className="developer-card">
+                <div className="dev-intro">Developed by:</div>
+                <div className="dev-name">David Lee</div>
+                <div className='dev-icons'>
+                  <a target='_blank' href="https://github.com/dyclee/breakeven-frontend">
+                    <i class="fa fa-github fa-3x" aria-hidden="true"></i>
+                  </a>
+                  <a target='_blank' href="https://www.linkedin.com/in/daveyclee/">
+                    <i class="fa fa-linkedin-square fa-3x" aria-hidden="true"></i>
+                  </a>
+                </div>
+              </div>
             </div>
         </Drawer>
     );

@@ -38,51 +38,59 @@ const SignupForm = () => {
         callback(e.target.value);
     }
     return (
-        <main className="centered middled">
-            <form onSubmit={handleSubmit}>
-                <InputField
-                    required
-                    id="Name"
-                    type="text"
-                    placeholder="Name"
-                    value={fullName}
-                    onChange={updateProperty(setFullName)}
-                    />
-                <InputField
-                    required
-                    id="Email"
-                    type="email"
-                    placeholder="Email"
-                    value={email}
-                    onChange={updateProperty(setEmail)}
-                    />
-                <InputField
-                    required
-                    id="Password"
-                    type="password"
-                    placeholder="Password"
-                    value={password}
-                    onChange={updateProperty(setPassword)}
-                    />
-                <InputField
-                    required
-                    id="Confirm Password"
-                    type="password"
-                    placeholder="Confirm Password"
-                    value={confirmPassword}
-                    onChange={updateProperty(setConfirmPassword)}
-                />
-                <InputField
-                    id="Profile Image URL"
-                    type="text"
-                    placeholder="Profile Image URL"
-                    value={imageUrl}
-                    onChange={updateProperty(setImageUrl)}
-                />
-                <Button type="submit" color="secondary" onClick={handleSubmit}>Create Account</Button>
-                <Button type="button" color="secondary" onClick={handleClick}>Cancel</Button>
-            </form>
-        </main>
+        <div className="loginpanel">
+            <div className="login-container">
+                <div className="login-header">BreakEven</div>
+                <div className="login-subheader">Create account</div>
+                <main className="centered middled">
+                    <form onSubmit={handleSubmit}>
+                        <InputField
+                            required
+                            id="Name"
+                            type="text"
+                            placeholder="Name"
+                            value={fullName}
+                            onChange={updateProperty(setFullName)}
+                            />
+                        <InputField
+                            required
+                            id="Email"
+                            type="email"
+                            placeholder="Email"
+                            value={email}
+                            onChange={updateProperty(setEmail)}
+                            />
+                        <InputField
+                            required
+                            id="Password"
+                            type="password"
+                            placeholder="Password"
+                            value={password}
+                            onChange={updateProperty(setPassword)}
+                            />
+                        <InputField
+                            required
+                            id="Confirm Password"
+                            type="password"
+                            placeholder="Confirm Password"
+                            value={confirmPassword}
+                            onChange={updateProperty(setConfirmPassword)}
+                        />
+                        <InputField
+                            id="Profile Image URL"
+                            type="text"
+                            placeholder="Profile Image URL"
+                            value={imageUrl}
+                            onChange={updateProperty(setImageUrl)}
+                        />
+                        <div className="space-around">
+                            <Button type="submit" color="secondary" onClick={handleSubmit}>Create</Button>
+                            <Button type="button" color="secondary" onClick={handleClick}>Cancel</Button>
+                        </div>
+                    </form>
+                </main>
+            </div>
+        </div>
     )
 }
 

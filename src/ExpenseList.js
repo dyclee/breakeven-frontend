@@ -61,12 +61,12 @@ const ExpenseList = ({listExpenses, user, friends}) => {
         if (e.target.value) {
           const remindArray = e.target.value.split(",");
           dispatch(remindExpense(remindArray));
-          console.log(remindArray);
+          // console.log(remindArray);
           return
         }
         const parentRemindArray = e.target.parentNode.value.split(",");
         dispatch(remindExpense(parentRemindArray));
-        console.log(parentRemindArray);
+        // console.log(parentRemindArray);
         return
     }
     return (

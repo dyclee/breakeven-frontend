@@ -22,10 +22,11 @@ const useStyles = makeStyles((theme) => ({
     },
     title: {
         flexGrow: 1,
-        fontFamily: theme.fontFamily
+        fontFamily: "sans-serif",
     },
     appBar: {
         zIndex: theme.zIndex.drawer + 1,
+        background: "black",
       },
 }))
 
@@ -42,7 +43,7 @@ const NavBar = ({needLogin, loadToken}) => {
         return (
             <AppBar position="fixed" className={classes.appBar}>
             <Toolbar>
-                <NavLink to="/" exact={true} activeClassName="active">
+                <NavLink to="/" exact={true} className="homelink" activeClassName="active">
                     <Typography variant="h6" noWrap color="secondary" className={classes.title}>
                     BreakEven
                     </Typography>

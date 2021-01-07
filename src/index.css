@@ -13,13 +13,52 @@
 .middled {
     align-items: center;
 }
-/* .main {
-    background-color: black;
-} */
 
-/* body {
-    color: "#fbe9e7"
-} */
+.center-button {
+    display: flex;
+    justify-content: center;
+    /* padding: 10px; */
+}
+
+.demo-button {
+    padding-bottom: 15px;
+}
+.space-around {
+    display: flex;
+    justify-content: space-around;
+    padding: 7px;
+}
+.loginpanel {
+    /* border: 1px solid black; */
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    padding: 30px;
+}
+
+.login-container {
+    /* border: 1px solid white; */
+    padding: 30px;
+    border-radius: 15px;
+    background-color: black;
+}
+
+.login-header {
+    display: flex;
+    justify-content: center;
+    font-size: 25px;
+    padding-bottom: 20px;
+    color: #41B6E6;
+}
+
+.login-subheader {
+    padding: 10px;
+    text-align: center;
+}
+
+.monies {
+    color: lightgreen;
+}
 
 .new-request-container {
     display: flex;
@@ -48,7 +87,7 @@
 }
 
 .expense-browser-container {
-    border: 1px solid #708090;
+    border: 1px solid #DB3EB1;
     border-radius: 15px;
     padding: 10px;
     margin: 10px;
@@ -58,7 +97,7 @@
 .friend-browser-container {
     position: sticky;
     top: 80px;
-    border: 1px solid #708090;
+    border: 1px solid #DB3EB1;
     border-radius: 15px;
     padding: 10px;
     margin: 10px auto;
@@ -68,7 +107,7 @@
 .user-browser-container {
     /* border: 1px solid #f5d45e; */
 
-    border: 2px solid#f5d45e;
+    border: 2px solid#41B6E6;
     border-radius: 15px;
     padding: 10px;
     margin: 10px auto;
@@ -133,4 +172,49 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
+}
+
+.homelink {
+    text-decoration: none;
+}
+
+.developer-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    /* border: 1px solid black; */
+    margin: 10px;
+    height: 370px;
+    /* padding: 10px; */
+}
+
+.developer-card {
+    border: 1px solid#708090;
+    border-radius: 15px;
+    margin: 0 auto;
+    width: 180px;
+    height: 150px;
+    padding:10px;
+}
+.dev-intro {
+    text-align: center;
+    font-size: 15px;
+}
+.dev-name {
+    text-align: center;
+    font-size: 15px;
+    padding: 4px;
+}
+.dev-icons {
+    display: flex;
+    justify-content: space-around;
+    padding: 20px;
+}
+
+a {
+    color:white;
+}
+i:hover {
+    /* box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px; */
+    color: #DB3EB1;
 }

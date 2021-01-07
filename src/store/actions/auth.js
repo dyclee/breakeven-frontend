@@ -15,6 +15,18 @@ export const setToken = token => ({ type: SET_TOKEN, token });
 export const setUser = user => ({ type: SET_USER, user});
 export const removeUser = () => ({ type: REMOVE_USER});
 
+export const cashout = (userId) => async dispatch => {
+    const res = await fetch(`${baseUrl}/users/cashout`, {
+        method: 'post',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ userId })
+    });
+    if (res.ok) {
+        const {user} = await res.json();
+        dispatch(setUser(user))
+        return;
+    }
+}
 
 export const loadToken = () => async dispatch => {
     const token = window.localStorage.getItem(TOKEN_KEY);

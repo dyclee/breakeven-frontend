@@ -35,7 +35,10 @@ const MenuButton = () => {
         setAnchorEl(event.currentTarget);
     };
 
-    const handleRedirect = () => history.push('/');
+    const handleRedirect = () => {
+      history.push('/');
+      handleClose();
+    }
 
     const handleClose = () => {
         setAnchorEl(null);
@@ -56,8 +59,8 @@ const MenuButton = () => {
         open={Boolean(anchorEl)}
         onClose={handleClose}
       >
-        <MenuItem onClick={handleClose}>Profile</MenuItem>
-        <MenuItem onClick={handleRedirect}>My account</MenuItem>
+        {/* <MenuItem onClick={handleClose}>Profile</MenuItem> */}
+        <MenuItem onClick={handleRedirect}>Profile</MenuItem>
         <LogoutButton />
       </Menu>
     </div>

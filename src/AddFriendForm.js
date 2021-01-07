@@ -1,11 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { Redirect, useHistory } from 'react-router-dom';
 import { inviteFriend } from './store/actions/friends';
-import {hideForm, showForm } from './store/actions/ui';
-import TextareaAutosize from '@material-ui/core/TextareaAutosize';
-import InputField from './TextField';
 import { Dialog, DialogTitle, DialogContent, Button, TextField, DialogActions, InputLabel, FormControl, Select, MenuItem } from '@material-ui/core';
 
 
@@ -25,7 +21,7 @@ const AddFriendForm = ({handleFriendClick, openFriendForm, setOpenFriendForm}) =
         e.preventDefault();
         const res = dispatch(inviteFriend({userId, email}));
         // console.log("RES", res);
-        alert("Friend request sent");
+        // alert("Friend request sent");
         setEmail("");
         handleFriendFormClose();
     }
