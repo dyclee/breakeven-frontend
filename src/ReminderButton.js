@@ -2,7 +2,7 @@ import React from 'react';
 import { Button } from '@material-ui/core';
 
 export default function ReminderButton ({classes, expense, handleReminder}) {
-    // console.log("EXPENSE", expense);
+    console.log("EXPENSE", expense);
     return (<>
         {expense.reminder ?
             <Button variant="outlined" className={classes} >Notified</Button>

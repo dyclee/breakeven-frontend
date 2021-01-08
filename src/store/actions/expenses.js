@@ -165,7 +165,7 @@ export const remindExpense = remindArray => async dispatch => {
     const response = await res.json();
     // console.log("RESPONSE", response);
     if (res.ok) {
-        dispatch(notify(response.remindExpense.userId, response.remindExpense.expenseId));
+        // dispatch(notify(response.remindExpense.userId, response.remindExpense.expenseId));
         dispatch(getExpenses(id))
     }
 }
