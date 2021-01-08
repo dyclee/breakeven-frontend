@@ -7,12 +7,14 @@ export const REMOVE_NOTIFICATION = 'expenses/REMOVE_NOTIFICATION';
 export const LOAD_EXPENSES = 'expenses/LOAD_EXPENSES';
 export const LIST_EXPENSES = 'expenses/LIST_EXPENSES';
 export const REMOVE_EXPENSES = 'expenses/REMOVE_EXPENSES';
+export const NOTIFY = 'expenses/NOTIFY'
 
 export const removeNotification = (payArray) => ({ type: REMOVE_NOTIFICATION, payArray});
 export const loadNotifications = (notifications) => ({ type: LOAD_NOTIFICATIONS, notifications})
 export const loadExpenses = expenses => ({ type: LOAD_EXPENSES, expenses });
 export const listExpenses = listExpenses => ({ type: LIST_EXPENSES, listExpenses });
 export const removeExpenses = () => ({ type: REMOVE_EXPENSES });
+export const notify = (userId, expenseId) => ({ type: NOTIFY, userId, expenseId});
 
 export const createExpense = ({
     members,
@@ -61,6 +63,7 @@ export const getExpenses = (userId) => async dispatch => {
             obj.amount = owedExpense.amount.toFixed(2);
             obj.paidStatus = owedExpense.paidStatus;
             obj.createdAt = owedExpense.Expense.createdAt;
+            obj.updatedAt = owedExpense.updatedAt
             obj.header = owedExpense.Expense.header;
             obj.payUser = owedExpense.Expense.createdBy;
             obj.members = owedExpense.Expense.members
@@ -77,6 +80,7 @@ export const getExpenses = (userId) => async dispatch => {
             obj.reminder = createdExpense.reminder;
             obj.paidStatus = createdExpense.paidStatus;
             obj.createdAt = createdExpense.Expense.createdAt;
+            obj.updatedAt = createdExpense.updatedAt;
             obj.header = createdExpense.Expense.header;
             obj.receiveUser = createdExpense.User;
             obj.members = createdExpense.Expense.members;
@@ -87,6 +91,9 @@ export const getExpenses = (userId) => async dispatch => {
         const sortedExpenses = listExpensesArr.sort(function(a,b){
             // Turn your strings into dates, and then subtract them
             // to get a value that is either negative, positive, or zero.
+            // if (new Date(b.createdAt) === new Date(a.createdAt)) {
+            //     return new Date b.
+            // }
             return new Date(b.createdAt) - new Date(a.createdAt);
           });
         dispatch(listExpenses(sortedExpenses))
@@ -156,8 +163,10 @@ export const remindExpense = remindArray => async dispatch => {
         body: JSON.stringify({userId, expenseId})
     })
     const response = await res.json();
+    // console.log("RESPONSE", response);
     if (res.ok) {
-        dispatch(getExpenses(id));
+        dispatch(notify(response.remindExpense.userId, response.remindExpense.expenseId));
+        dispatch(getExpenses(id))
     }
 }
 

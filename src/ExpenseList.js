@@ -37,8 +37,9 @@ const useStyles = makeStyles((theme) => ({
     }
   }));
 
-const ExpenseList = ({listExpenses, user, friends}) => {
+const ExpenseList = ({ user, friends}) => {
     const classes = useStyles();
+    const listExpenses = useSelector(state => state.expenseReducer.listExpenses);
     const userId = window.localStorage.getItem("userId");
     const dispatch = useDispatch();
 
@@ -176,13 +177,13 @@ const ExpenseList = ({listExpenses, user, friends}) => {
 }
 
 const ExpenseListContainer = () => {
-    const listExpenses = useSelector(state => state.expenseReducer.listExpenses);
+    // const listExpenses = useSelector(state => state.expenseReducer.listExpenses);
     const user = useSelector(state => state.authReducer.user);
     const friends = useSelector(state => state.friendReducer.friends);
 
     return (
         <ExpenseList
-            listExpenses={listExpenses}
+            // listExpenses={listExpenses}
             user={user}
             friends={friends}
         />
