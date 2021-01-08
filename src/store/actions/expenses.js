@@ -33,7 +33,7 @@ export const createExpense = ({
     if (res.ok) {
         const expense = await res.json();
         dispatch(getExpenses(userId));
-        alert(`Expense created`);
+        // alert(`Expense created`);
         return;
     }
     const errorRes = await res.json();
