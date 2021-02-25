@@ -1,7 +1,7 @@
 <div align="center">
 
-**Technologies:**
-JavaScript, Express.js, Node.js, React.js, Redux, Sequelize
+## Technologies:
+JavaScript, Express.js, Node.js, React.js, Redux, Sequelize, Postgres, HTML & CSS
 
 ---
 
@@ -27,50 +27,19 @@ An expense-tracking application that allow users to record their financial data 
 **Github Backend URL**
 * https://github.com/dyclee/breakeven-backend
 
-**Goals**
-* user account CRUD and authentication
-* ability to create expenses with any number of friends
-* ability to make payments
-* ability to send friend requests to other users, confirm or remove requests
-* ability to cash out current balance
-* ability to notify friends of unpaid expenses
+<div align="center">
 
-**Checklist**
-* create database schema, set up DB
-* plan frontend and server routes
-* set up Express server using Sequelize
-* set up React frontend
-* CRUD for users and authentication
-* CRUD for expenses and user-expenses (individual expense if split between multiple users)
-* CRUD for friendships
-* add notifications
-* styling
+## Features
 
-## Technologies
-- JavaScript
-- Node.js
-- PostgreSQL
-- Express
-- Sequelize
-- React
-- Redux
-- pg
-- Bcrypt
-- JWTs
-- HTML/CSS
+</div>
 
-## Feature List
-### Users / Friends
-- Create a new account (sign-up)
-- Login / Logout
-- Users can add and remove friends
+<img src="readme/homepage.PNG" alt="homepage">
 
-### Expenses
-- Users can create an expense
-- Users can pay an expense
+* Users can create expenses associated with any number of friends
+* Users can pay expenses requested from friends
+* Users can make friend requests and accept incoming requests
 
-### Notifications
-- Users can notify each other concerning expenses
+<img src="readme/notificationpage.PNG" alt="notifications">
 
-### Other
-- Users can cash out their current balance
+* Users can notify their friends associated with unpaid expenses
+* Users can cash out their current balance (only if balance is positive)
