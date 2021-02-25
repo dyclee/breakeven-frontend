@@ -1,6 +1,6 @@
 <div align="center">
 
-## Technologies:
+### Technologies
 JavaScript, Express.js, Node.js, React.js, Redux, Sequelize, Postgres, HTML & CSS
 
 ---
@@ -39,6 +39,7 @@ An expense-tracking application that allow users to record their financial data 
 <img src="readme/homepage.PNG" alt="homepage" width="60%" align="left">
 
 Users can pay expenses requested from friends
+
 Users can notify their friends associated with unpaid expenses
 
 <br clear="both">
@@ -56,6 +57,7 @@ Users can create expenses associated with any number of friends
 <img src="readme/notificationpage.PNG" alt="notifications">
 
 Users can make friend requests and accept incoming requests
+
 Users can cash out their current balance (only if balance is positive)
 
 ---
