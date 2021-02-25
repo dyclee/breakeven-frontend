@@ -6,10 +6,12 @@ JavaScript, Express.js, Node.js, React.js, Redux, Sequelize
 ---
 
 # BreakEven
-## Expense tracking application
+## Expense-tracking application
 
 **Developer:**
 David Lee
+
+<img src="readme/login.PNG" alt="login">
 
 **Table of Contents**
 
@@ -20,7 +22,7 @@ David Lee
 
 </div>
 
-A bill-splitting application that allow users to create expenses and request payment from other users, 'friend' other users, cash out their balance, and notify users of unpaid expenses
+An expense-tracking application that allow users to record their financial data and personal expenses by creating new expenses, paying off past expenses, and request payments from other users. Users can 'friend' other users, cash out their balance, and notify their friends of unpaid expenses
 
 **Github Backend URL**
 * https://github.com/dyclee/breakeven-backend
