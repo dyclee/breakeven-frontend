@@ -33,13 +33,22 @@ An expense-tracking application that allow users to record their financial data 
 
 </div>
 
-<img src="readme/homepage.PNG" alt="homepage">
+<img src="readme/homepage.PNG" alt="homepage" width="60%" align="left">
+
+* Users can pay expenses requested from friends
+* Users can notify their friends associated with unpaid expenses
+
+<br clear="both">
+
+---
+
+<img src="readme/create.PNG" alt="expense form" width="50%" align="right">
 
 * Users can create expenses associated with any number of friends
-* Users can pay expenses requested from friends
-* Users can make friend requests and accept incoming requests
+
+---
 
 <img src="readme/notificationpage.PNG" alt="notifications">
 
-* Users can notify their friends associated with unpaid expenses
+* Users can make friend requests and accept incoming requests
 * Users can cash out their current balance (only if balance is positive)
