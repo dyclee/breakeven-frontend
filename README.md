@@ -1,7 +1,26 @@
-**Developer** David Lee
+<div align="center">
 
-**Description**
-* A bill-splitting application that allow users to create expenses and request payment from other users, 'friend' other users, cash out their balance, and notify users of unpaid expenses
+**Technologies:**
+JavaScript, Express.js, Node.js, React.js, Redux, Sequelize
+
+---
+
+# BreakEven
+## Expense tracking application
+
+**Developer:**
+David Lee
+
+**Table of Contents**
+
+[About](#about-breakeven) | [Features](#features) | [Installation](#installation) | [Contact](#contact)
+
+
+## About BreakEven
+
+</div>
+
+A bill-splitting application that allow users to create expenses and request payment from other users, 'friend' other users, cash out their balance, and notify users of unpaid expenses
 
 **Github Backend URL**
 * https://github.com/dyclee/breakeven-backend
